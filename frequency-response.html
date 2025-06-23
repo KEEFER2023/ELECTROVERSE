@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+  <h3>🔊 Frequency Response</h3>
+  <p>Frequency response analysis involves studying how a system reacts to sinusoidal inputs of varying frequencies. It is fundamental to understanding stability, filtering, and resonance behavior in control systems.</p>
+
+  <h4>📉 Bode Plots</h4>
+  <ul>
+    <li><strong>Magnitude Plot:</strong> Shows gain (in dB) vs. frequency (log scale).</li>
+    <li><strong>Phase Plot:</strong> Shows phase shift (in degrees) vs. frequency.</li>
+  </ul>
+
+  <div class="diagram">
+    <img src="bode.gif" alt="Example Bode Plot">
+    <p><strong>Fig:</strong> Bode plot of a typical second-order system.</p>
+  </div>
+
+  <h4>🌀 Resonance & Bandwidth</h4>
+  <ul>
+    <li><strong>Resonant Frequency (ω<sub>r</sub>):</strong> Frequency where gain is maximum.</li>
+    <li><strong>Bandwidth:</strong> Range of frequencies with gain > -3 dB of peak value.</li>
+  </ul>
+
+  <h4>🔍 Gain Margin & Phase Margin</h4>
+  <ul>
+    <li><strong>Gain Margin (GM):</strong> How much gain can increase before instability.</li>
+    <li><strong>Phase Margin (PM):</strong> Additional phase lag before instability.</li>
+  </ul>
+
+  <div class="note">
+    Gain and phase margins are key to analyzing and ensuring system stability from Bode plots.
+  </div>
+
+  <h4>🎛️ Nyquist Plot</h4>
+  <p>A plot of the open-loop frequency response on the complex plane, used with Nyquist stability criterion.</p>
+  <div class="diagram">
+    <img src="nyquist.svg" alt="Nyquist Plot Example">
+    <p><strong>Fig:</strong> Nyquist plot for a stable second-order system.</p>
+  </div>
+
+  <h4>🧠 Example</h4>
+  <div class="example">
+    <strong>System:</strong> <code>G(s) = 10 / (s(s+2))</code><br>
+    <ul>
+      <li>Magnitude plot starts at -20 dB/dec at ω = 1 rad/s</li>
+      <li>Phase lag accumulates to -180° as ω increases</li>
+      <li>Apply margins using intersection with -180° axis (Nyquist) or -3 dB point (Bode)</li>
+    </ul>
+  </div>
+
+  <h4>📺 Animation: Frequency Sweep</h4>
+  <canvas id="freqCanvas" width="600" height="300"></canvas>
+  <script>
+    const ctxFreq = document.getElementById('freqCanvas').getContext('2d');
+    ctxFreq.clearRect(0, 0, 600, 300);
+    ctxFreq.beginPath();
+    ctxFreq.strokeStyle = '#4caf50';
+    for (let w = 0; w <= 100; w += 1) {
+      let gain = 20 * Math.log10(10 / Math.sqrt(Math.pow(w, 2) * Math.pow(w + 2, 2)));
+      ctxFreq.lineTo(30 + w * 5, 250 - gain);
+    }
+    ctxFreq.stroke();
+    ctxFreq.fillText('Frequency →', 500, 280);
+    ctxFreq.fillText('Gain (dB) →', 10, 20);
+  </script>
+  <p><strong>Fig:</strong> Simulated Bode magnitude plot sweep for <code>G(s) = 10 / (s(s+2))</code>.</p>
+
+  <h4>📝 Practice Quiz</h4>
+  <div class="quiz">
+    <details><summary>Q1: What is the phase margin of a system with gain crossover at 10 rad/s and phase of -120°?</summary><p><strong>Answer:</strong> PM = 60°</p></details>
+    <details><summary>Q2: What is the meaning of -3 dB in Bode plot?</summary><p><strong>Answer:</strong> Point where power is halved (approx. 0.707 of original amplitude)</p></details>
+  </div>
+</div>
+
+<a class="back" href="control-systems.html">&larr; Back to control systems</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>

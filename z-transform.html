@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+  <h3>🔄 Z-Transform</h3>
+  <p>The Z-Transform is a fundamental tool in the analysis and design of discrete-time signals and systems. It is the discrete counterpart to the Laplace Transform.</p>
+
+  <h4>📄 Definition</h4>
+  <p>The Z-Transform of a discrete signal <code>x[n]</code> is defined as:</p>
+  <code>X(z) = ∑ x[n] z<sup>−n</sup></code>
+  <p>Where the summation is taken over all integer values of <code>n</code> for which the sum converges.</p>
+
+  <h4>🧩 Common Z-Transform Pairs</h4>
+  <ul>
+    <li><code>δ[n] → 1</code></li>
+    <li><code>u[n] → 1 / (1 − z<sup>−1</sup>)</code>, |z| > 1</li>
+    <li><code>aⁿ u[n] → 1 / (1 − a z<sup>−1</sup>)</code>, |z| > |a|</li>
+    <li><code>n aⁿ u[n] → a z<sup>−1</sup> / (1 − a z<sup>−1</sup>)²</code></li>
+  </ul>
+
+  <h4>📘 Properties</h4>
+  <ul>
+    <li><strong>Linearity:</strong> Z{a·x[n] + b·y[n]} = a·X(z) + b·Y(z)</li>
+    <li><strong>Time Shifting:</strong> Z{x[n − k]} = z<sup>−k</sup> X(z)</li>
+    <li><strong>Scaling:</strong> Z{aⁿ x[n]} = X(z / a)</li>
+    <li><strong>Convolution:</strong> Z{x[n] * h[n]} = X(z)·H(z)</li>
+  </ul>
+
+  <h4>🎯 Region of Convergence (ROC)</h4>
+  <div class="note">
+    <strong>ROC:</strong> Set of <code>z</code> values for which the Z-transform converges. Crucial for stability and causality.
+  </div>
+
+  <h4>📈 Pole-Zero Plot </h4>
+  <canvas id="zCanvas" width="400" height="200"></canvas>
+  <script>
+    const zCanvas = document.getElementById('zCanvas');
+    const zCtx = zCanvas.getContext('2d');
+    zCtx.clearRect(0, 0, 400, 200);
+    zCtx.font = '14px sans-serif';
+    zCtx.fillText('z-plane', 10, 20);
+    zCtx.beginPath();
+    zCtx.arc(200, 100, 80, 0, 2 * Math.PI); // unit circle
+    zCtx.strokeStyle = '#ccc';
+    zCtx.stroke();
+    zCtx.fillStyle = '#f00';
+    zCtx.fillText('×', 260, 100); // Pole
+    zCtx.fillStyle = '#090';
+    zCtx.fillText('○', 160, 100); // Zero
+  </script>
+  <div class="note">System is stable if all poles lie inside the unit circle.</div>
+
+  <h4>📚 Example</h4>
+  <div class="example">
+    <strong>Example:</strong> Find Z{(1/2)<sup>n</sup> u[n]}
+    <p>Using table: <code>X(z) = 1 / (1 − 0.5 z<sup>−1</sup>)</code>, ROC: |z| > 0.5</p>
+  </div>
+
+  <h4>🧠 Tips</h4>
+  <div class="tip">
+    <ul>
+      <li>Always state ROC in your final answer</li>
+      <li>Use long division or partial fractions to simplify inverse Z-transforms</li>
+      <li>Compare with Laplace for intuition: <code>z = e<sup>sT</sup></code></li>
+    </ul>
+  </div>
+
+  <h4>📝 Quiz</h4>
+  <div class="quiz">
+    <details><summary>Q1: Z{δ[n − 2]}</summary><p><strong>Answer:</strong> z<sup>−2</sup></p></details>
+    <details><summary>Q2: Z{n (0.3)<sup>n</sup> u[n]}</summary><p><strong>Answer:</strong> (0.3 z<sup>−1</sup>) / (1 − 0.3 z<sup>−1</sup>)²</p></details>
+  </div>
+</div>
+
+
+<a class="back" href="signals-systems.html">&larr; Back to Signals and systems</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>

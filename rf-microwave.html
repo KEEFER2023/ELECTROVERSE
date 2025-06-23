@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+<div class="section">
+  <h3>📡 RF & Microwave Systems</h3>
+
+  <h4>🔌 1. What Are RF and Microwave Systems?</h4>
+  <p>Radio Frequency (RF) and Microwave systems operate in frequency ranges from about 3 kHz to 300 GHz. These systems are integral to wireless communication, radar, satellite, and high-frequency circuits. Microwave frequencies typically begin above 1 GHz.</p>
+
+  <h4>🧩 2. Key Components of RF/Microwave Systems</h4>
+  <ul>
+    <li><strong>Transmission Lines:</strong> Coaxial cable, microstrip, waveguides</li>
+    <li><strong>Filters:</strong> Bandpass, lowpass, highpass, notch</li>
+    <li><strong>Mixers:</strong> Used for frequency translation (modulation/demodulation)</li>
+    <li><strong>Oscillators:</strong> Generate carrier signals (e.g. crystal oscillators)</li>
+    <li><strong>Amplifiers:</strong> Boost signal power (Low-noise amplifiers, Power amplifiers)</li>
+    <li><strong>Couplers & Attenuators:</strong> Control signal strength and direction</li>
+  </ul>
+
+  <h4>📏 3. S-Parameters (Scattering Parameters)</h4>
+  <div class="note">
+    <strong>S-parameters</strong> describe how RF signals behave in a network. They define reflection and transmission coefficients in multi-port systems.
+    <ul>
+      <li><strong>S11:</strong> Input reflection coefficient</li>
+      <li><strong>S21:</strong> Forward transmission (gain)</li>
+      <li><strong>S12:</strong> Reverse transmission</li>
+      <li><strong>S22:</strong> Output reflection</li>
+    </ul>
+  </div>
+  <img src="spara.png" alt="S-Parameter Matrix Diagram" style="max-width: 600px;">
+
+  <h4>📡 4. Waveguides & Transmission</h4>
+  <p>Waveguides are hollow metallic tubes that guide electromagnetic waves. They're lossless at microwave frequencies compared to coaxial lines. Modes in waveguides include TE (transverse electric) and TM (transverse magnetic).</p>
+  <img src="waveguide.webp" alt="Waveguide Modes Diagram" style="max-width: 600px;">
+
+  <h4>📐 5. Impedance Matching</h4>
+  <p>Impedance matching maximizes power transfer and minimizes signal reflection. Tools like Smith Charts are used to visualize impedance and design matching networks.</p>
+  <div class="diagram">
+    <img src="smith.webp" alt="Smith Chart Example" style="max-width: 500px;">
+    <p><strong>Figure:</strong> Smith Chart helps engineers visualize complex impedances.</p>
+  </div>
+
+  <h4>🛰️ 6. Practical Applications</h4>
+  <ul>
+    <li><strong>Radar:</strong> Pulse or continuous wave systems used for object detection</li>
+    <li><strong>Satellites:</strong> Microwave links for uplink/downlink</li>
+    <li><strong>5G Base Stations:</strong> Operate in mmWave frequencies (24 GHz+)</li>
+    <li><strong>Medical Imaging:</strong> MRI, microwave-based diagnostics</li>
+  </ul>
+
+  <h4>🎞️ 7. Interactive Radiation from Waveguide (Animation)</h4>
+  <canvas id="rfCanvas" width="600" height="300"></canvas>
+  <script>
+    const rfCtx = document.getElementById('rfCanvas').getContext('2d');
+    rfCtx.clearRect(0, 0, 600, 300);
+    let t = 0;
+    function drawRF() {
+      rfCtx.clearRect(0, 0, 600, 300);
+      rfCtx.beginPath();
+      for (let x = 0; x < 600; x++) {
+        const y = 150 + 40 * Math.sin(0.04 * x - t);
+        if (x === 0) rfCtx.moveTo(x, y);
+        else rfCtx.lineTo(x, y);
+      }
+      rfCtx.strokeStyle = '#3f51b5';
+      rfCtx.lineWidth = 2;
+      rfCtx.stroke();
+      t += 0.2;
+      requestAnimationFrame(drawRF);
+    }
+    drawRF();
+  </script>
+  <div class="note">Live sinusoidal wave simulating RF signal propagation through a transmission medium.</div>
+
+  <h4>🧪 8. Quiz Yourself</h4>
+  <div class="quiz">
+    <details><summary>Q1: What are S-parameters used for?</summary><p><strong>Answer:</strong> Analyzing reflection and transmission in RF networks</p></details>
+    <details><summary>Q2: Which waveguide mode has no electric field along the direction of propagation?</summary><p><strong>Answer:</strong> TE mode</p></details>
+    <details><summary>Q3: What does a Smith Chart visualize?</summary><p><strong>Answer:</strong> Complex impedance and reflection coefficients</p></details>
+  </div>
+</div>
+
+<a class="back" href="telecom-track.html">&larr; Back to Telecommunication Track</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+<h1>🔌 Circuit Analysis</h1>
+<p>This chapter provides an in-depth exploration of the fundamental laws, techniques, and strategies used to analyze electrical circuits, based on leading books such as <i>Engineering Circuit Analysis</i> and <i>The Art of Electronics</i>.</p>
+
+<div class="section">
+  <h2>1. ⚡ Ohm's Law – Foundation of Circuit Behavior</h2>
+  <p>Ohm’s Law defines the linear relationship between voltage, current, and resistance in a conductor. It is a fundamental principle used throughout all of circuit analysis.</p>
+  <code>V = I × R</code>
+  <ul>
+    <li><strong>V (Voltage):</strong> Electric potential difference in volts (V)</li>
+    <li><strong>I (Current):</strong> Flow of charge in amperes (A)</li>
+    <li><strong>R (Resistance):</strong> Opposition to current in ohms (Ω)</li>
+  </ul>
+
+  <div class="note">
+    <strong>Mnemonic:</strong> Use the Ohm's Law triangle to quickly recall the formula:<br>
+    <!-- <img src="ohms-law-triangle.png" alt="Ohm's Law Triangle" style="max-width:200px;"> -->
+  </div>
+
+  <h3>🧠 Deep Insight</h3>
+  <p>From a microscopic perspective, Ohm’s Law arises due to electron collisions in the lattice of the conductor. The resistance depends on material properties, cross-section, and temperature.</p>
+  <p><strong>Key Material Insight:</strong> Resistivity (ρ) is intrinsic to the material:</p>
+  <code>R = ρ × (L / A)</code>
+  <ul>
+    <li>ρ = resistivity (Ω·m)</li>
+    <li>L = length of the conductor (m)</li>
+    <li>A = cross-sectional area (m²)</li>
+  </ul>
+
+  <div class="example">
+    <strong>Example:</strong> A copper wire of 1.5 m length and 1 mm² cross-section. ρ = 1.68×10⁻⁸ Ω·m.<br>
+    <code>R = ρ × (L/A) = 1.68×10⁻⁸ × (1.5 / 1×10⁻⁶) = 0.0252 Ω</code>
+  </div>
+
+  <h3>📐 Graphical Interpretation</h3>
+  <p>Ohmic devices produce a linear V-I plot. The slope equals resistance (R). Non-ohmic components like diodes show nonlinear curves.</p>
+  <div class="diagram">
+    <!-- <img src="vi-graph.png" alt="Voltage-Current Graph" style="max-width:100%;"> -->
+  </div>
+
+  <h3>⚙️ Real-Life Engineering Application</h3>
+  <p>In circuit design, engineers use Ohm’s Law to:</p>
+  <ul>
+    <li>Size resistors for LEDs</li>
+    <li>Limit current to microcontrollers</li>
+    <li>Balance current paths in power circuits</li>
+  </ul>
+  <div class="example">
+    <strong>Example:</strong> An LED needs 20 mA and has a forward drop of 2V. The power supply is 9V. What resistor to use?<br>
+    <code>V_R = 9V - 2V = 7V → R = V/I = 7V / 0.02A = 350 Ω</code>
+  </div>
+
+  <h3>💡 Animated Illustration</h3>
+  <p>Visualizing current increase with decreasing resistance under constant voltage:</p>
+  <div class="diagram">
+    <svg width="100%" height="160" viewBox="0 0 600 160">
+      <rect x="50" y="70" width="100" height="20" fill="#999" />
+      <text x="60" y="65" font-size="14">Resistor R</text>
+      <line x1="0" y1="80" x2="50" y2="80" stroke="#000" stroke-width="2" />
+      <line x1="150" y1="80" x2="250" y2="80" stroke="#000" stroke-width="2" />
+      <text x="10" y="70">+9V</text>
+      <text x="240" y="70">0V</text>
+      <line x1="0" y1="80" x2="250" y2="80" stroke="#f00" stroke-width="2" class="current-arrow" marker-end="url(#arrowhead)" />
+      <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill="#f00" />
+        </marker>
+      </defs>
+    </svg>
+  </div>
+
+  <h3>🧮 Power Considerations</h3>
+  <code>P = V × I = I² × R = V² / R</code>
+  <div class="example">
+    <strong>Example:</strong> A 2 Ω resistor carries 1.5 A.<br>
+    <code>P = I² × R = (1.5)² × 2 = 2.25 × 2 = 4.5 W</code> → Use a 5W resistor.
+  </div>
+
+  <h3>📝 Practice Quiz</h3>
+  <div class="quiz">
+    <details><summary>Q: A device draws 0.25 A from a 9 V source. What’s its resistance?</summary><p><strong>Ans:</strong> R = V / I = 9 / 0.25 = 36 Ω</p></details>
+    <details><summary>Q: A 10 Ω resistor has 2 A flowing through it. Find the voltage.</summary><p><strong>Ans:</strong> V = I × R = 2 × 10 = 20 V</p></details>
+    <details><summary>Q: A carbon resistor labeled 470Ω is used with a 12V supply. What current flows?</summary><p><strong>Ans:</strong> I = V / R = 12 / 470 ≈ 25.5 mA</p></details>
+  </div>
+
+</div>
+
+<a class="back" href="circuit-analysis.html">&larr; Back to Circuit analysis topics</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>

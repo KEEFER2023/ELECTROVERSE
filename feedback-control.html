@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Feedback Control – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; max-width: 900px; margin: auto; padding: 30px; background: #fefefe; color: #1a1a1a; line-height: 1.8; }
+    h1, h2, h3 { color: #0d47a1; margin-top: 2.5rem; }
+    .section { margin-bottom: 3rem; }
+    .diagram, .note, .tip, .quiz { background: #f5f5f5; padding: 1.2rem; margin: 1.5rem 0; border-left: 6px solid; border-radius: 4px; }
+    .diagram { border-color: #1976d2; }
+    .note { border-color: #2196f3; }
+    .tip { border-color: #ff9800; }
+    .quiz { border-color: #4caf50; }
+    code { background: #eeeeee; padding: 2px 4px; font-family: Consolas, monospace; }
+    canvas { display: block; margin: 1rem auto; border: 1px solid #ccc; }
+    summary { cursor: pointer; font-weight: bold; }
+  </style>
+</head>
+<body>
+
+     <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+  <h1>🔁 Feedback Control – Electroverse</h1>
+  <p>This page explores open-loop and closed-loop systems, the role of feedback in stability and accuracy, and how to identify and model feedback loops using block diagrams. Includes animation and worked examples.</p>
+
+  <div class="section">
+    <h2>📘 1. Open-Loop vs Closed-Loop Control</h2>
+    <div class="diagram">
+      <strong>Open-Loop:</strong> System acts without regard to output. Example: Microwave oven.
+      <br><strong>Closed-Loop:</strong> Feedback path monitors output and corrects deviation. Example: Room thermostat.
+    </div>
+
+    <canvas id="loopCanvas" width="600" height="200"></canvas>
+    <script>
+      const canvas = document.getElementById("loopCanvas");
+      const ctx = canvas.getContext("2d");
+      ctx.font = "14px sans-serif";
+
+      // Open Loop
+      ctx.fillText("Setpoint", 20, 40);
+      ctx.fillText("→ Controller", 100, 40);
+      ctx.fillText("→ Actuator", 220, 40);
+      ctx.fillText("→ Process", 340, 40);
+      ctx.fillText("→ Output", 460, 40);
+
+      // Closed Loop
+      ctx.fillText("Setpoint", 20, 140);
+      ctx.fillText("→ Controller", 100, 140);
+      ctx.fillText("→ Actuator", 220, 140);
+      ctx.fillText("→ Process", 340, 140);
+      ctx.fillText("→ Output", 460, 140);
+      ctx.beginPath();
+      ctx.moveTo(510, 140); ctx.lineTo(510, 180); ctx.lineTo(20, 180); ctx.lineTo(20, 145);
+      ctx.stroke();
+      ctx.fillText("Feedback", 200, 175);
+    </script>
+
+    <div class="note">Closed-loop systems enhance precision, compensate for disturbances, and adapt to changes.</div>
+  </div>
+
+  <div class="section">
+    <h2>🧠 2. Feedback Properties</h2>
+    <ul>
+      <li><strong>Accuracy:</strong> Maintains output close to desired value</li>
+      <li><strong>Disturbance Rejection:</strong> Reduces impact of external inputs</li>
+      <li><strong>Sensitivity Reduction:</strong> System becomes less sensitive to plant variation</li>
+      <li><strong>Stability:</strong> Can either stabilize or destabilize depending on gain/phase margin</li>
+    </ul>
+    <div class="tip">Negative feedback is stabilizing; positive feedback amplifies deviations.</div>
+  </div>
+
+  <div class="section">
+    <h2>📦 3. Feedback Block Diagram</h2>
+    <p>The canonical form of a unity feedback system:</p>
+    <p><code>Y(s)/R(s) = G(s) / (1 + G(s)H(s))</code></p>
+    <div class="diagram">
+      <p><strong>G(s)</strong>: Forward path transfer function</p>
+      <p><strong>H(s)</strong>: Feedback path transfer function (often = 1)</p>
+    </div>
+    <img src="feedback.png" alt="Feedback Block Diagram">
+  </div>
+
+  <div class="section">
+    <h2>🧪 4. Quiz Yourself</h2>
+    <div class="quiz">
+      <details><summary>Q1: What's the purpose of feedback in control systems?</summary><p><strong>Answer:</strong> To compare the output with reference and adjust the control input to reduce error.</p></details>
+      <details><summary>Q2: What is the formula for a unity feedback system?</summary><p><strong>Answer:</strong> Y(s)/R(s) = G(s) / (1 + G(s))</p></details>
+      <details><summary>Q3: Name a real-world closed-loop system.</summary><p><strong>Answer:</strong> Air conditioning thermostat, cruise control in a car.</p></details>
+    </div>
+  </div>
+
+  <a href="control-track.html" style="display:inline-block;margin-top:2rem;color:#0d47a1;text-decoration:none">← Back to Control Overview</a>
+
+  <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>

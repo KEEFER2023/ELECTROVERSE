@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Diodes – Analog Electronics | Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI', sans-serif; max-width: 900px; margin: auto; padding: 30px; background: #fefefe; color: #1a1a1a; line-height: 1.9; }
+    h1,h2,h3 { color: #0d47a1; margin-top: 2.5rem; }
+    .section { margin-bottom: 3rem; }
+    .diagram, .flowchart { background: #f5f5f5; padding: 1rem; margin: 1.5rem 0; border-left: 6px solid #1976d2; border-radius: 4px; }
+    .example, .note, .tip, .quiz { background: #f5f5f5; padding: 1.2rem; margin: 1.5rem 0; border-left: 6px solid; border-radius: 4px; }
+    .example { border-color: #4caf50; }
+    .note { border-color: #1976d2; }
+    .tip { border-color: #ff9800; }
+    code { background: #eeeeee; padding: 2px 4px; font-family: Consolas, monospace; display: block; margin: 0.5rem 0; }
+    ul { padding-left: 1.4rem; }
+    details { margin: 1.2rem 0; }
+    summary { cursor: pointer; font-weight: bold; }
+    a.back { color: #0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    svg { max-width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+
+    <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+<h1>🔌 Diodes – The One-Way Valve of Electronics</h1>
+<p>Diodes are essential nonlinear semiconductor devices used to control the direction of current flow. They’re everywhere: from rectifiers in chargers, to logic clamping in microcontrollers, to protection circuits in power supplies. This section goes beyond the surface — helping you *truly understand* diode physics, types, design calculations, and real-world engineering usage.</p>
+
+<div class="section">
+  <h2>🧠 Physics of the PN Junction</h2>
+  <p>A <strong>diode</strong> is formed from a junction of <em>p-type</em> and <em>n-type</em> semiconductor materials. In equilibrium:</p>
+  <ul>
+    <li>Electrons diffuse from N to P, and holes from P to N.</li>
+    <li>This forms a <strong>depletion region</strong> with an electric field that opposes further movement.</li>
+    <li>There is a built-in potential (≈0.6–0.7V for silicon).</li>
+  </ul>
+  <div class="diagram">
+    <img src="depletion.png" alt="PN Junction Depletion Region">
+  </div>
+  <div class="note">Forward bias reduces the barrier → current flows. Reverse bias increases the barrier → negligible current.</div>
+</div>
+
+<div class="section">
+  <h2>📊 V-I Characteristics</h2>
+  <p>The diode current–voltage relationship is exponential in forward bias and nearly flat in reverse bias until breakdown. The ideal diode equation is:</p>
+  <code>I = I₀ (e^(qV/kT) - 1)</code>
+  <ul>
+    <li><strong>Threshold voltage:</strong> ≈0.7V for silicon, 0.3V for germanium.</li>
+    <li><strong>Reverse saturation current:</strong> Tiny leakage when reverse biased.</li>
+  </ul>
+  <div class="diagram">
+    <img src="curve.png" height="300px" alt="Diode V-I Curve">
+  </div>
+</div>
+
+<div class="section">
+  <h2>🌐 Diode Types</h2>
+  <ul>
+    <li><strong>PN Junction Diode:</strong> Basic form for rectification and protection.</li>
+    <li><strong>Zener Diode:</strong> Allows reverse breakdown, used for voltage regulation.</li>
+    <li><strong>Schottky Diode:</strong> Low forward drop (≈0.2V), fast switching.</li>
+    <li><strong>LED:</strong> Emits light when forward biased (bandgap defines color).</li>
+    <li><strong>Photodiode:</strong> Generates current in response to light.</li>
+    <li><strong>Varactor:</strong> Variable capacitance under reverse bias (used in RF).</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>🔁 Diodes in Rectifier Circuits</h2>
+  <p>Used for AC to DC conversion. Configurations include:</p>
+  <ul>
+    <li><strong>Half-Wave:</strong> Single diode blocks half of the AC cycle.</li>
+    <li><strong>Full-Wave:</strong> Two diodes + center tap OR four diodes in a bridge.</li>
+  </ul>
+  <div class="diagram">
+    <img src="rectifier.png" alt="Full Wave Rectifier">
+  </div>
+  <div class="example">
+    <strong>Example:</strong> A full-wave bridge rectifier with 10V<sub>rms</sub> AC input. Find peak output and average DC output.
+    <code>V<sub>peak</sub> = √2 × 10V = 14.14V<br>V<sub>DC</sub> ≈ (2V<sub>peak</sub> / π) - 2×0.7V ≈ 8.3V</code>
+  </div>
+</div>
+
+<div class="section">
+  <h2>🧭 Animated Current Flow (Forward Bias)</h2>
+  <div class="diagram">
+    <svg viewBox="0 0 600 160">
+      <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill="#f00" />
+        </marker>
+      </defs>
+      <rect x="150" y="70" width="80" height="20" fill="#ccc" />
+      <text x="155" y="65" font-size="14">Diode</text>
+      <line x1="0" y1="80" x2="150" y2="80" stroke="#000" stroke-width="2" />
+      <line x1="230" y1="80" x2="600" y2="80" stroke="#000" stroke-width="2" />
+      <line x1="0" y1="80" x2="600" y2="80" stroke="#f00" stroke-width="2" marker-end="url(#arrowhead)" />
+    </svg>
+  </div>
+</div>
+
+<div class="section">
+  <h2>🛠 Practical Applications</h2>
+  <ul>
+    <li>Power rectification and DC supplies</li>
+    <li>Overvoltage clamping (Zener or TVS)</li>
+    <li>Logic signal protection</li>
+    <li>Reverse polarity protection</li>
+    <li>Voltage regulation</li>
+    <li>Indicator lights and sensors (LEDs, photodiodes)</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>📝 Practice Quiz</h2>
+  <div class="quiz">
+    <details><summary>What voltage does a silicon diode typically start conducting?</summary><p><strong>Answer:</strong> ~0.7V</p></details>
+    <details><summary>In a bridge rectifier, how many diodes conduct per half-cycle?</summary><p><strong>Answer:</strong> Two</p></details>
+    <details><summary>Why are Schottky diodes useful in switching circuits?</summary><p><strong>Answer:</strong> They switch faster and have lower forward voltage (~0.2V)</p></details>
+  </div>
+</div>
+
+<a class="back" href="analog-electronics.html">&larr; Back to Analog Electronics</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+
+</body>
+</html>

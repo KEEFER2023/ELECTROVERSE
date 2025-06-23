@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+<div class="section">
+  <h2>🎯 Control Systems</h2>
+
+  <h3>⚙️ Control System Overview</h3>
+  <p>Control systems are the backbone of modern engineering — they regulate everything from your thermostat to spacecraft orientation. Understanding how inputs influence outputs is key in engineering dynamic systems.</p>
+
+  <div class="note">
+    <strong>Definition:</strong> A control system manages, commands, directs, or regulates the behavior of other devices or systems using control loops.
+  </div>
+
+  <h4>🧱 Components of a Control System</h4>
+  <ul>
+    <li><strong>Input:</strong> Desired condition or command (setpoint)</li>
+    <li><strong>Process/System:</strong> The physical system to be controlled</li>
+    <li><strong>Controller:</strong> Determines actions based on the error signal</li>
+    <li><strong>Output:</strong> The actual condition of the system</li>
+    <li><strong>Feedback:</strong> Measurement of output fed back to compare with input</li>
+  </ul>
+
+  <h4>🧭 Open vs Closed Loop</h4>
+  <div class="diagram">
+    <strong>Open Loop:</strong> No feedback. E.g., toaster timer.<br>
+    <strong>Closed Loop:</strong> Has feedback. E.g., room thermostat.
+  </div>
+
+  <canvas id="loopCanvas" width="700" height="200"></canvas>
+  <script>
+    const ctx = document.getElementById('loopCanvas').getContext('2d');
+    ctx.font = "16px sans-serif";
+    ctx.fillText("[Input]", 20, 100);
+    ctx.beginPath();
+    ctx.moveTo(80, 100); ctx.lineTo(130, 100); ctx.stroke();
+    ctx.fillText("[Controller]", 135, 100);
+    ctx.moveTo(235, 100); ctx.lineTo(285, 100); ctx.stroke();
+    ctx.fillText("[Process]", 290, 100);
+    ctx.moveTo(390, 100); ctx.lineTo(440, 100); ctx.stroke();
+    ctx.fillText("[Output]", 445, 100);
+    // Feedback arrow
+    ctx.moveTo(470, 100); ctx.lineTo(470, 150); ctx.lineTo(40, 150); ctx.lineTo(40, 105); ctx.stroke();
+    ctx.fillText("Feedback", 60, 140);
+  </script>
+
+  <h4>📚 Real-World Examples</h4>
+  <ul>
+    <li><strong>Thermostat:</strong> Senses room temperature and turns heater on/off accordingly (closed loop)</li>
+    <li><strong>Cruise Control:</strong> Measures vehicle speed and adjusts throttle</li>
+    <li><strong>Inverted Pendulum:</strong> Keeps unstable pole upright using sensors and motors</li>
+  </ul>
+
+  <div class="tip">
+    <strong>Tip:</strong> In control systems, stability is crucial. If a system is unstable, small disturbances grow uncontrollably.
+  </div>
+
+  <h4>📊 Classification of Control Systems</h4>
+  <ul>
+    <li><strong>Linear vs Nonlinear:</strong> Linear obeys superposition; nonlinear doesn't</li>
+    <li><strong>Time-Invariant vs Time-Varying:</strong> Whether system properties change over time</li>
+    <li><strong>Continuous vs Discrete:</strong> Analog vs digital implementation</li>
+    <li><strong>Deterministic vs Stochastic:</strong> Predictable vs uncertain behavior</li>
+  </ul>
+
+  <h4>📌 Goals of Control Design</h4>
+  <ul>
+    <li>Stability</li>
+    <li>Accuracy (low steady-state error)</li>
+    <li>Fast response (low settling time)</li>
+    <li>Disturbance rejection</li>
+  </ul>
+
+  <div class="example">
+    <strong>Example:</strong> In a DC motor speed control system, feedback from an optical encoder measures RPM, which is compared to the desired speed. The controller adjusts voltage accordingly.
+  </div>
+
+  <h4>📝 Quiz</h4>
+  <div class="quiz">
+    <details><summary>Q1: What's the main advantage of a closed-loop system?</summary><p><strong>Answer:</strong> It automatically corrects for disturbances using feedback.</p></details>
+    <details><summary>Q2: Which component compares the input and feedback?</summary><p><strong>Answer:</strong> The controller.</p></details>
+  </div>
+</div>
+
+
+<a class="back" href="control-systems.html">&larr; Back to control systems</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>

@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+  <h3>🛡️ Power System Protection</h3>
+  <p>This section focuses on protecting electrical equipment and systems from faults and abnormal conditions to ensure system reliability and safety.</p>
+
+  <h4>1️⃣ Purpose of Protection</h4>
+  <ul>
+    <li>Minimize damage to equipment</li>
+    <li>Ensure personnel safety</li>
+    <li>Isolate faulty sections with minimal service disruption</li>
+    <li>Maintain power system stability</li>
+  </ul>
+
+  <h4>🧠 2. Protection System Components</h4>
+  <ul>
+    <li><strong>CTs and VTs:</strong> Step-down current and voltage for relays</li>
+    <li><strong>Protective Relays:</strong> Detect fault conditions and initiate circuit breaker trips</li>
+    <li><strong>Circuit Breakers:</strong> Interrupt fault current</li>
+    <li><strong>Communication Channels:</strong> For pilot protection schemes</li>
+  </ul>
+
+  <h4>💥 3. Types of Faults</h4>
+  <ul>
+    <li><strong>Symmetrical:</strong> Three-phase fault — rare, but severe</li>
+    <li><strong>Unsymmetrical:</strong> Single line-to-ground (SLG), line-to-line (LL), double line-to-ground (DLG)</li>
+  </ul>
+  <div class="note">SLG is the most common fault in power systems.</div>
+
+  <h4>🔌 4. Protection Schemes</h4>
+  <ul>
+    <li><strong>Overcurrent Protection:</strong> Simple, uses time-current characteristics</li>
+    <li><strong>Distance Protection:</strong> Based on impedance between fault and relay</li>
+    <li><strong>Differential Protection:</strong> Compares incoming and outgoing currents</li>
+    <li><strong>Pilot Relaying:</strong> Uses communication for fast remote fault clearing</li>
+  </ul>
+
+  <h4>📊 5. Relay Characteristics</h4>
+  <img src="relay.png" alt="Relay Time-Current Curves" style="max-width: 500px;">
+  <div class="note">Relays are tuned to operate within set curves to coordinate with breakers and other relays.</div>
+
+  <h4>🔄 6. Coordination of Protection</h4>
+  <p>Ensures only the faulty section is isolated while others remain energized. Example: Fuse-backup coordination in radial feeders.</p>
+
+  <h4>📉 7. Circuit Breaker Types</h4>
+  <ul>
+    <li><strong>Air Blast CB:</strong> Used in high voltage outdoor substations</li>
+    <li><strong>Oil CB:</strong> Arc extinguished in oil</li>
+    <li><strong>SF₆ CB:</strong> Superior dielectric gas extinguishes arc</li>
+    <li><strong>Vacuum CB:</strong> Ideal for medium voltage; low maintenance</li>
+  </ul>
+
+  <h4>🎯 8. Sample Protection Schemes</h4>
+  <ul>
+    <li><strong>Transformer:</strong> Differential + Buchholz relay</li>
+    <li><strong>Transmission Line:</strong> Distance + pilot protection</li>
+    <li><strong>Generator:</strong> Stator ground, rotor earth, loss of excitation, reverse power</li>
+  </ul>
+  <img src="zone.jpg" alt="Protection Zones" style="max-width: 600px;">
+
+  <h4>📘 Quiz</h4>
+  <div class="quiz">
+    <details><summary>Q1: What is the main goal of a protective relay?</summary><p><strong>Answer:</strong> Detect abnormal conditions and initiate circuit breaker trip.</p></details>
+    <details><summary>Q2: Which type of fault is most common?</summary><p><strong>Answer:</strong> Single Line-to-Ground (SLG) fault.</p></details>
+    <details><summary>Q3: How does differential protection work?</summary><p><strong>Answer:</strong> It compares current entering and leaving equipment to detect faults.</p></details>
+  </div>
+</div>
+
+<a class="back" href="power-track.html">&larr; Back to Power track</a>
+  <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+</body>
+</html>
+
+

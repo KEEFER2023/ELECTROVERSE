@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>System Modeling – Electroverse</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      max-width: 900px;
+      margin: auto;
+      padding: 30px;
+      background: #fefefe;
+      color: #1a1a1a;
+      line-height: 1.9;
+    }
+    h1, h2, h3 { color: #0d47a1; margin-top: 2.5rem; }
+    .section { margin-bottom: 3rem; }
+    .example, .note, .tip, .quiz {
+      background: #f5f5f5;
+      padding: 1.2rem;
+      margin: 1.5rem 0;
+      border-left: 6px solid;
+      border-radius: 4px;
+    }
+    .example { border-color: #4caf50; }
+    .note { border-color: #1976d2; }
+    .tip { border-color: #ff9800; }
+    .quiz { border-color: #9c27b0; }
+    code { background: #eeeeee; padding: 2px 4px; font-family: Consolas, monospace; display: block; margin: 0.5rem 0; }
+    canvas { border: 1px solid #ccc; margin: 1rem 0; }
+    details { margin: 1.2rem 0; }
+    summary { cursor: pointer; font-weight: bold; }
+    a.back {
+      color: #0d47a1;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+     <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+
+
+<h1>⚙️ System Modeling – Control Systems</h1>
+<p>This section covers the mathematical modeling of physical systems – the cornerstone of control theory. It introduces methods for representing electrical, mechanical, and electromechanical systems through differential equations, transfer functions, and state-space formulations.</p>
+
+<hr />
+
+<div class="section">
+  <h2>🧮 1. Mathematical Modeling</h2>
+  <p>Modeling involves creating a mathematical description of a system’s dynamic behavior.</p>
+  <ul>
+    <li><strong>Differential equations:</strong> Represent the time-domain relationship.</li>
+    <li><strong>Laplace Transform:</strong> Converts differential equations to algebraic equations for easier analysis.</li>
+    <li><strong>Transfer Function:</strong> Ratio of output to input in Laplace domain, assuming zero initial conditions.</li>
+  </ul>
+
+  <div class="example">
+    <strong>Example (RC Circuit):</strong>  
+    <code>V(t) = RC (dV_out/dt) + V_out</code><br>
+    Taking Laplace: <code>V(s) = RCsV_out(s) + V_out(s)</code><br>
+    Transfer Function: <code>H(s) = V_out(s)/V(s) = 1 / (RCs + 1)</code>
+  </div>
+</div>
+
+<div class="section">
+  <h2>📦 2. Block Diagrams</h2>
+  <p>Block diagrams represent the functional relationship between components. They simplify system structure into interconnected transfer functions.</p>
+  
+  <div class="tip">Use block diagram algebra to reduce complex systems: series, parallel, and feedback combinations.</div>
+</div>
+
+<div class="section">
+  <h2>🔁 3. Transfer Functions</h2>
+  <p>The transfer function is defined as:</p>
+  <code>G(s) = Output(s) / Input(s)</code>
+  <p>It characterizes system dynamics and poles/zeros.</p>
+  <ul>
+    <li><strong>Example (Mass-Spring-Damper):</strong>  
+      \( M \ddot{x} + B \dot{x} + Kx = F(t) \) → \( G(s) = \frac{X(s)}{F(s)} = \frac{1}{Ms^2 + Bs + K} \)
+    </li>
+    <li>Identify poles → determine system stability.</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>📐 4. State-Space Representation</h2>
+  <p>State-space models describe systems using a set of first-order differential equations:</p>
+  <code>
+    ẋ(t) = Ax(t) + Bu(t) <br>
+    y(t) = Cx(t) + Du(t)
+  </code>
+  <p>This approach is more general than transfer functions and handles multiple inputs/outputs (MIMO systems).</p>
+</div>
+
+<div class="section">
+  <h2>⚙️ 5. Modeling Mechanical & Electrical Systems</h2>
+  <div class="note">
+    <strong>Electrical Analogy:</strong>  
+    <ul>
+      <li>Mass ↔ Inductance (L)</li>
+      <li>Damper ↔ Resistance (R)</li>
+      <li>Spring ↔ Capacitance (C)</li>
+    </ul>
+  </div>
+  <img src="analogy.png" alt="Mechanical-Electrical Analogy">
+</div>
+
+<div class="section">
+  <h2>🎞️ 6. Animation: Response of a First-Order System</h2>
+  <canvas id="firstOrderCanvas" width="600" height="250"></canvas>
+  <script>
+    const canvas = document.getElementById("firstOrderCanvas");
+    const ctx = canvas.getContext("2d");
+    let t = 0;
+
+    function drawStepResponse() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Axes
+      ctx.strokeStyle = "#ccc";
+      ctx.beginPath();
+      ctx.moveTo(40, 200); ctx.lineTo(580, 200); // X-axis
+      ctx.moveTo(40, 20); ctx.lineTo(40, 200); // Y-axis
+      ctx.stroke();
+
+      // Step response curve
+      ctx.strokeStyle = "#4caf50";
+      ctx.beginPath();
+      for (let x = 0; x <= 10; x += 0.1) {
+        let y = 1 - Math.exp(-x); // First-order unit step response
+        ctx.lineTo(40 + x * 50, 200 - y * 150);
+      }
+      ctx.stroke();
+
+      // Moving point
+      let y = 1 - Math.exp(-t);
+      ctx.beginPath();
+      ctx.arc(40 + t * 50, 200 - y * 150, 5, 0, 2 * Math.PI);
+      ctx.fillStyle = "#f44336";
+      ctx.fill();
+
+      t += 0.05;
+      if (t > 10) t = 0;
+      requestAnimationFrame(drawStepResponse);
+    }
+    drawStepResponse();
+  </script>
+  <div class="note">This animation shows the exponential rise of a first-order system to a step input.</div>
+</div>
+
+<div class="section">
+  <h2>🧪 7. Quiz Yourself</h2>
+  <div class="quiz">
+    <details><summary>Q1: What’s the transfer function of an RC low-pass filter?</summary><p><strong>Answer:</strong> 1 / (RCs + 1)</p></details>
+    <details><summary>Q2: What's the physical meaning of a state variable?</summary><p><strong>Answer:</strong> It represents internal system memory – the minimum number of variables needed to describe system dynamics.</p></details>
+    <details><summary>Q3: What type of system does a mass-spring-damper model?</summary><p><strong>Answer:</strong> Second-order mechanical system</p></details>
+  </div>
+</div>
+
+<a class="back" href="control-track.html">← Back to Control Systems</a>
+
+<footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+
+</body>
+</html>

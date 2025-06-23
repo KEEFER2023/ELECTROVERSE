@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+<div class="section">
+  <h3>📡 Antennas & Radiation</h3>
+
+  <h4>📶 1. What is an Antenna?</h4>
+  <p>An antenna is a device that converts electrical signals into electromagnetic waves (for transmission) and vice versa (for reception). It is a crucial interface between the electrical circuit and the air.</p>
+
+  <h4>🧭 2. Key Antenna Parameters</h4>
+  <ul>
+    <li><strong>Gain:</strong> Measure of how well the antenna directs energy (in dBi).</li>
+    <li><strong>Radiation Pattern:</strong> Graphical representation of antenna output in space.</li>
+    <li><strong>Directivity:</strong> Focus of the radiated power in a particular direction.</li>
+    <li><strong>Efficiency:</strong> Ratio of power radiated to power input.</li>
+    <li><strong>Bandwidth:</strong> Frequency range over which antenna performs well.</li>
+    <li><strong>Polarization:</strong> Orientation of the electric field — linear, circular, or elliptical.</li>
+  </ul>
+
+  <div class="diagram">
+    <img src="antenna.png" alt="Antenna Radiation Patterns" style="max-width: 600px;">
+    <p><strong>Figure:</strong> Examples of omnidirectional and directional radiation patterns.</p>
+  </div>
+
+  <h4>📡 3. Types of Antennas</h4>
+  <ul>
+    <li><strong>Dipole Antenna:</strong> Basic antenna used in many RF applications.</li>
+    <li><strong>Monopole:</strong> Half-dipole over ground plane — common in mobile devices.</li>
+    <li><strong>Patch (Microstrip):</strong> Compact, flat, used in mobile/IoT.</li>
+    <li><strong>Horn Antenna:</strong> Waveguide-fed, directional, used in microwave.</li>
+    <li><strong>Parabolic Reflector:</strong> High-gain, used for satellite and radar.</li>
+    <li><strong>Yagi-Uda:</strong> Directional antenna used for TV reception.</li>
+  </ul>
+
+  <h4>📐 4. Antenna Gain & Directivity Formula</h4>
+  <div class="note">
+    <strong>Directivity (D) = 4π × Max Power Density / Total Radiated Power</strong><br>
+    <strong>Gain (G) = η × D</strong> where η = efficiency (0 &lt; η ≤ 1)
+  </div>
+
+  <h4>💡 5. Practical Use Cases</h4>
+  <ul>
+    <li><strong>Dipole:</strong> FM/TV broadcasting</li>
+    <li><strong>Patch:</strong> Wi-Fi routers, GPS receivers</li>
+    <li><strong>Horn:</strong> Radar, microwave links</li>
+    <li><strong>Parabolic:</strong> Satellite uplink/downlink</li>
+  </ul>
+
+  <h4>🎞️ 6. Antenna Radiation Animation</h4>
+  <canvas id="antennaCanvas" width="600" height="300"></canvas>
+  <script>
+    const ctxA = document.getElementById('antennaCanvas').getContext('2d');
+    ctxA.clearRect(0, 0, 600, 300);
+    ctxA.beginPath();
+    for (let theta = 0; theta <= 2 * Math.PI; theta += 0.01) {
+      const r = 80 * Math.abs(Math.cos(theta));
+      const x = 300 + r * Math.cos(theta);
+      const y = 150 + r * Math.sin(theta);
+      if (theta === 0) ctxA.moveTo(x, y);
+      else ctxA.lineTo(x, y);
+    }
+    ctxA.strokeStyle = '#ff5722';
+    ctxA.lineWidth = 2;
+    ctxA.stroke();
+  </script>
+  <div class="note">This animated lobe simulates the radiation pattern of a dipole antenna.</div>
+
+  <h4>🔍 7. Radiation Pattern Interpretation</h4>
+  <p>Radiation patterns can be plotted in 2D (polar plot) or 3D. Engineers use these to understand how antennas focus energy.</p>
+  <img src="3d.png" alt="3D Antenna Radiation Pattern" style="max-width: 600px;">
+
+  <h4>🧪 8. Quiz Yourself</h4>
+  <div class="quiz">
+    <details><summary>Q1: What is the unit of antenna gain?</summary><p><strong>Answer:</strong> dBi (decibels relative to isotropic radiator)</p></details>
+    <details><summary>Q2: Which antenna is ideal for point-to-point microwave?</summary><p><strong>Answer:</strong> Parabolic dish</p></details>
+    <details><summary>Q3: What does polarization refer to?</summary><p><strong>Answer:</strong> Orientation of the electric field vector</p></details>
+  </div>
+</div>
+
+<a class="back" href="telecom-track.html">&larr; Back to Telecommunication Track</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>

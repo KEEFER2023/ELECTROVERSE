@@ -1,0 +1,147 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>System Modeling – Electroverse</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      max-width: 900px;
+      margin: auto;
+      padding: 30px;
+      background: #fefefe;
+      color: #1a1a1a;
+      line-height: 1.9;
+    }
+    h1, h2, h3 { color: #0d47a1; margin-top: 2.5rem; }
+    .section { margin-bottom: 3rem; }
+    .example, .note, .tip, .quiz {
+      background: #f5f5f5;
+      padding: 1.2rem;
+      margin: 1.5rem 0;
+      border-left: 6px solid;
+      border-radius: 4px;
+    }
+    .example { border-color: #4caf50; }
+    .note { border-color: #1976d2; }
+    .tip { border-color: #ff9800; }
+    .quiz { border-color: #9c27b0; }
+    code { background: #eeeeee; padding: 2px 4px; font-family: Consolas, monospace; display: block; margin: 0.5rem 0; }
+    canvas { border: 1px solid #ccc; margin: 1rem 0; }
+    details { margin: 1.2rem 0; }
+    summary { cursor: pointer; font-weight: bold; }
+    a.back {
+      color: #0d47a1;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+     <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+
+
+
+<div class="section">
+  <h2>🎛️ Controllers</h2>
+  <p>Controllers are core components of control systems, used to manipulate inputs to a system to get the desired output. This section focuses on the most common types of controllers: PID, Lead, and Lag.</p>
+
+  <h3>🔧 1. PID Controllers</h3>
+  <p>PID stands for Proportional–Integral–Derivative. It adjusts the output based on three terms:</p>
+  <ul>
+    <li><strong>Proportional (P):</strong> Responds to present error <code>P = K_p e(t)</code></li>
+    <li><strong>Integral (I):</strong> Eliminates steady-state error <code>I = K_i \int e(t)dt</code></li>
+    <li><strong>Derivative (D):</strong> Predicts future error <code>D = K_d \frac{de(t)}{dt}</code></li>
+  </ul>
+  <p>Combined controller output:</p>
+  <code>u(t) = K_p e(t) + K_i \int e(t)dt + K_d \frac{de(t)}{dt}</code>
+
+  <div class="diagram">
+    <img src="pid.avif" alt="PID Control Block Diagram">
+    <p><strong>Figure:</strong> PID control structure in a feedback loop.</p>
+  </div>
+
+  <h3>🎯 2. Controller Effects</h3>
+  <table>
+    <thead>
+      <tr><th>Component</th><th>Effect on Rise Time</th><th>Effect on Overshoot</th><th>Effect on Steady-State Error</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Proportional</td><td>↓</td><td>↑</td><td>↓</td></tr>
+      <tr><td>Integral</td><td>↓</td><td>↑↑</td><td>↓↓</td></tr>
+      <tr><td>Derivative</td><td>--</td><td>↓↓</td><td>--</td></tr>
+    </tbody>
+  </table>
+
+  <h3>⚙️ 3. Tuning Methods</h3>
+  <ul>
+    <li><strong>Manual Tuning:</strong> Trial-and-error approach</li>
+    <li><strong>Ziegler–Nichols Method:</strong> Uses ultimate gain and oscillation period</li>
+    <li><strong>Software Tools:</strong> MATLAB, Simulink, or Python libraries (e.g., control systems toolbox)</li>
+  </ul>
+  <div class="example">
+    <strong>Example:</strong> Ziegler–Nichols method finds critical gain <code>K_u</code> and period <code>P_u</code>. PID parameters:
+    <ul>
+      <li><code>K_p = 0.6 K_u</code></li>
+      <li><code>K_i = 2 K_p / P_u</code></li>
+      <li><code>K_d = K_p P_u / 8</code></li>
+    </ul>
+  </div>
+
+  <h3>⛓️ 4. Lead and Lag Compensators</h3>
+  <p>Used to improve transient or steady-state performance.</p>
+  <ul>
+    <li><strong>Lead Compensator:</strong> Improves speed (adds phase lead)</li>
+    <li><strong>Lag Compensator:</strong> Improves accuracy (adds low frequency gain)</li>
+    <li><strong>Transfer Function:</strong> <code>C(s) = K (s + z) / (s + p)</code></li>
+  </ul>
+  <div class="note">Lead: <code>z &lt; p</code>, Lag: <code>z &gt; p</code></div>
+
+  <h3>📉 Animation: PID Step Response</h3>
+  <canvas id="pidCanvas" width="600" height="300"></canvas>
+  <script>
+    const pidCtx = document.getElementById("pidCanvas").getContext("2d");
+    let time = 0;
+    function drawPID() {
+      pidCtx.clearRect(0, 0, 600, 300);
+      pidCtx.beginPath();
+      for (let x = 0; x < 600; x++) {
+        const t = x / 100;
+        const y = 1 - Math.exp(-1 * t) - 0.2 * Math.sin(2 * Math.PI * t);
+        pidCtx.lineTo(x, 250 - y * 100);
+      }
+      pidCtx.strokeStyle = '#4caf50';
+      pidCtx.stroke();
+      requestAnimationFrame(drawPID);
+    }
+    drawPID();
+  </script>
+  <div class="tip">This animated curve shows a PID-tuned step response with reduced steady-state error and moderate overshoot.</div>
+
+  <h3>🧪 Quiz Yourself</h3>
+  <div class="quiz">
+    <details><summary>Q1: What part of PID reduces steady-state error?</summary><p><strong>Answer:</strong> The Integral term.</p></details>
+    <details><summary>Q2: What compensator increases system speed?</summary><p><strong>Answer:</strong> Lead compensator.</p></details>
+    <details><summary>Q3: What's the Ziegler–Nichols method used for?</summary><p><strong>Answer:</strong> Tuning PID controller parameters.</p></details>
+  </div>
+</div>
+
+<a class="back" href="control-track.html">← Back to Control Systems</a>
+
+<footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+
+</body>
+</html>

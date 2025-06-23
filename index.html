@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Electroverse | Powered by Learning</title>
+  <link rel="stylesheet" href="style/style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #0a0a0a;
+      color: white;
+    }
+
+    header {
+      background-color: #000;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #0ff;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 60px;
+      margin-right: 10px;
+    }
+
+    .logo span {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      color: #0ff;
+      font-weight: bold;
+    }
+
+    nav {
+      position: relative;
+    }
+
+    nav select {
+      background-color: #111;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: 1px solid #0ff;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    .hero {
+      text-align: center;
+      padding: 3rem 2rem;
+    }
+
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      color: #0ff;
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #ccc;
+      max-width: 700px;
+      margin: auto;
+    }
+
+    .section {
+      padding: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+
+    .card {
+      background-color: #111;
+      border: 1px solid #0ff;
+      padding: 1rem;
+      border-radius: 8px;
+      transition: 0.3s ease;
+    }
+
+    .card:hover {
+      background-color: #111a;
+      transform: translateY(-4px);
+    }
+
+    .card h3 {
+      color: #0ff;
+    }
+
+    .card a {
+      color: #0ff;
+      text-decoration: none;
+    }
+
+    footer {
+      background-color: #000;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #777;
+      border-top: 1px solid #222;
+    }
+    span{
+      text-align: center;
+      font-size: 40px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      <span>Electroverse</span>
+    </div>
+    <nav>
+      <select onchange="location = this.value">
+        <option value="#">Topics</option>
+        <option value="index.html">Home</option>
+        <option value="maths-physics.html">Maths and Physics</option>
+        <option value="circuit-analysis.html">Circuit Analysis</option>
+        <option value="analog-electronics.html">Analog Electronics</option>
+        <option value="digital-electronics.html">Digital Electronics</option>
+        <option value="signals-systems.html">Signals & Systems</option>
+        <option value="control-systems.html">Control Systems</option>
+        <option value="power-track.html">Power Track</option>
+        <option value="telecom-track.html">Telecom Track</option>
+        <option value="control-track.html">Control & Systems</option>
+      </select>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>Powered by Learning</h1>
+    <p>Welcome to Electroverse — the ultimate electrical engineering cheat sheet. Summarized from top university books, designed for real students who need practical, understandable, and exam-ready content.</p>
+  </section>
+
+  <section class="section" id="foundation">
+    <h2>Foundation Courses</h2>
+    <div class="grid">
+      <div class="card"><h3><a href="maths-physics.html">Math & Physics</a></h3><p>Vectors, Calculus, ODEs, E&M</p></div>
+      <div class="card"><h3><a href="circuit-analysis.html">Circuit Analysis</a></h3><p>Ohm's Law, KVL, KCL, Thevenin</p></div>
+      <div class="card"><h3><a href="analog-electronics.html">Analog Electronics</a></h3><p>Diodes, BJTs, Op-Amps</p></div>
+      <div class="card"><h3><a href="digital-electronics.html">Digital Electronics</a></h3><p>Logic gates, flip-flops, counters</p></div>
+      <div class="card"><h3><a href="signals-systems.html">Signals & Systems</a></h3><p>Linear time-invariant systems, Laplace</p></div>
+      <div class="card"><h3><a href="control-systems.html">Control Systems</a></h3><p>Feedback, stability, PID</p></div>
+    </div>
+  </section>
+
+  <section class="section" id="specializations">
+    <h2>Specializations</h2>
+    <div class="grid">
+      <div class="card"><h3><a href="power-track.html">Power Track</a></h3><p>Power systems, machines, HV engineering</p></div>
+      <div class="card"><h3><a href="telecom-track.html">Telecommunication Track</a></h3><p>Comms, RF, microwave, antennas</p></div>
+      <div class="card"><h3><a href="control-track.html">Control and Systems</a></h3><p>Embedded, robotics, automation</p></div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+</body>
+</html>

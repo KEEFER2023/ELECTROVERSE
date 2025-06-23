@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+  <h3>📐 Laplace Transform</h3>
+  <p>The Laplace Transform is a powerful tool used to analyze linear time-invariant (LTI) systems. It extends the Fourier Transform by converting time-domain signals into a complex frequency domain, enabling analysis of transient and steady-state behavior.</p>
+
+  <h4>📄 Definition</h4>
+  <p>The Laplace Transform of a function <code>x(t)</code> is defined as:</p>
+  <code>X(s) = ∫₀^∞ x(t) e<sup>−st</sup> dt</code>
+  <p>where <code>s = σ + jω</code> is a complex variable.</p>
+
+  <h4>🧩 Common Laplace Pairs</h4>
+  <ul>
+    <li><code>1 → 1/s</code></li>
+    <li><code>tⁿ → n!/sⁿ⁺¹</code></li>
+    <li><code>e<sup>−at</sup> → 1/(s + a)</code></li>
+    <li><code>sin(ωt) → ω/(s² + ω²)</code></li>
+    <li><code>cos(ωt) → s/(s² + ω²)</code></li>
+  </ul>
+
+  <h4>📘 Properties</h4>
+  <ul>
+    <li><strong>Linearity:</strong> L{a·x₁(t) + b·x₂(t)} = a·X₁(s) + b·X₂(s)</li>
+    <li><strong>Differentiation:</strong> L{dx/dt} = sX(s) − x(0)</li>
+    <li><strong>Integration:</strong> L{∫ x(t) dt} = X(s)/s</li>
+    <li><strong>Time Shift:</strong> L{x(t − a)u(t − a)} = e<sup>−as</sup> X(s)</li>
+  </ul>
+
+  <h4>📈 Visualizing System Poles and Zeros</h4>
+  <canvas id="pzCanvas" width="400" height="200"></canvas>
+  <script>
+    const pzCanvas = document.getElementById('pzCanvas');
+    const pzCtx = pzCanvas.getContext('2d');
+    pzCtx.clearRect(0, 0, 400, 200);
+    pzCtx.fillStyle = '#1976d2';
+    pzCtx.font = '14px sans-serif';
+    pzCtx.fillText('s-plane (Poles ×, Zeros ○)', 10, 20);
+    pzCtx.beginPath();
+    pzCtx.moveTo(200, 0); pzCtx.lineTo(200, 200); // Imag axis
+    pzCtx.moveTo(0, 100); pzCtx.lineTo(400, 100); // Real axis
+    pzCtx.strokeStyle = '#ccc';
+    pzCtx.stroke();
+    pzCtx.fillStyle = '#f00';
+    pzCtx.fillText('×', 260, 100); // Pole at s = +σ
+    pzCtx.fillText('×', 140, 100); // Pole at s = -σ
+    pzCtx.fillStyle = '#090';
+    pzCtx.fillText('○', 200, 80);  // Zero at jω
+  </script>
+  <div class="note">Poles determine system stability. If all poles lie in the left half-plane (LHP), the system is stable.</div>
+
+  <h4>📚 Example</h4>
+  <div class="example">
+    <strong>Example:</strong> Given <code>dx/dt + 2x = 4</code> with <code>x(0) = 1</code>, find <code>X(s)</code>.
+    <p>Take Laplace: <code>sX(s) − 1 + 2X(s) = 4/s</code></p>
+    <p>Solve: <code>X(s) = (1 + 4/s)/(s + 2)</code></p>
+    <p>Inverse transform gives <code>x(t) = 2 − e<sup>−2t</sup></code></p>
+  </div>
+
+  <h4>🧠 Tips</h4>
+  <div class="tip">
+    <ul>
+      <li>Use Laplace for initial condition handling and transient analysis</li>
+      <li>Convolution in time ⇄ multiplication in s-domain</li>
+      <li>Partial fractions simplify inverse Laplace transforms</li>
+    </ul>
+  </div>
+
+  <h4>📝 Quiz</h4>
+  <div class="quiz">
+    <details><summary>Q1: L{e<sup>−3t</sup>}</summary><p><strong>Answer:</strong> 1/(s + 3)</p></details>
+    <details><summary>Q2: L{cos(2t)}</summary><p><strong>Answer:</strong> s/(s² + 4)</p></details>
+  </div>
+</div>
+
+<a class="back" href="signals-systems.html">&larr; Back to Signals and systems</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>

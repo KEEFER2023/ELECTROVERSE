@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Probability and Statistics - Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #fefefe;
+      color: #222;
+      line-height: 1.8;
+      padding: 30px;
+      max-width: 950px;
+      margin: auto;
+    }
+    h1, h2, h3 {
+      color: #0d47a1;
+    }
+    .note, .example, .tip {
+      border-left: 6px solid;
+      padding: 1rem;
+      margin: 1.5rem 0;
+      background-color: #f5f5f5;
+      border-radius: 5px;
+    }
+    .note { border-color: #1976d2; }
+    .example { border-color: #c0ca33; }
+    .tip { border-color: #00acc1; }
+    code {
+      background: #e0e0e0;
+      padding: 2px 5px;
+      border-radius: 3px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+    }
+    th, td {
+      padding: 10px;
+      border: 1px solid #ccc;
+    }
+    th {
+      background: #e3f2fd;
+    }
+    img {
+      max-width: 100%;
+      border-radius: 6px;
+      margin: 1rem 0;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid #ccc;
+      margin: 2rem 0;
+    }
+      a.back {
+      color:#0d47a1;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      
+    </div>
+    
+  </header>
+
+<h1>📊 Probability and Statistics</h1>
+<p>This section of Electroverse is your go-to deep dive into probability and statistics — foundational for any serious electrical engineer. Whether you're dealing with noise in communication systems, analyzing reliability, or applying machine learning models, a solid grasp of this topic is essential.</p>
+
+<div class="note">
+  <strong>Engineer’s Perspective:</strong> Noise in signals, reliability of components, behavior of random events in circuits — all require understanding probability and statistics.
+</div>
+
+<hr>
+
+<h2>🔹 1. Basic Probability Concepts</h2>
+<p>Probability helps quantify uncertainty. In engineering, it models real-world randomness: bit errors in transmission, timing jitter in circuits, or even sensor failures in control systems.</p>
+
+<h3>🔸 Sample Space & Events</h3>
+<ul>
+  <li><strong>Sample Space (S):</strong> The set of all possible outcomes. E.g., for a 6-sided die, S = {1, 2, 3, 4, 5, 6}</li>
+  <li><strong>Event (E):</strong> A subset of the sample space. E.g., getting an even number: E = {2, 4, 6}</li>
+</ul>
+
+<h3>🔸 Probability Rules</h3>
+<ul>
+  <li>0 ≤ P(E) ≤ 1</li>
+  <li>P(S) = 1</li>
+  <li>P(E<sub>1</sub> ∪ E<sub>2</sub>) = P(E<sub>1</sub>) + P(E<sub>2</sub>) - P(E<sub>1</sub> ∩ E<sub>2</sub>)</li>
+</ul>
+
+<div class="tip">
+  Use Venn diagrams to visualize unions and intersections of events.
+</div>
+
+<div class="example">
+  <strong>Example:</strong> A card is drawn from a standard 52-card deck. What’s the probability it’s a heart or a king?<br><br>
+  Let H = hearts (13 cards), K = kings (4 cards), overlap (1 king of hearts).<br>
+  <code>P(H ∪ K) = P(H) + P(K) - P(H ∩ K) = 13/52 + 4/52 - 1/52 = 16/52 = 0.3077</code><br><br>
+  So the probability is approximately 30.77%.
+</div>
+
+
+<hr>
+
+<h2>🔹 2. Conditional Probability & Bayes' Theorem</h2>
+
+<p>Conditional probability is the probability of an event occurring given that another has already occurred. It's crucial in digital systems, where previous state or signals affect future behavior.</p>
+
+<h3>🔸 Conditional Probability</h3>
+<p>If A and B are events and P(B) ≠ 0, then:</p>
+<code>P(A | B) = P(A ∩ B) / P(B)</code>
+
+<div class="example">
+  <strong>Example:</strong> 60% of engineers use MATLAB, 30% use Python, and 20% use both.<br>
+  What is the probability that a randomly chosen engineer uses MATLAB given they use Python?<br><br>
+  <code>P(M | P) = P(M ∩ P) / P(P) = 0.20 / 0.30 = 0.6667</code><br><br>
+  So there's a 66.67% chance they use MATLAB if they already use Python.
+</div>
+
+<h3>🔸 Bayes' Theorem</h3>
+<p>Bayes’ theorem allows us to reverse conditional probabilities:</p>
+<code>P(A | B) = [P(B | A) * P(A)] / P(B)</code>
+
+<div class="example">
+  <strong>Example:</strong> Suppose 1% of chips are defective. A test detects a defect 95% of the time. But it falsely flags a working chip 2% of the time. If the chip tests positive, what’s the probability it's actually defective?<br><br>
+  Let D = defective, T+ = test positive:<br>
+  <code>P(D | T+) = [P(T+ | D) * P(D)] / [(P(T+ | D)*P(D)) + (P(T+ | ~D)*P(~D))]</code><br>
+  <code>P = (0.95 * 0.01) / (0.95*0.01 + 0.02*0.99) ≈ 0.324</code><br><br>
+  So even with a positive test, there’s only a ~32.4% chance the chip is defective.
+</div>
+
+<hr>
+
+<h2>🔹 3. Random Variables</h2>
+
+<h3>🔸 Discrete Random Variables</h3>
+<p>Takes specific values (e.g., number of faults in a circuit):</p>
+<ul>
+  <li>PMF (Probability Mass Function): P(X = x)</li>
+  <li>Example: Rolling a die: P(X = 3) = 1/6</li>
+</ul>
+
+<h3>🔸 Continuous Random Variables</h3>
+<p>Takes any value in a range (e.g., voltage variation):</p>
+<ul>
+  <li>PDF (Probability Density Function): Area under curve = probability</li>
+  <li>CDF: P(X ≤ x)</li>
+</ul>
+
+<div class="example">
+  <strong>Example:</strong> Voltage X has PDF f(x) = 2x, 0 ≤ x ≤ 1.<br>
+  Find P(0.25 ≤ X ≤ 0.75):<br>
+  <code>∫₀.25^0.75 2x dx = [x²]₀.25^0.75 = 0.75² - 0.25² = 0.5625 - 0.0625 = 0.5</code><br>
+  So there's a 50% chance voltage is in that range.
+</div>
+
+<hr>
+
+<h2>🔹 4. Common Distributions</h2>
+
+<h3>🔸 Binomial Distribution</h3>
+<p>n trials, success probability p:</p>
+<code>P(X = k) = C(n, k) * p^k * (1-p)^(n-k)</code>
+
+<h3>🔸 Poisson Distribution</h3>
+<p>Rare events in fixed time (e.g., signal drops):</p>
+<code>P(X = k) = λ^k * e^-λ / k!</code>
+
+<h3>🔸 Normal (Gaussian) Distribution</h3>
+<p>Common for continuous noise and measurements.</p>
+<code>f(x) = (1/√(2πσ²)) * e^(-(x - μ)² / 2σ²)</code>
+
+<h3>🔸 Exponential Distribution</h3>
+<p>Time between failures:</p>
+<code>f(x) = λ * e^(-λx), x ≥ 0</code>
+
+<div class="note">
+  <strong>Engineering Insight:</strong> Most analog noise is modeled as Gaussian. Memoryless systems (like capacitor discharge or packet arrival time) use exponential distributions.
+</div>
+
+<hr>
+
+<h2>🔹 5. Expectation, Variance & Standard Deviation</h2>
+
+<h3>🔸 Expectation (Mean)</h3>
+<ul>
+  <li>Discrete: E[X] = Σx·P(x)</li>
+  <li>Continuous: E[X] = ∫x·f(x) dx</li>
+</ul>
+
+<h3>🔸 Variance</h3>
+<code>Var(X) = E[X²] - (E[X])²</code>
+
+<h3>🔸 Standard Deviation</h3>
+<code>σ = √Var(X)</code>
+
+<div class="example">
+  <strong>Example (Discrete):</strong> A signal has values 1, 2, 3 with P = {0.2, 0.5, 0.3}.<br><br>
+  E[X] = 1·0.2 + 2·0.5 + 3·0.3 = 0.2 + 1.0 + 0.9 = 2.1<br>
+  E[X²] = 1²·0.2 + 2²·0.5 + 3²·0.3 = 0.2 + 2.0 + 2.7 = 4.9<br>
+  Var(X) = 4.9 - (2.1)² = 4.9 - 4.41 = 0.49<br>
+  σ = √0.49 = 0.7
+</div>
+
+<hr>
+
+<h2>🔹 6. Joint, Marginal & Independent Events</h2>
+
+<h3>🔸 Joint Probability</h3>
+<p>Joint probability is the probability of two events happening at the same time: P(A ∩ B)</p>
+
+<h3>🔸 Marginal Probability</h3>
+<p>Marginal probability is the probability of a single event irrespective of others. Found by summing rows or columns in a joint table.</p>
+
+<h3>🔸 Independent Events</h3>
+<p>Two events A and B are independent if: <code>P(A ∩ B) = P(A) * P(B)</code></p>
+
+<div class="example">
+  <strong>Example:</strong> Two components fail independently. P(A fails) = 0.1, P(B fails) = 0.2<br>
+  <code>P(A ∩ B) = 0.1 * 0.2 = 0.02</code><br>
+  So 2% of the time, both fail simultaneously.
+</div>
+
+<hr>
+
+<h2>🔹 7. Descriptive vs Inferential Statistics</h2>
+
+<h3>🔸 Descriptive Statistics</h3>
+<p>Summarize data using measures:</p>
+<ul>
+  <li>Mean (Average)</li>
+  <li>Median (Middle value)</li>
+  <li>Mode (Most frequent)</li>
+  <li>Range, Variance, Standard Deviation</li>
+</ul>
+
+<h3>🔸 Inferential Statistics</h3>
+<p>Use samples to draw conclusions about populations.</p>
+<ul>
+  <li>Hypothesis Testing (e.g., is this sensor reliable?)</li>
+  <li>Confidence Intervals (e.g., 95% sure temperature is between 35–40°C)</li>
+  <li>z-tests and t-tests</li>
+</ul>
+
+<div class="note">
+  <strong>Use Case:</strong> Predicting battery life across all devices based on lab samples is inferential statistics at work.
+</div>
+
+<hr>
+
+<h2>🔹 8. Linear Regression & Correlation</h2>
+
+<h3>🔸 Linear Regression</h3>
+<p>Find a straight-line relationship between variables:</p>
+<code>y = a + bx</code><br>
+Where:<br>
+<code>b = [Σ(x - x̄)(y - ȳ)] / Σ(x - x̄)²</code><br>
+<code>a = ȳ - b·x̄</code>
+
+<h3>🔸 Correlation Coefficient (r)</h3>
+<p>Measures strength and direction of linear relationship:</p>
+<code>-1 ≤ r ≤ 1</code><br>
+r ≈ 0 → no correlation, r ≈ 1 or -1 → strong linear correlation
+
+<div class="example">
+  <strong>Example:</strong> Dataset: x = [1, 2, 3], y = [2, 4, 5]<br>
+  <code>x̄ = 2, ȳ = 3.667</code><br>
+  b = [(1-2)(2-3.667) + (2-2)(4-3.667) + (3-2)(5-3.667)] / [(1-2)² + (2-2)² + (3-2)²]<br>
+  = [1.667 + 0 + 1.333] / [1 + 0 + 1] = 3 / 2 = 1.5<br>
+  a = 3.667 - 1.5·2 = 0.667<br>
+  So: <code>y = 0.667 + 1.5x</code>
+</div>
+
+<div class="tip">
+  <strong>EE Relevance:</strong> Regression helps predict sensor output based on inputs or estimate trends in signal response.
+</div>
+
+<hr>
+
+<h2>📘 Practice Quiz (Preview)</h2>
+
+<ol>
+  <li>In a system, 3 out of 10 devices fail during testing. What is the probability of exactly 1 failure in a random test of 3 devices?</li>
+  <li>A signal has mean 5V and std dev 0.5V. What percentage of readings lie within 1V of the mean?</li>
+  <li>Find E[X] and Var(X) for PMF: X = 0, 1, 2 with P = 0.2, 0.5, 0.3.</li>
+  <li>Apply Bayes’ theorem for a test that’s 90% accurate with 2% false positive, and 5% actual condition rate.</li>
+</ol>
+
+<a class="back" href="maths-physics.html">← Back to Math & Physics</a>
+
+<footer id="contact">
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>

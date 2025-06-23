@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>System Modeling – Electroverse</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      max-width: 900px;
+      margin: auto;
+      padding: 30px;
+      background: #fefefe;
+      color: #1a1a1a;
+      line-height: 1.9;
+    }
+    h1, h2, h3 { color: #0d47a1; margin-top: 2.5rem; }
+    .section { margin-bottom: 3rem; }
+    .example, .note, .tip, .quiz {
+      background: #f5f5f5;
+      padding: 1.2rem;
+      margin: 1.5rem 0;
+      border-left: 6px solid;
+      border-radius: 4px;
+    }
+    .example { border-color: #4caf50; }
+    .note { border-color: #1976d2; }
+    .tip { border-color: #ff9800; }
+    .quiz { border-color: #9c27b0; }
+    code { background: #eeeeee; padding: 2px 4px; font-family: Consolas, monospace; display: block; margin: 0.5rem 0; }
+    canvas { border: 1px solid #ccc; margin: 1rem 0; }
+    details { margin: 1.2rem 0; }
+    summary { cursor: pointer; font-weight: bold; }
+    a.back {
+      color: #0d47a1;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+     <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+
+
+<div class="section">
+  <h2>📉 Stability Analysis</h2>
+  <p>Stability in control systems ensures that the output remains bounded for any bounded input. A stable system does not exhibit uncontrollable oscillations or grow unbounded over time.</p>
+
+  <h3>✅ Key Concepts</h3>
+  <ul>
+    <li><strong>BIBO Stability:</strong> Bounded Input → Bounded Output</li>
+    <li><strong>Pole Location:</strong> Stability is determined by the location of poles in the s-plane
+      <ul>
+        <li>All poles in left half-plane → Stable</li>
+        <li>Any pole in right half-plane → Unstable</li>
+        <li>Pole on jω-axis (imaginary) → Marginally stable</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="diagram">
+    <img src="stability.png" alt="Pole Locations and Stability">
+    <p><strong>Figure:</strong> Relationship between pole location and system stability.</p>
+  </div>
+
+  <h3>📐 Routh-Hurwitz Criterion</h3>
+  <p>This is a mathematical test to determine stability without solving for roots of the characteristic equation.</p>
+  <ul>
+    <li>Construct Routh array from characteristic polynomial</li>
+    <li>Count sign changes in the first column</li>
+    <li>No sign change → Stable system</li>
+    <li>Each sign change → One right-half-plane (unstable) pole</li>
+  </ul>
+
+  <div class="example">
+    <strong>Example:</strong> Characteristic equation: <code>s^3 + 4s^2 + 6s + 8 = 0</code><br>
+    Routh Array:
+    <pre>
+    s^3 |  1   6
+    s^2 |  4   8
+    s^1 | (4*6 - 1*8)/4 = 4   0
+    s^0 | 8
+    </pre>
+    No sign change in the first column → <strong>Stable</strong>
+  </div>
+
+  <h3>📍 Root Locus Method</h3>
+  <p>Shows how system poles move in the s-plane as a parameter (usually gain K) varies. This helps in controller design and stability prediction.</p>
+
+  <div class="diagram">
+    <img src="root.jpg" alt="Root Locus Sketch">
+    <p><strong>Figure:</strong> Example root locus for a second-order system.</p>
+  </div>
+
+  <h3>⚙️ Nyquist Criterion</h3>
+  <p>Used in frequency-domain analysis to assess closed-loop stability. Involves plotting the Nyquist plot of the open-loop transfer function.</p>
+  <ul>
+    <li>Encirclement of point (−1,0) indicates instability</li>
+    <li>Helps with systems having time delay or higher order dynamics</li>
+  </ul>
+
+  <div class="note">
+    Nyquist and Bode plots give insight into both stability and robustness.
+  </div>
+
+  <h3>🌀 Animation: Pole Migration</h3>
+  <canvas id="poleCanvas" width="600" height="300"></canvas>
+  <script>
+    const poleCanvas = document.getElementById("poleCanvas");
+    const ctxPole = poleCanvas.getContext("2d");
+    function drawPoles(step) {
+      ctxPole.clearRect(0, 0, 600, 300);
+      ctxPole.strokeStyle = "#ccc";
+      ctxPole.beginPath();
+      ctxPole.moveTo(300, 0); ctxPole.lineTo(300, 300); // Imaginary axis
+      ctxPole.moveTo(0, 150); ctxPole.lineTo(600, 150); // Real axis
+      ctxPole.stroke();
+
+      const k = step;
+      const r1 = -k;
+      const r2 = -k + 0.5;
+
+      ctxPole.fillStyle = "#d32f2f";
+      ctxPole.beginPath();
+      ctxPole.arc(300 + r1 * 50, 150, 6, 0, 2 * Math.PI);
+      ctxPole.fill();
+
+      ctxPole.beginPath();
+      ctxPole.arc(300 + r2 * 50, 150, 6, 0, 2 * Math.PI);
+      ctxPole.fill();
+    }
+    let poleStep = 0.1;
+    setInterval(() => {
+      drawPoles(Math.sin(poleStep) + 1.5);
+      poleStep += 0.05;
+    }, 100);
+  </script>
+  <div class="note">This animation illustrates pole migration across the s-plane. When poles move rightward → instability.</div>
+
+  <h3>🧪 Quiz Yourself</h3>
+  <div class="quiz">
+    <details><summary>Q1: What does a sign change in Routh array's first column indicate?</summary><p><strong>Answer:</strong> One right-half-plane pole → instability.</p></details>
+    <details><summary>Q2: What is the condition for BIBO stability?</summary><p><strong>Answer:</strong> All poles must lie in the left-half s-plane.</p></details>
+    <details><summary>Q3: What is the purpose of Root Locus?</summary><p><strong>Answer:</strong> To observe how system poles shift with varying gain.</p></details>
+  </div>
+</div>
+
+
+<a class="back" href="control-track.html">← Back to Control Systems</a>
+
+<footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+
+  <h3>🔌 Logic Gates</h3>
+  <p>Logic gates are the fundamental building blocks of digital electronics. They perform basic logical functions that are essential for digital circuits.</p>
+
+  <h4>🧱 Basic Gates</h4>
+  <ul>
+    <li><strong>AND Gate (·)</strong> – Outputs 1 only when all inputs are 1</li>
+    <li><strong>OR Gate (+)</strong> – Outputs 1 if at least one input is 1</li>
+    <li><strong>NOT Gate (¬)</strong> – Outputs the inverse of the input</li>
+  </ul>
+
+  <div class="diagram">
+    <img src="gate.webp" width="400" alt="Basic logic gates diagram" />
+    <p>Symbol representation of AND, OR, and NOT gates</p>
+  </div>
+
+  <h4>🔀 Universal Gates</h4>
+  <ul>
+    <li><strong>NAND Gate</strong> – NOT + AND (¬(A·B))</li>
+    <li><strong>NOR Gate</strong> – NOT + OR (¬(A + B))</li>
+  </ul>
+  <div class="diagram">
+    <img src="universal.webp" width="400" alt="Universal gates" />
+    <p>NAND and NOR gates can be used to create any logic circuit</p>
+  </div>
+
+  <h4>🧠 Derived Gates</h4>
+  <ul>
+    <li><strong>Exclusive OR (XOR):</strong> Outputs 1 if inputs differ</li>
+    <li><strong>Exclusive NOR (XNOR):</strong> Outputs 1 if inputs are the same</li>
+  </ul>
+  <div class="diagram">
+    <img src="xor.png" width="400" alt="XOR and XNOR gates" />
+  </div>
+
+  <h4>🎞️ Animated Gate Behavior</h4>
+  <canvas id="gateCanvas" width="360" height="120"></canvas>
+  <script>
+    const gateCtx = document.getElementById('gateCanvas').getContext('2d');
+    let tick = 0;
+    function animateGates() {
+      gateCtx.clearRect(0, 0, 360, 120);
+      let A = tick % 2;
+      let B = (tick >> 1) % 2;
+      let AND = A & B;
+      let OR = A | B;
+      let XOR = A ^ B;
+      let NAND = !(A & B) ? 1 : 0;
+      gateCtx.font = '16px Segoe UI';
+      gateCtx.fillText(`Inputs: A = ${A}, B = ${B}`, 10, 20);
+      gateCtx.fillText(`AND: ${AND}`, 10, 40);
+      gateCtx.fillText(`OR: ${OR}`, 10, 60);
+      gateCtx.fillText(`XOR: ${XOR}`, 10, 80);
+      gateCtx.fillText(`NAND: ${NAND}`, 10, 100);
+      tick = (tick + 1) % 4;
+    }
+    animateGates();
+    setInterval(animateGates, 1000);
+  </script>
+  <div class="note">Real-time animation showing how different logic gates respond to input changes.</div>
+
+  <h4>📘 Truth Tables</h4>
+  <table border="1" cellpadding="8" style="margin-top: 1rem;">
+    <tr><th>A</th><th>B</th><th>AND</th><th>OR</th><th>XOR</th><th>NAND</th></tr>
+    <tr><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td>1</td></tr>
+    <tr><td>0</td><td>1</td><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+    <tr><td>1</td><td>0</td><td>0</td><td>1</td><td>1</td><td>1</td></tr>
+    <tr><td>1</td><td>1</td><td>1</td><td>1</td><td>0</td><td>0</td></tr>
+  </table>
+
+  <h4>🧠 Quick Quiz</h4>
+  <div class="quiz">
+    <details><summary>Q1: What is the output of A=1, B=0 for XOR?</summary><p><strong>Answer:</strong> 1</p></details>
+    <details><summary>Q2: Which gate acts as an inverter?</summary><p><strong>Answer:</strong> NOT gate</p></details>
+    <details><summary>Q3: What is the NAND of A=1, B=1?</summary><p><strong>Answer:</strong> 0</p></details>
+  </div>
+</div>
+
+<a class="back" href="digital-electronics.html">&larr; Back to Digital electronics topics</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>

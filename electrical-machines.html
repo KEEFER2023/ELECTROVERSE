@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+<div class="section">
+  <h3>🔧 Electrical Machines</h3>
+  <p>This section introduces machines that convert mechanical energy to electrical energy and vice versa — crucial in power generation, industrial motors, and transportation.</p>
+
+  <h4>1️⃣ DC Machines</h4>
+  <ul>
+    <li><strong>DC Generator:</strong> Converts mechanical → electrical energy via electromagnetic induction</li>
+    <li><strong>DC Motor:</strong> Converts electrical → mechanical energy</li>
+    <li><strong>Key Parts:</strong> Armature, field winding, commutator, brushes</li>
+  </ul>
+  <div class="example">
+    <strong>Equation:</strong> <code>V = E + I_a R_a</code> (generator) | <code>T ∝ Φ I_a</code> (motor torque)</div>
+  <img src="generator.jpg" alt="DC machine diagram" style="max-width: 500px;">
+
+  <h4>2️⃣ Transformers</h4>
+  <ul>
+    <li>Static devices with no moving parts</li>
+    <li><strong>Used for:</strong> voltage step-up/down in power systems</li>
+    <li><strong>Equation:</strong> <code>V₂/V₁ = N₂/N₁</code> and <code>P₁ ≈ P₂</code></li>
+  </ul>
+  <img src="transformer.jpg" alt="Transformer diagram" style="max-width: 500px;">
+
+  <h4>3️⃣ Synchronous Machines</h4>
+  <ul>
+    <li><strong>Synchronous Generator (Alternator):</strong> Main source of AC power</li>
+    <li><strong>Synchronous Motor:</strong> Operates at constant speed regardless of load</li>
+    <li><strong>Speed:</strong> <code>N_s = 120f/P</code></li>
+  </ul>
+
+  <h4>4️⃣ Induction Machines</h4>
+  <ul>
+    <li>Most common AC motor in industry</li>
+    <li><strong>Squirrel Cage:</strong> Robust, low maintenance</li>
+    <li><strong>Slip:</strong> Difference between rotor and synchronous speed: <code>S = (N_s - N_r)/N_s</code></li>
+    <li><strong>Torque:</strong> <code>T ∝ sE₂²/R₂</code></li>
+  </ul>
+
+  <h4>🎞️ Animated Illustration</h4>
+  <p>Rotor slip in induction motors:</p>
+  <canvas id="inductionCanvas" width="600" height="250"></canvas>
+  <script>
+    const iCtx = document.getElementById('inductionCanvas').getContext('2d');
+    let angle = 0;
+    setInterval(() => {
+      iCtx.clearRect(0, 0, 600, 250);
+      iCtx.beginPath();
+      iCtx.arc(300, 125, 60, 0, 2 * Math.PI);
+      iCtx.stroke();
+      iCtx.beginPath();
+      iCtx.moveTo(300, 125);
+      iCtx.lineTo(300 + 60 * Math.cos(angle), 125 + 60 * Math.sin(angle));
+      iCtx.stroke();
+      angle += 0.05;
+    }, 50);
+  </script>
+
+  <h4>🧠 Practice Questions</h4>
+  <div class="quiz">
+    <details><summary>Q1: Why is slip essential in an induction motor?</summary><p><strong>Answer:</strong> Slip allows induction and torque production.</p></details>
+    <details><summary>Q2: What is the EMF equation of a transformer?</summary><p><strong>Answer:</strong> <code>E = 4.44 f N Φ</code></p></details>
+    <details><summary>Q3: What are two advantages of synchronous motors?</summary><p><strong>Answer:</strong> Constant speed, power factor correction</p></details>
+  </div>
+</div>
+  
+  <a class="back" href="power-track.html">&larr; Back to Power track</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>

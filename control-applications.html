@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Embedded Systems – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; max-width: 950px; margin: auto; padding: 30px; background: #fefefe; color: #1a1a1a; line-height: 1.8; }
+    h1, h2, h3 { color: #0d47a1; margin-top: 2.5rem; }
+    .section { margin-bottom: 3rem; }
+    .diagram, .note, .tip, .quiz { background: #f5f5f5; padding: 1rem 1.2rem; margin: 1.5rem 0; border-left: 6px solid; border-radius: 4px; }
+    .diagram { border-color: #1976d2; }
+    .note { border-color: #009688; }
+    .tip { border-color: #ff9800; }
+    .quiz { border-color: #4caf50; }
+    img, canvas { max-width: 100%; display: block; margin: 1.2rem auto; }
+    code { background: #e0e0e0; padding: 2px 6px; border-radius: 3px; display: inline-block; }
+    summary { cursor: pointer; font-weight: bold; }
+    ul { padding-left: 1.4rem; }
+     a.back {
+      color: #0d47a1;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+
+<div class="section">
+  <h2>🔧 Real-World Applications of Control Systems</h2>
+  <p>Control systems are foundational in automating, stabilizing, and optimizing operations across various industries. Whether it’s robotics, aerospace, automotive, or manufacturing, feedback loops and intelligent controllers drive modern technology.</p>
+</div>
+
+<hr />
+
+<div class="section">
+  <h3>🤖 1. Robotics & Mechatronics</h3>
+  <ul>
+    <li><strong>Position Control:</strong> Servos regulate joint angles in robotic arms using PID or model predictive control.</li>
+    <li><strong>Motion Planning:</strong> Trajectory generation and real-time control of motors for path following.</li>
+    <li><strong>Inverse Kinematics:</strong> Feedback control helps reach target positions under constraints.</li>
+  </ul>
+  <div class="diagram">
+    <img src="robot.jpg" alt="Robotics Feedback Loop">
+    <p><strong>Figure:</strong> Feedback control of a robotic joint angle using a PID loop.</p>
+  </div>
+</div>
+
+<div class="section">
+  <h3>🏭 2. Industrial Automation</h3>
+  <ul>
+    <li><strong>PLC-Based Control:</strong> Ladder logic implements closed-loop control in process plants.</li>
+    <li><strong>Temperature Regulation:</strong> PID loops maintain oven temperatures in manufacturing.</li>
+    <li><strong>Level Control:</strong> Liquid levels in tanks are kept stable using float sensors + feedback valves.</li>
+  </ul>
+  <div class="note">Automation increases efficiency, reduces error, and boosts safety in industrial processes.</div>
+</div>
+
+<div class="section">
+  <h3>🚗 3. Automotive Systems</h3>
+  <ul>
+    <li><strong>Cruise Control:</strong> Feedback loop maintains vehicle speed using throttle position.</li>
+    <li><strong>ABS & ESC:</strong> Anti-lock braking systems and electronic stability control use sensors and controllers.</li>
+    <li><strong>Drive-by-Wire:</strong> Electronic control of steering, braking, and throttle.</li>
+  </ul>
+  <div class="diagram">
+    <img src="cruise.png" alt="Cruise Control Feedback">
+    <p><strong>Figure:</strong> Cruise control as a real-world feedback system.</p>
+  </div>
+</div>
+
+<div class="section">
+  <h3>✈️ 4. Aerospace & UAVs</h3>
+  <ul>
+    <li><strong>Autopilot:</strong> Maintains pitch, yaw, and roll through PID controllers based on IMU feedback.</li>
+    <li><strong>Altitude Hold:</strong> Barometric sensors + control loops keep constant altitude.</li>
+    <li><strong>Stability Augmentation:</strong> Improves aircraft response to disturbances.</li>
+  </ul>
+  <div class="tip">Flight control systems are highly redundant and tuned for safety and stability.</div>
+</div>
+
+<div class="section">
+  <h3>⚙️ 5. Process Control & Energy</h3>
+  <ul>
+    <li><strong>Power Plants:</strong> Maintain turbine speed, frequency, and voltage with feedback.</li>
+    <li><strong>Smart Grids:</strong> Use distributed control for load balancing and stability.</li>
+    <li><strong>Chemical Reactors:</strong> Temperature and concentration are tightly regulated.</li>
+  </ul>
+  <div class="diagram">
+    <img src="control.png" alt="Process Control Feedback">
+    <p><strong>Figure:</strong> Process control loop in a power generation plant.</p>
+  </div>
+</div>
+
+<div class="section">
+  <h3>🧠 Quiz Yourself</h3>
+  <div class="quiz">
+    <details><summary>Q1: What type of controller is used in cruise control systems?</summary><p><strong>Answer:</strong> Typically a PID controller regulating vehicle speed.</p></details>
+    <details><summary>Q2: Which control system manages aircraft pitch?</summary><p><strong>Answer:</strong> Autopilot system using feedback from gyros and IMUs.</p></details>
+    <details><summary>Q3: What is the function of PLCs in industry?</summary><p><strong>Answer:</strong> Execute control logic to manage actuators and sensors in real time.</p></details>
+  </div>
+</div>
+
+<a class="back" href="control-track.html">← Back to Control Systems</a>
+
+<footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+  <h3>🔄 Sequential Circuits</h3>
+  <p>Sequential circuits store and transition between states based on clock signals. Unlike combinational logic, their outputs depend on both current inputs and past history (state).</p>
+
+  <h4>🔁 Types of Flip-Flops</h4>
+  <ul>
+    <li><strong>SR Flip-Flop:</strong> Set-Reset based on inputs.</li>
+    <li><strong>D Flip-Flop:</strong> Latches the value of D on clock edge.</li>
+    <li><strong>JK Flip-Flop:</strong> Generalized SR that toggles when both inputs are 1.</li>
+    <li><strong>T Flip-Flop:</strong> Toggles output on clock when T is high.</li>
+  </ul>
+
+  <h4>🧪 SR Flip-Flop Truth Table</h4>
+  <div class="diagram">
+    <table border="1" cellpadding="6">
+      <tr><th>S</th><th>R</th><th>Q<sub>n+1</sub></th><th>Comment</th></tr>
+      <tr><td>0</td><td>0</td><td>Q<sub>n</sub></td><td>No Change</td></tr>
+      <tr><td>0</td><td>1</td><td>0</td><td>Reset</td></tr>
+      <tr><td>1</td><td>0</td><td>1</td><td>Set</td></tr>
+      <tr><td>1</td><td>1</td><td>Undefined</td><td>Invalid</td></tr>
+    </table>
+  </div>
+
+  <h4>🎞️ Animation: D Flip-Flop Behavior</h4>
+  <canvas id="dFlipCanvas" width="500" height="150"></canvas>
+  <script>
+    const canvasD = document.getElementById('dFlipCanvas');
+    const ctxD = canvasD.getContext('2d');
+    let state = 0;
+    function drawDFlip() {
+      ctxD.clearRect(0, 0, 500, 150);
+      ctxD.fillStyle = '#000';
+      ctxD.font = '14px sans-serif';
+      ctxD.fillText('CLK ↑: Captures D → Q', 20, 20);
+      ctxD.strokeStyle = '#4caf50';
+      ctxD.strokeRect(180, 40, 140, 60);
+      ctxD.fillText('D Flip-Flop', 200, 70);
+
+      ctxD.beginPath();
+      ctxD.moveTo(120, 70); ctxD.lineTo(180, 70); // D input
+      ctxD.moveTo(320, 70); ctxD.lineTo(380, 70); // Q output
+      ctxD.stroke();
+
+      const d = (state % 2 === 0) ? 0 : 1;
+      ctxD.fillText(`D = ${d}`, 100, 60);
+      ctxD.fillText(`Q = ${d}`, 390, 60);
+      state++;
+    }
+    setInterval(drawDFlip, 1000);
+  </script>
+  <div class="note">This animation shows the value at D being latched to Q on the rising edge of CLK.</div>
+
+  <h4>🔢 Counter Example (Mod-4)</h4>
+  <p>Using 2 T flip-flops, a Mod-4 counter cycles through: 00 → 01 → 10 → 11 → 00...</p>
+  <div class="diagram">
+    <img src="mod.webp" width="400px" alt="Mod-4 Counter Diagram">
+  </div>
+
+  <h4>🧠 Quiz</h4>
+  <div class="quiz">
+    <details><summary>Q1: What happens when both S and R are 1 in an SR Flip-Flop?</summary><p><strong>Answer:</strong> Output is undefined — invalid condition.</p></details>
+    <details><summary>Q2: What does a D flip-flop do on the rising clock edge?</summary><p><strong>Answer:</strong> Captures and transfers D to Q.</p></details>
+    <details><summary>Q3: How many states does a 3-bit counter have?</summary><p><strong>Answer:</strong> 2<sup>3</sup> = 8</p></details>
+  </div>
+
+<a class="back" href="digital-electronics.html">&larr; Back to Circuit analysis topics</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>

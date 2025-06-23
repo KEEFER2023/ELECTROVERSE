@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+<div class="section">
+  <h2>💾 Digital Electronics</h2>
+  <p>Digital electronics deals with circuits that operate using discrete signals — typically binary — to represent logical and numerical values. It’s the foundation of computers, microcontrollers, digital communication, and control systems.</p>
+
+  
+  <h3>🔣 Boolean Algebra</h3>
+  <p>Boolean algebra is a mathematical framework for expressing and analyzing logic operations in digital circuits. Named after George Boole, it forms the basis of logic gates and digital design.</p>
+
+  <h4>📗 Boolean Variables & Operations</h4>
+  <ul>
+    <li><strong>Variables:</strong> Take only two values → 0 (false) and 1 (true)</li>
+    <li><strong>Basic Operations:</strong>
+      <ul>
+        <li><strong>AND (·):</strong> Output is 1 only if both inputs are 1</li>
+        <li><strong>OR (+):</strong> Output is 1 if either input is 1</li>
+        <li><strong>NOT (‾):</strong> Inverts input (0 becomes 1, 1 becomes 0)</li>
+      </ul>
+    </li>
+  </ul>
+
+  <div class="example">
+    <strong>Example:</strong> A = 1, B = 0<br>
+    A · B = 0<br>
+    A + B = 1<br>
+    ¬A = 0
+  </div>
+
+  <h4>🧾 Boolean Laws & Theorems</h4>
+  <ul>
+    <li><strong>Identity Law:</strong> A + 0 = A, A · 1 = A</li>
+    <li><strong>Null Law:</strong> A + 1 = 1, A · 0 = 0</li>
+    <li><strong>Idempotent Law:</strong> A + A = A, A · A = A</li>
+    <li><strong>Involution:</strong> ¬(¬A) = A</li>
+    <li><strong>Complement Law:</strong> A + ¬A = 1, A · ¬A = 0</li>
+    <li><strong>Distributive:</strong> A · (B + C) = AB + AC</li>
+    <li><strong>De Morgan’s:</strong> ¬(A · B) = ¬A + ¬B; ¬(A + B) = ¬A · ¬B</li>
+  </ul>
+
+  <div class="tip">💡 Use De Morgan’s Theorems to convert expressions involving NAND/NOR gates into simpler AND/OR/NOT form.</div>
+
+  <h4>🧮 Boolean Simplification</h4>
+  <p>Logic minimization reduces cost and complexity of digital circuits, making them faster and more efficient. Use laws or Karnaugh Maps for simplification.</p>
+
+  <div class="example">
+    <strong>Example:</strong> Simplify F = A·¬B + A·B<br>
+    Step 1: Factor A ⇒ A(¬B + B)<br>
+    Step 2: Use Complement Law ⇒ A(1) = <strong>A</strong>
+  </div>
+
+  <h4>🎞️ Logic Gate Animation</h4>
+  <canvas id="boolCanvas" width="320" height="100"></canvas>
+  <script>
+    const boolCtx = document.getElementById('boolCanvas').getContext('2d');
+    let boolT = 0;
+    function animateBoolean() {
+      boolCtx.clearRect(0, 0, 320, 100);
+      let A = (boolT % 2);
+      let B = ((boolT >> 1) % 2);
+      let AND = A & B;
+      let OR = A | B;
+      let NOT = A ^ 1;
+      boolCtx.font = '16px Segoe UI';
+      boolCtx.fillStyle = '#000';
+      boolCtx.fillText("Inputs: A = " + A + ", B = " + B, 10, 20);
+      boolCtx.fillText("A AND B = " + AND, 10, 40);
+      boolCtx.fillText("A OR B = " + OR, 10, 60);
+      boolCtx.fillText("NOT A = " + NOT, 10, 80);
+      boolT = (boolT + 1) % 4;
+    }
+    animateBoolean();
+    setInterval(animateBoolean, 1000);
+  </script>
+  <div class="note">This animation cycles through input combinations and displays the AND, OR, NOT results in real time.</div>
+
+  <h4>🧠 Quiz</h4>
+  <div class="quiz">
+    <details><summary>Simplify: A + A·B</summary><p><strong>Answer:</strong> A</p></details>
+    <details><summary>Use De Morgan: ¬(A + B)</summary><p><strong>Answer:</strong> ¬A · ¬B</p></details>
+    <details><summary>What is ¬(¬A + ¬B)?</summary><p><strong>Answer:</strong> A · B</p></details>
+  </div>
+</div>
+
+<a class="back" href="digital-electronics.html">&larr; Back to Digital electronics topics</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>
+

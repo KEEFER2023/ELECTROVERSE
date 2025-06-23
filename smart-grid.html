@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+  <h3>🔌 Smart Grids & Power Quality</h3>
+
+  <h4>🌐 1. What is a Smart Grid?</h4>
+  <p>A smart grid is an intelligent, automated electrical grid that uses digital communication technology to detect and react to local changes in usage. It improves reliability, efficiency, and sustainability of electricity services.</p>
+
+  <h4>🚀 2. Key Features of Smart Grids</h4>
+  <ul>
+    <li><strong>Self-Healing:</strong> Detects and responds to faults automatically</li>
+    <li><strong>Consumer Participation:</strong> Real-time data allows consumers to adjust usage</li>
+    <li><strong>Renewable Integration:</strong> Supports DER like solar and wind</li>
+    <li><strong>Cybersecurity:</strong> Secured communication networks</li>
+  </ul>
+
+  <h4>📡 3. Core Technologies</h4>
+  <ul>
+    <li><strong>Advanced Metering Infrastructure (AMI):</strong> Enables real-time metering and communication</li>
+    <li><strong>Phasor Measurement Units (PMU):</strong> Provides synchronized voltage and current measurements</li>
+    <li><strong>SCADA:</strong> Supervisory Control and Data Acquisition for remote monitoring</li>
+    <li><strong>EV Integration:</strong> Electric vehicle charging stations connected to grid</li>
+  </ul>
+  <img src="smart.png" alt="Smart Grid Overview" style="max-width: 600px;">
+
+  <h4>📊 4. Demand Response & Forecasting</h4>
+  <ul>
+    <li><strong>Demand Response:</strong> Consumers reduce or shift electricity usage during peak periods</li>
+    <li><strong>Load Forecasting:</strong> Predicting future demand using AI, ML and historical data</li>
+  </ul>
+
+  <h4>🏘️ 5. Microgrids & DER</h4>
+  <p>Microgrids are small, localized grids that can operate independently or in conjunction with the main grid. DER (Distributed Energy Resources) include rooftop solar, batteries, etc.</p>
+  <img src="microgrid.png" alt="Microgrid Configuration" style="max-width: 550px;">
+
+  <h4>⚠️ 6. Power Quality Issues</h4>
+  <ul>
+    <li><strong>Voltage Sags:</strong> Temporary drop in voltage</li>
+    <li><strong>Swells:</strong> Temporary increase in voltage</li>
+    <li><strong>Harmonics:</strong> Distortion in waveform due to non-linear loads</li>
+    <li><strong>Flicker:</strong> Rapid voltage fluctuations affecting lighting</li>
+    <li><strong>Transients:</strong> High frequency short duration events</li>
+  </ul>
+
+  <h4>🛠️ 7. Mitigation Techniques</h4>
+  <ul>
+    <li><strong>Surge Protectors:</strong> Protect from transients</li>
+    <li><strong>Voltage Regulators:</strong> Stabilize voltage levels</li>
+    <li><strong>Harmonic Filters:</strong> Remove unwanted harmonics</li>
+    <li><strong>UPS:</strong> Uninterruptible Power Supply for critical loads</li>
+  </ul>
+  <img src="pquality.png" alt="Power Quality Problems and Fixes" style="max-width: 600px;">
+
+  <h4>🎬 8. Interactive Smart Grid Flow</h4>
+  <canvas id="smartGridCanvas" width="600" height="250"></canvas>
+  <script>
+    const sctx = document.getElementById('smartGridCanvas').getContext('2d');
+    sctx.fillStyle = '#4caf50';
+    sctx.fillRect(50, 100, 100, 30);
+    sctx.fillStyle = '#000';
+    sctx.fillText('Generator', 60, 120);
+    sctx.beginPath();
+    sctx.moveTo(150, 115); sctx.lineTo(250, 115);
+    sctx.stroke();
+    sctx.fillStyle = '#2196f3';
+    sctx.fillRect(250, 100, 100, 30);
+    sctx.fillStyle = '#000';
+    sctx.fillText('Smart Meter', 260, 120);
+    sctx.beginPath();
+    sctx.moveTo(350, 115); sctx.lineTo(450, 115);
+    sctx.stroke();
+    sctx.fillStyle = '#ff9800';
+    sctx.fillRect(450, 100, 100, 30);
+    sctx.fillStyle = '#000';
+    sctx.fillText('Consumer', 470, 120);
+  </script>
+
+  <h4>📘 Quiz</h4>
+  <div class="quiz">
+    <details><summary>Q1: What is AMI?</summary><p><strong>Answer:</strong> Advanced Metering Infrastructure — allows two-way communication for metering and control.</p></details>
+    <details><summary>Q2: Name one power quality issue caused by nonlinear loads.</summary><p><strong>Answer:</strong> Harmonics</p></details>
+    <details><summary>Q3: What is the function of a UPS?</summary><p><strong>Answer:</strong> To provide backup power and maintain voltage stability during outages.</p></details>
+  </div>
+</div>
+
+<a class="back" href="power-track.html">&larr; Back to Power track</a>
+  <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+</body>
+</html>

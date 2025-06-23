@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+
+
+<div class="section">
+  <h3>📡 Signal Propagation</h3>
+
+  <h4>🌐 1. What is Signal Propagation?</h4>
+  <p>Signal propagation refers to how signals (electromagnetic waves) travel through a transmission medium. Depending on the environment and frequency, signal behavior varies drastically, especially in wireless systems.</p>
+
+  <h4>🔀 2. Types of Propagation</h4>
+  <ul>
+    <li><strong>Line-of-Sight (LOS):</strong> Direct path between transmitter and receiver, used in microwave and satellite communication.</li>
+    <li><strong>Ground Wave:</strong> Travels along the Earth's surface. Used for low-frequency (LF) radio.</li>
+    <li><strong>Sky Wave:</strong> Reflected by the ionosphere, used for long-distance HF radio communication.</li>
+    <li><strong>Tropospheric Scatter:</strong> Scatters through troposphere irregularities, usable beyond LOS range.</li>
+  </ul>
+  <img src="propagation.jpg" alt="Types of Signal Propagation" style="max-width: 600px;">
+
+  <h4>📉 3. Free Space Path Loss (FSPL)</h4>
+  <p>When signals travel in free space, they experience attenuation with distance:</p>
+  <div class="note"><strong>FSPL (dB) = 20 log<sub>10</sub>(d) + 20 log<sub>10</sub>(f) + 32.45</strong></div>
+  <ul>
+    <li><strong>d:</strong> Distance (km)</li>
+    <li><strong>f:</strong> Frequency (MHz)</li>
+  </ul>
+
+  <div class="example">
+    <strong>Example:</strong> A 2.4 GHz signal over 2 km → FSPL = 20log₁₀(2) + 20log₁₀(2400) + 32.45 ≈ 100.04 dB
+  </div>
+
+  <h4>🎯 4. Fading Effects</h4>
+  <ul>
+    <li><strong>Flat Fading:</strong> Affects entire bandwidth uniformly. Usually caused by multipath interference.</li>
+    <li><strong>Frequency-Selective Fading:</strong> Different frequencies are affected differently due to delay spread.</li>
+    <li><strong>Fast Fading:</strong> Rapid variations due to user motion (e.g., in cars).</li>
+    <li><strong>Slow Fading:</strong> Caused by large obstacles like buildings or terrain.</li>
+  </ul>
+
+  <h4>📶 5. Multipath Propagation</h4>
+  <p>Occurs when a signal takes multiple paths to reach the receiver — reflected, refracted, or diffracted. Leads to:</p>
+  <ul>
+    <li><strong>Constructive Interference:</strong> Signals add up, increasing strength.</li>
+    <li><strong>Destructive Interference:</strong> Signals cancel out → fading or nulls.</li>
+  </ul>
+
+  <div class="diagram">
+    <img src="multipath.jpg" alt="Multipath propagation" style="max-width: 600px;">
+    <p><strong>Multipath propagation:</strong> A major cause of distortion in mobile networks.</p>
+  </div>
+
+  <h4>💥 6. Noise in Communication</h4>
+  <ul>
+    <li><strong>Thermal Noise (White Noise):</strong> Due to electron motion — power ∝ bandwidth.</li>
+    <li><strong>Intermodulation:</strong> Nonlinear mixing of multiple signals.</li>
+    <li><strong>Crosstalk:</strong> Signal leakage from adjacent channels.</li>
+    <li><strong>Impulse Noise:</strong> Sudden, high-energy bursts from switching devices, lightning, etc.</li>
+  </ul>
+
+  <h4>🌀 7. Animation: Multipath Fading Simulation</h4>
+  <canvas id="fadingCanvas" width="600" height="200"></canvas>
+  <script>
+    const fc = document.getElementById('fadingCanvas').getContext('2d');
+    fc.clearRect(0, 0, 600, 200);
+    fc.beginPath();
+    for (let x = 0; x < 600; x++) {
+      const t = x / 600 * 10 * Math.PI;
+      const y = 100 + 20 * Math.sin(t) + 15 * Math.sin(1.5 * t + 0.5);
+      fc.lineTo(x, y);
+    }
+    fc.strokeStyle = '#6a1b9a';
+    fc.stroke();
+  </script>
+  <div class="note">This simulates multipath fading — multiple signals arriving at different phases.</div>
+
+  <h4>📚 8. Key Formulas</h4>
+  <ul>
+    <li><strong>Received Power (Friis):</strong> <code>P<sub>r</sub> = P<sub>t</sub> G<sub>t</sub> G<sub>r</sub> λ² / ((4πd)²)</code></li>
+    <li><strong>FSPL:</strong> <code>FSPL = (4πd / λ)²</code></li>
+    <li><strong>Thermal Noise Power:</strong> <code>N = kTB</code></li>
+  </ul>
+  <p>Where:</p>
+  <ul>
+    <li><strong>k:</strong> Boltzmann's constant (1.38×10⁻²³ J/K)</li>
+    <li><strong>T:</strong> Temperature in Kelvin</li>
+    <li><strong>B:</strong> Bandwidth in Hz</li>
+  </ul>
+
+  <h4>🧪 9. Quiz Yourself</h4>
+  <div class="quiz">
+    <details><summary>Q1: What is the main cause of fast fading?</summary><p><strong>Answer:</strong> Movement of transmitter/receiver causing rapid channel changes</p></details>
+    <details><summary>Q2: What is thermal noise proportional to?</summary><p><strong>Answer:</strong> Bandwidth (B)</p></details>
+    <details><summary>Q3: Which type of fading affects specific frequencies?</summary><p><strong>Answer:</strong> Frequency-Selective Fading</p></details>
+  </div>
+</div>
+
+
+<a class="back" href="telecom-track.html">&larr; Back to Telecommunication Track</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>

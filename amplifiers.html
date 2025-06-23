@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Operational Amplifiers (Op-Amps) – Analog Electronics | Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI', sans-serif; max-width: 900px; margin: auto; padding: 30px; background: #fefefe; color: #1a1a1a; line-height: 1.9; }
+    h1,h2,h3 { color: #0d47a1; margin-top: 2.5rem; }
+    .section { margin-bottom: 3rem; }
+    .diagram, .flowchart { background: #f5f5f5; padding: 1rem; margin: 1.5rem 0; border-left: 6px solid #1976d2; border-radius: 4px; }
+    .example, .note, .tip, .quiz { background: #f5f5f5; padding: 1.2rem; margin: 1.5rem 0; border-left: 6px solid; border-radius: 4px; }
+    .example { border-color: #4caf50; }
+    .note { border-color: #1976d2; }
+    .tip { border-color: #ff9800; }
+    code { background: #eeeeee; padding: 2px 4px; font-family: Consolas, monospace; display: block; margin: 0.5rem 0; }
+    ul { padding-left: 1.4rem; }
+    details { margin: 1.2rem 0; }
+    summary { cursor: pointer; font-weight: bold; }
+    a.back { color: #0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    svg { max-width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+
+    <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+
+<h1>Amplifier Configurations</h1>
+
+<div class="section">
+  <h2>🔊 Amplifier Configurations</h2>
+  <p>Amplifiers are classified based on biasing conditions, conduction angle, and output signal characteristics. Each configuration serves specific analog functions.</p>
+
+  <h3>📗 1. Class A Amplifier</h3>
+  <ul>
+    <li>Conducts for entire 360° of the input cycle</li>
+    <li>High linearity, low distortion, low efficiency (~25-30%)</li>
+    <li>Used in small signal amplification (e.g. audio preamps)</li>
+  </ul>
+  <div class="diagram">
+    <img src="classa.gif" alt="Class A Amplifier Diagram">
+    <div class="note">Biased so transistor is always conducting; signal swings within the active region.</div>
+  </div>
+
+  <h3>📘 2. Class B Amplifier</h3>
+  <ul>
+    <li>Conducts for 180° of the input cycle</li>
+    <li>Two transistors amplify alternate halves of the waveform (push-pull)</li>
+    <li>Higher efficiency (~70%), but causes crossover distortion</li>
+  </ul>
+  <div class="diagram">
+    <img src="classb.webp" alt="Class B Amplifier Diagram">
+    <div class="note">Class B suffers from zero-voltage crossover distortion at the origin.</div>
+  </div>
+
+  <h3>📙 3. Class AB Amplifier</h3>
+  <ul>
+    <li>Hybrid of A and B — conducts more than 180° but less than 360°</li>
+    <li>Improved linearity over Class B; better efficiency than Class A</li>
+    <li>Widely used in audio amplifiers</li>
+  </ul>
+  <div class="diagram">
+    <img src="classab.gif" alt="Class AB Amplifier Diagram">
+  </div>
+
+  <h3>📒 4. Class C Amplifier</h3>
+  <ul>
+    <li>Conducts for less than 180°</li>
+    <li>Highly efficient but nonlinear</li>
+    <li>Used for RF applications with tuned circuits</li>
+  </ul>
+  <div class="diagram">
+    <img src="classc.png" alt="Class C Amplifier Diagram">
+  </div>
+
+  <h3>🎞️ Animation: Conduction Angles</h3>
+  <div class="diagram">
+    <svg viewBox="0 0 500 200">
+      <text x="10" y="20" font-size="14">Class A</text>
+      <path d="M20 60 Q70 0 120 60 Q170 120 220 60" stroke="#4caf50" stroke-width="3" fill="none" />
+      <text x="10" y="110" font-size="14">Class B</text>
+      <path d="M20 150 Q70 90 120 150" stroke="#f44336" stroke-width="3" fill="none" />
+      <path d="M120 150 Q170 90 220 150" stroke="#f44336" stroke-width="3" fill="none" />
+      <text x="10" y="170" font-size="14">Class C</text>
+      <path d="M20 190 Q70 130 120 190" stroke="#2196f3" stroke-width="3" fill="none" />
+    </svg>
+    <div class="note">Waveforms above show typical conduction patterns for various amplifier classes.</div>
+  </div>
+
+  <h3>🧮 Amplifier Metrics</h3>
+  <ul>
+    <li><strong>Voltage Gain (A<sub>v</sub>):</strong> V<sub>out</sub>/V<sub>in</sub></li>
+    <li><strong>Power Gain (A<sub>p</sub>):</strong> P<sub>out</sub>/P<sub>in</sub></li>
+    <li><strong>Efficiency:</strong> P<sub>out</sub>/P<sub>DC</sub></li>
+    <li><strong>Input/Output Impedance:</strong> Critical for matching and maximum power transfer</li>
+  </ul>
+
+  <h3>📘 Example</h3>
+  <div class="example">
+    <p>A Class A amplifier has a V<sub>CC</sub> = 12V and quiescent current I<sub>Q</sub> = 50mA.</p>
+    <code>P<sub>DC</sub> = V<sub>CC</sub> × I<sub>Q</sub> = 12 × 0.05 = 0.6W</code>
+    <code>If output power = 0.15W → Efficiency = 0.15 / 0.6 = 25%</code>
+  </div>
+
+  <h3>🧠 Quiz Time</h3>
+  <div class="quiz">
+    <details><summary>Which class of amplifier has the highest efficiency?</summary><p><strong>Answer:</strong> Class C</p></details>
+    <details><summary>What type of distortion is common in Class B amplifiers?</summary><p><strong>Answer:</strong> Crossover distortion</p></details>
+    <details><summary>What is the typical efficiency range of Class AB?</summary><p><strong>Answer:</strong> 50%–70%</p></details>
+  </div>
+</div>
+
+<a class="back" href="analog-electronics.html">&larr; Back to Analog Electronics</a>
+
+<footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+
+</body>
+</html>

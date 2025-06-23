@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Math & Physics | Electroverse</title>
+  <link rel="stylesheet" href="style/style.css">
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: white;
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+    }
+
+    header {
+      background-color: #000;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #0ff;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 60px;
+      margin-right: 10px;
+    }
+
+    .logo span {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      color: #0ff;
+      font-weight: bold;
+    }
+
+    nav select {
+      background-color: #111;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: 1px solid #0ff;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    .content {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+
+    h1, h2 {
+      color: #0ff;
+    }
+
+    p, li {
+      line-height: 1.6;
+    }
+
+    ul {
+      padding-left: 20px;
+    }
+
+    .topics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    .topics a {
+      display: block;
+      background-color: #111;
+      border: 1px solid #0ff;
+      border-radius: 6px;
+      padding: 1rem;
+      text-align: center;
+      color: #0ff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .topics a:hover {
+      background-color: #112233;
+    }
+
+    footer {
+      background-color: #000;
+      text-align: center;
+      padding: 1rem;
+      color: #777;
+      border-top: 1px solid #222;
+    }
+
+    a.back {
+      color: #0ff;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      <span>Electroverse</span>
+    </div>
+    <nav>
+      <select onchange="location = this.value">
+        <option value="#">Topics</option>
+        <option value="index.html">Home</option>
+        <option value="circuit-analysis.html">Circuit Analysis</option>
+        <option value="analog-electronics.html">Analog Electronics</option>
+        <option value="digital-electronics.html">Digital Electronics</option>
+        <option value="signals-systems.html">Signals & Systems</option>
+        <option value="control-systems.html">Control Systems</option>
+        <option value="power-track.html">Power Track</option>
+        <option value="telecom-track.html">Telecom Track</option>
+        <option value="control-track.html">Control & Systems</option>
+      </select>
+    </nav>
+  </header>
+
+  <div class="content">
+    <h1>Math and Physics for Electrical Engineers</h1>
+    <p><em>Extensive knowledge that actually helps real-world electrical engineering students.</em></p>
+
+    <h2>Mathematics Topics</h2>
+    <div class="topics">
+      <a href="vectors-complex.html">Vectors & Complex Numbers</a>
+      <a href="laplace-transform.html">Laplace Transforms</a>
+      <a href="fourier-transform.html">Fourier Series & Transforms</a>
+      <a href="differentiation-integration.html">Differentiation & Integration</a>
+      <a href="linear-algebra.html">Linear Algebra</a>
+      <a href="odes.html">Ordinary Differential Equations</a>
+      <a href="probability-stats.html">Probability & Statistics</a>
+    </div>
+
+    <h2>Physics Topics</h2>
+    <div class="topics">
+      <a href="electric-fields.html">Electric Fields</a>
+      <a href="magnetism.html">Magnetism</a>
+      <a href="induction.html">Electromagnetic Induction</a>
+      <a href="energy-power.html">Energy & Power</a>
+      <a href="em-waves.html">Electromagnetic Waves</a>
+      <a href="semiconductor-physics.html">Semiconductor Physics</a>
+    </div>
+
+    <a class="back" href="index.html">← Back to Home</a>
+  </div>
+
+  <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+</body>
+</html>

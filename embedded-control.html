@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Embedded Systems – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family: 'Segoe UI', sans-serif; max-width: 950px; margin: auto; padding: 30px; background: #fefefe; color: #1a1a1a; line-height: 1.8; }
+    h1, h2, h3 { color: #0d47a1; margin-top: 2.5rem; }
+    .section { margin-bottom: 3rem; }
+    .diagram, .note, .tip, .quiz { background: #f5f5f5; padding: 1rem 1.2rem; margin: 1.5rem 0; border-left: 6px solid; border-radius: 4px; }
+    .diagram { border-color: #1976d2; }
+    .note { border-color: #009688; }
+    .tip { border-color: #ff9800; }
+    .quiz { border-color: #4caf50; }
+    img, canvas { max-width: 100%; display: block; margin: 1.2rem auto; }
+    code { background: #e0e0e0; padding: 2px 6px; border-radius: 3px; display: inline-block; }
+    summary { cursor: pointer; font-weight: bold; }
+    ul { padding-left: 1.4rem; }
+     a.back {
+      color: #0d47a1;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+  <h1>📟 Embedded Systems</h1>
+  <p>This section provides a comprehensive dive into the world of embedded systems, real-time control, and microcontroller-based system design—all tailored for the electrical engineer.</p>
+
+  <div class="section">
+    <h2>🔧 What Is an Embedded System?</h2>
+    <p>An <strong>embedded system</strong> is a dedicated computer system designed to perform one or more specific tasks within a larger mechanical or electrical system. Unlike general-purpose computers, embedded systems operate with real-time constraints and limited resources.</p>
+    <ul>
+      <li>Examples: washing machines, medical devices, drones, automotive ECUs, IoT devices.</li>
+      <li>Key characteristics: real-time operation, compact, power-efficient, reliable, often microcontroller-based.</li>
+    </ul>
+    <div class="diagram">
+      <img src="images/embedded-architecture.png" alt="Embedded System Architecture Diagram">
+      <p><strong>Figure:</strong> Basic architecture of an embedded system.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>🛠️ Components of Embedded Systems</h2>
+    <ul>
+      <li><strong>Microcontroller / Microprocessor:</strong> Central processing unit (e.g., ARM Cortex-M, AVR, PIC, MSP430)</li>
+      <li><strong>Memory:</strong> RAM for runtime, Flash/EEPROM for permanent storage</li>
+      <li><strong>Input Devices:</strong> Buttons, sensors (temperature, motion, etc.)</li>
+      <li><strong>Output Devices:</strong> Displays, LEDs, motors, actuators</li>
+      <li><strong>Communication:</strong> I2C, SPI, UART, CAN, USB, Bluetooth, Wi-Fi</li>
+      <li><strong>Timers/Counters:</strong> For task scheduling, delays, and control</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>⚙️ Real-Time Operating Systems (RTOS)</h2>
+    <p>Many embedded applications require real-time behavior, often managed via an RTOS. It allows for multitasking, priority scheduling, inter-task communication, and resource sharing.</p>
+    <ul>
+      <li><strong>FreeRTOS</strong> is widely used in microcontroller-based real-time applications.</li>
+      <li>RTOS features: preemption, task switching, semaphores, mutexes, queues, and delays.</li>
+    </ul>
+    <div class="note">Use an RTOS when your embedded system handles multiple tasks that must meet strict timing requirements (e.g., drone flight control).</div>
+  </div>
+
+  <div class="section">
+    <h2>🔋 Embedded C / Firmware Programming</h2>
+    <p>Embedded systems are often programmed using Embedded C or assembly. Here's a basic example for toggling an LED:</p>
+    <pre><code>// Pseudocode for toggling LED using GPIO
+while(1) {
+    GPIO_TOGGLE(PIN_LED);
+    delay_ms(500);
+}</code></pre>
+    <p>Hardware abstraction libraries like STM32 HAL, Arduino libraries, or ESP-IDF make programming simpler.</p>
+  </div>
+
+  <div class="section">
+    <h2>📡 Communication Protocols</h2>
+    <ul>
+      <li><strong>UART:</strong> Serial communication, simple and common</li>
+      <li><strong>I2C:</strong> Two-wire interface for sensors, displays</li>
+      <li><strong>SPI:</strong> High-speed synchronous interface</li>
+      <li><strong>CAN:</strong> Used in automotive systems</li>
+      <li><strong>Wireless:</strong> Bluetooth, Wi-Fi, LoRa, Zigbee</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <h2>📊 Animation: Task Scheduling in RTOS</h2>
+    <canvas id="taskCanvas" width="600" height="200"></canvas>
+    <script>
+      const taskCanvas = document.getElementById("taskCanvas");
+      const ctxTask = taskCanvas.getContext("2d");
+      const tasks = ["Sensor", "Control", "Display", "Comm"];
+      let frame = 0;
+      function drawTasks() {
+        ctxTask.clearRect(0, 0, 600, 200);
+        tasks.forEach((task, i) => {
+          const x = (frame * 20 + i * 150) % 600;
+          ctxTask.fillStyle = ["#42a5f5", "#66bb6a", "#ffa726", "#ab47bc"][i];
+          ctxTask.fillRect(x, 40 * i + 10, 100, 30);
+          ctxTask.fillStyle = "#fff";
+          ctxTask.fillText(task, x + 10, 30 + 40 * i);
+        });
+        frame++;
+        requestAnimationFrame(drawTasks);
+      }
+      drawTasks();
+    </script>
+    <div class="tip">RTOS dynamically schedules tasks based on priority or timing.</div>
+  </div>
+
+  <div class="section">
+    <h2>🧪 Quiz Yourself</h2>
+    <div class="quiz">
+      <details><summary>Q1: What's the difference between microcontroller and microprocessor?</summary><p><strong>Answer:</strong> Microcontrollers integrate CPU, memory, and peripherals; microprocessors require external components.</p></details>
+      <details><summary>Q2: Why use RTOS in embedded systems?</summary><p><strong>Answer:</strong> For handling multiple tasks with deterministic timing requirements.</p></details>
+      <details><summary>Q3: Which protocol is best for fast communication between MCU and flash?</summary><p><strong>Answer:</strong> SPI.</p></details>
+    </div>
+  </div>
+
+<a class="back" href="control-track.html">← Back to Control Systems</a>
+
+<footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+
+</body>
+</html>

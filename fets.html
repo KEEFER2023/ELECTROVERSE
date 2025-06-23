@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Field Effect Transistors (FETs) – Analog Electronics | Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI', sans-serif; max-width: 900px; margin: auto; padding: 30px; background: #fefefe; color: #1a1a1a; line-height: 1.9; }
+    h1,h2,h3 { color: #0d47a1; margin-top: 2.5rem; }
+    .section { margin-bottom: 3rem; }
+    .diagram, .flowchart { background: #f5f5f5; padding: 1rem; margin: 1.5rem 0; border-left: 6px solid #1976d2; border-radius: 4px; }
+    .example, .note, .tip, .quiz { background: #f5f5f5; padding: 1.2rem; margin: 1.5rem 0; border-left: 6px solid; border-radius: 4px; }
+    .example { border-color: #4caf50; }
+    .note { border-color: #1976d2; }
+    .tip { border-color: #ff9800; }
+    code { background: #eeeeee; padding: 2px 4px; font-family: Consolas, monospace; display: block; margin: 0.5rem 0; }
+    ul { padding-left: 1.4rem; }
+    details { margin: 1.2rem 0; }
+    summary { cursor: pointer; font-weight: bold; }
+    a.back { color: #0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    svg { max-width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+
+<h1>🧪 Field Effect Transistors (FETs)</h1>
+<p>FETs are voltage-controlled devices with high input impedance. They're essential in analog electronics, used for amplification, switching, buffering, and impedance matching.</p>
+
+<div class="section">
+  <h2>🔍 Types of FETs</h2>
+  <ul>
+    <li><strong>JFET (Junction FET):</strong> Voltage controls current through reverse-biased junction</li>
+    <li><strong>MOSFET (Metal-Oxide-Semiconductor FET):</strong> Most common, high input impedance</li>
+    <li><strong>Enhancement-mode:</strong> Requires gate voltage to turn ON</li>
+    <li><strong>Depletion-mode:</strong> Conducts with zero gate voltage</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>⚙️ Structure & Operation</h2>
+  <p>FETs have three terminals: <strong>Gate</strong>, <strong>Drain</strong>, and <strong>Source</strong>.</p>
+  <div class="diagram">
+    <img src="mosfet.png" alt="N-channel MOSFET Structure">
+  </div>
+  <ul>
+    <li>Gate voltage <strong>modulates channel conductivity</strong></li>
+    <li>No gate current flows → <strong>high input impedance</strong></li>
+    <li>Drain current depends on gate-source voltage (V<sub>GS</sub>)</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>📐 Characteristic Equations</h2>
+  <code>I_D = I_{DSS} (1 - V_{GS}/V_P)^2</code>
+  <p><strong>For JFET in saturation:</strong></p>
+  <ul>
+    <li>I<sub>D</sub>: drain current</li>
+    <li>V<sub>GS</sub>: gate-source voltage</li>
+    <li>V<sub>P</sub>: pinch-off voltage</li>
+  </ul>
+  <p><strong>For enhancement MOSFET:</strong></p>
+  <code>I_D = k (V_{GS} - V_{th})^2</code>
+</div>
+
+<div class="section">
+  <h2>📊 Output Characteristics</h2>
+  <div class="diagram">
+    <img src="fetout.png" alt="FET Output Characteristics">
+  </div>
+</div>
+
+<div class="section">
+  <h2>🔁 Animation: MOSFET Channel Formation</h2>
+  <div class="diagram">
+    <svg viewBox="0 0 400 200">
+      <rect x="50" y="100" width="300" height="20" fill="#90caf9" />
+      <rect x="170" y="80" width="60" height="20" fill="#64b5f6" />
+      <text x="180" y="75">Gate</text>
+      <text x="50" y="140">Source</text>
+      <text x="310" y="140">Drain</text>
+      <line x1="80" y1="100" x2="80" y2="80" stroke="#000" />
+      <line x1="320" y1="100" x2="320" y2="80" stroke="#000" />
+      <line x1="200" y1="100" x2="200" y2="60" stroke="#f44336" stroke-width="3" marker-end="url(#arrowhead)" />
+      <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill="#f44336" />
+        </marker>
+      </defs>
+    </svg>
+    <div class="note">As V<sub>GS</sub> increases, an n-channel forms allowing electrons to flow from source to drain.</div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>📘 Example: MOSFET Amplifier</h2>
+  <div class="example">
+    <p>Given: k = 0.5 mA/V², V<sub>th</sub> = 2V, V<sub>GS</sub> = 4V</p>
+    <code>I_D = 0.5 × (4 - 2)² = 2 mA</code>
+  </div>
+</div>
+
+<div class="section">
+  <h2>💡 Applications</h2>
+  <ul>
+    <li>Low-power amplifiers</li>
+    <li>CMOS logic circuits</li>
+    <li>Analog switches</li>
+    <li>Buffer and impedance matching</li>
+    <li>Power control in SMPS</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>📝 Practice Quiz</h2>
+  <div class="quiz">
+    <details><summary>Why are FETs considered voltage-controlled devices?</summary><p><strong>Answer:</strong> Because the gate voltage controls the drain current without drawing gate current.</p></details>
+    <details><summary>What is the typical input impedance of a MOSFET?</summary><p><strong>Answer:</strong> Extremely high, often in the mega-ohm range.</p></details>
+    <details><summary>What's the condition for a MOSFET to operate in saturation?</summary><p><strong>Answer:</strong> V<sub>DS</sub> &gt; (V<sub>GS</sub> - V<sub>th</sub>)</p></details>
+  </div>
+</div>
+
+<a class="back" href="analog-electronics.html">&larr; Back to Analog Electronics</a>
+
+<footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+
+</body>
+</html>

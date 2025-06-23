@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+
+  <h3>🧯 Stability Criteria</h3>
+  <p>Stability in control systems determines whether a system’s output remains bounded for a bounded input. A stable system produces a finite response that eventually settles to a steady-state value.</p>
+
+  <h4>✅ Conditions for Stability</h4>
+  <ul>
+    <li><strong>BIBO Stability:</strong> Bounded Input → Bounded Output</li>
+    <li><strong>Poles of Transfer Function:</strong> All must lie in the left-half of the s-plane for continuous-time systems</li>
+    <li><strong>Natural Response:</strong> Must decay to zero over time</li>
+  </ul>
+
+  <h4>📐 Routh–Hurwitz Criterion</h4>
+  <p>This algebraic technique determines system stability without explicitly computing the roots of the characteristic equation.</p>
+  <ul>
+    <li>Write characteristic polynomial in descending order of s</li>
+    <li>Construct the Routh array row-by-row</li>
+    <li>If no sign changes in the first column → system is stable</li>
+  </ul>
+
+  <div class="example">
+    <strong>Example:</strong> Characteristic Equation: <code>s³ + 5s² + 6s + 8 = 0</code><br>
+    Routh Table reveals 1 sign change → <strong>system unstable</strong>
+  </div>
+
+  <h4>📈 Root Locus</h4>
+  <p>A graphical method to determine how system poles move in the s-plane as a parameter (usually gain K) is varied.</p>
+  <div class="diagram">
+    <img src="locus.png" alt="Root Locus Diagram">
+    <p><strong>Fig:</strong> Root locus showing stable, marginal, and unstable zones.</p>
+  </div>
+
+  <h4>🔄 Nyquist Stability Criterion</h4>
+  <ul>
+    <li>Encircles critical point (-1 + j0) in Nyquist plot</li>
+    <li>Based on number of clockwise encirclements (N), open-loop poles (P)</li>
+    <li>Closed-loop system is stable if: <code>N = -P</code></li>
+  </ul>
+
+  <h4>📺 Animation: Pole Migration</h4>
+  <canvas id="poleCanvas" width="500" height="300"></canvas>
+  <script>
+    const ctxPole = document.getElementById('poleCanvas').getContext('2d');
+    ctxPole.clearRect(0, 0, 500, 300);
+    ctxPole.beginPath();
+    ctxPole.strokeStyle = '#f44336';
+    for (let k = 0; k <= 50; k++) {
+      let real = -1 - k * 0.05;
+      let imag = Math.sqrt(k);
+      ctxPole.lineTo(250 + real * 50, 150 - imag * 10);
+    }
+    ctxPole.stroke();
+    ctxPole.fillText('Re(s) →', 400, 280);
+    ctxPole.fillText('Im(s)', 10, 20);
+  </script>
+  <p><strong>Fig:</strong> Animated root locus pole movement with increasing gain K.</p>
+
+  <h4>📝 Practice Quiz</h4>
+  <div class="quiz">
+    <details><summary>Q1: What is the stability condition in Routh–Hurwitz?</summary><p><strong>Answer:</strong> No sign changes in the first column of the Routh array</p></details>
+    <details><summary>Q2: What happens if a pole crosses into the right-half s-plane?</summary><p><strong>Answer:</strong> The system becomes unstable (output grows exponentially)</p></details>
+  </div>
+</div>
+
+
+<a class="back" href="control-systems.html">&larr; Back to Control systems</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>

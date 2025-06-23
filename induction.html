@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Magnetism & Electromagnetic Induction – Electroverse</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9;}
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      
+    </div>
+    
+  </header>
+
+<h1>🧲 Magnetism & Electromagnetic Induction</h1>
+<p>Explore the full story of magnetism and induction — from magnetic fields and forces to energy generation and high-efficiency electrical systems.</p>
+
+<hr />
+
+<div class="section">
+  <h2>1.1. Introduction to Magnetism</h2>
+  <p>Magnetism arises from moving charges and intrinsic magnetic moments of particles. It's foundational in electric motors, transformers, inductors, and storage devices.</p>
+  <div class="note">The magnetic field <code>B</code> is measured in <strong>tesla (T)</strong>.</div>
+</div>
+
+<div class="section">
+  <h2>1.2. Magnetic Fields from Currents</h2>
+  <ul>
+    <li><strong>Biot–Savart Law:</strong> 
+      <code>dB = (μ₀ / 4π) × (I dl × r̂) / r²</code>
+    </li>
+    <li><strong>Ampère’s Law:</strong> 
+      <code>∮ B · dl = μ₀ I_enc</code>
+    </li>
+  </ul>
+  <div class="example">
+    <strong>Example:</strong> Straight wire, current I → <code>B = (μ₀ I) / (2πr)</code>
+  </div>
+</div>
+
+<div class="section">
+  <h2>1.3. Fields from Loops, Solenoids, Toroids</h2>
+  <ul>
+    <li><strong>Loop:</strong> 
+      <code>B = (μ₀ I) / (2R)</code> at center
+    </li>
+    <li><strong>Solenoid:</strong> 
+      <code>B = μ₀ n I</code> (n = turns/length)
+    </li>
+    <li><strong>Toroid:</strong> 
+      <code>B = (μ₀ N I) / (2πr)</code> inside core
+    </li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>1.4. Lorentz Force on Charges</h2>
+  <p><code>F = q (v × B)</code> — Right-hand rule for direction</p>
+  <div class="example">
+    <strong>Example:</strong> Electron in B-field → helical motion
+  </div>
+</div>
+
+<div class="section">
+  <h2>1.5. Force on Current-Carrying Wire</h2>
+  <p><code>F = I (L × B)</code></p>
+  <div class="example">Loop in uniform B-field → torque → <code>τ = μ × B</code></div>
+</div>
+
+<div class="section">
+  <h2>1.6. Magnetic Materials</h2>
+  <ul>
+    <li><strong>Ferromagnetic:</strong> Strong alignment (Fe, Co, Ni)</li>
+    <li><strong>Paramagnetic:</strong> Weak, temporary alignment</li>
+    <li><strong>Diamagnetic:</strong> Weak opposition to field</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>1.7. Real Engineering Uses</h2>
+  <ul>
+    <li>Motors: Field–current interaction</li>
+    <li>Transformers: Mutual induction</li>
+    <li>Inductors: Magnetic energy storage</li>
+    <li>Magnetic sensors, shields</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>1.8. Introduction to Electromagnetic Induction</h2>
+  <p>Changing magnetic fields induce voltage (emf) in loops and conductors — the principle behind all electrical generators.</p>
+</div>
+
+<div class="section">
+  <h2>1.9. Faraday’s and Lenz’s Laws</h2>
+  <code>𝓔 = - dΦ/dt</code><br/>
+  <p>Where <code>Φ = ∫ B · dA</code> is magnetic flux. Minus sign → Lenz’s law: opposes the cause.</p>
+</div>
+
+<div class="section">
+  <h2>2.0. EMF from Motion</h2>
+  <code>𝓔 = B L v</code><br/>
+  <div class="example">
+    Rod of 1 m in 0.3 T, moving at 5 m/s → <code>𝓔 = 0.3 × 1 × 5 = 1.5 V</code>
+  </div>
+</div>
+
+<div class="section">
+  <h2>2.1. Rotating Loops and AC Generation</h2>
+  <code>𝓔 = N B A ω sin(ωt)</code><br/>
+  <p>This gives sinusoidal voltage output in generators.</p>
+</div>
+
+<div class="section">
+  <h2>2.2. Eddy Currents</h2>
+  <p>Circulating currents in bulk metal oppose motion → cause magnetic damping or heating.</p>
+  <div class="note">Used in brakes, induction cookers, metal detectors</div>
+</div>
+
+<div class="section">
+  <h2>2.3. Inductance</h2>
+  <ul>
+    <li><strong>Self-induction:</strong> <code>𝓔 = -L (dI/dt)</code></li>
+    <li><strong>Mutual induction:</strong> <code>𝓔₂ = -M (dI₁/dt)</code></li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>2.4. Engineering Applications</h2>
+  <ul>
+    <li>Transformers</li>
+    <li>Wireless charging</li>
+    <li>Power generation</li>
+    <li>Induction heating</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>2.5. Practice Questions</h2>
+  <div class="quiz">
+    <details><summary>Q1: 50-turn coil (A = 0.02 m²) in 0.1 T, 60 Hz?</summary><p><strong>Ans:</strong> 𝓔 = NBAω = 37.7 V</p></details>
+    <details><summary>Q2: Rod in 0.2 T field, 2 m/s, 0.5 m long?</summary><p><strong>Ans:</strong> 𝓔 = 0.2 × 0.5 × 2 = 0.2 V</p></details>
+    <details><summary>Q3: Mutual inductance gives 1.5 V when dI/dt = 3 A/s?</summary><p><strong>Ans:</strong> M = 0.5 H</p></details>
+  </div>
+</div>
+
+<a class="back" href="maths-physics.html">&larr; Back to Physics Topics</a>
+<footer id="contact">
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+</body>
+</html>

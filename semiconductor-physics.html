@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Semiconductor Physics – Electroverse</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9;}
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      
+    </div>
+    
+  </header>
+
+
+<h1>🔬 Semiconductor Physics</h1>
+<p>This page explains the physics behind semiconductors — the foundation of all modern electronics, including diodes, transistors, ICs, and solar cells. We cover energy bands, carrier behavior, doping, and junction operation step-by-step with clear explanations and examples.</p>
+
+<hr />
+
+<div class="section">
+  <h2>43. What is a Semiconductor?</h2>
+  <p>A semiconductor is a material whose electrical conductivity lies between that of a conductor and an insulator. Examples include silicon (Si) and germanium (Ge).</p>
+  <code>Conductivity: σ (metal) >> σ (semiconductor) >> σ (insulator)</code>
+  <div class="tip">Semiconductors become conductive when thermal energy excites electrons across a band gap.</div>
+</div>
+
+<div class="section">
+  <h2>44. Energy Band Theory</h2>
+  <ul>
+    <li><strong>Valence Band (VB):</strong> Filled with electrons</li>
+    <li><strong>Conduction Band (CB):</strong> Where free electrons can move</li>
+    <li><strong>Band Gap (Eg):</strong> Energy needed to jump from VB to CB</li>
+  </ul>
+  <code>Eg (Si) ≈ 1.1 eV, Eg (Ge) ≈ 0.66 eV</code>
+  <div class="note">Smaller Eg → easier to excite electrons → better conduction</div>
+</div>
+
+<div class="section">
+  <h2>45. Intrinsic vs Extrinsic Semiconductors</h2>
+  <ul>
+    <li><strong>Intrinsic:</strong> Pure Si or Ge</li>
+    <li><strong>Extrinsic:</strong> Doped to increase carriers</li>
+  </ul>
+  <p>Doping adds donor (n-type) or acceptor (p-type) atoms.</p>
+  <div class="example">
+    <strong>Example:</strong> Adding phosphorus (5 valence e⁻) to Si gives n-type; adding boron (3 valence e⁻) gives p-type.
+  </div>
+</div>
+
+<div class="section">
+  <h2>46. Charge Carriers</h2>
+  <p>Two types of mobile charge carriers:</p>
+  <ul>
+    <li><strong>Electrons:</strong> Negative, from donor atoms or CB</li>
+    <li><strong>Holes:</strong> Positive, absence of e⁻ in VB</li>
+  </ul>
+  <code>Current = electron flow + hole flow</code>
+</div>
+
+<div class="section">
+  <h2>47. The pn Junction</h2>
+  <p>Formed by joining p-type and n-type semiconductors:</p>
+  <ul>
+    <li>Electrons from n side diffuse to p side</li>
+    <li>Holes from p side diffuse to n side</li>
+    <li>This forms a depletion region with built-in potential</li>
+  </ul>
+  <div class="diagram">Forward bias reduces barrier → current flows<br>Reverse bias widens barrier → current blocked</div>
+</div>
+
+<div class="section">
+  <h2>🌀 Animated Diagram: PN Junction Behavior</h2>
+  <div class="diagram">
+    <svg viewBox="0 0 600 200" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <marker id="arrow" markerWidth="10" markerHeight="10" refX="5" refY="5" orient="auto" markerUnits="strokeWidth">
+          <path d="M0,0 L10,5 L0,10 z" fill="#1976d2" />
+        </marker>
+      </defs>
+      <!-- N-region -->
+      <rect x="0" y="50" width="280" height="100" fill="#bbdefb" />
+      <text x="10" y="45" font-size="14" fill="#0d47a1">n-type (excess electrons)</text>
+      <!-- P-region -->
+      <rect x="320" y="50" width="280" height="100" fill="#ffcdd2" />
+      <text x="450" y="45" font-size="14" fill="#b71c1c">p-type (excess holes)</text>
+      <!-- Depletion region -->
+      <rect x="280" y="50" width="40" height="100" fill="#eeeeee" />
+      <text x="270" y="170" font-size="12">Depletion region</text>
+      <!-- Electric field -->
+      <line x1="270" y1="100" x2="330" y2="100" stroke="#1976d2" stroke-width="2" marker-end="url(#arrow)" />
+      <text x="280" y="90" font-size="12" fill="#1976d2">E</text>
+    </svg>
+    <p>This animation-style diagram shows carrier diffusion and electric field formation across a pn junction.</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>🔁 Interactive Animation: Transistor Switching</h2>
+  <div class="diagram">
+    <p>Base current (IB) turns on collector-emitter path (IC). Toggle switch to see effect:</p>
+    <button onclick="toggleTransistor()">Toggle Transistor</button>
+    <div id="transistorStatus" style="margin-top:1rem; font-weight:bold; color:#4caf50">Transistor is OFF</div>
+    <svg id="transistorSVG" width="300" height="150">
+      <line x1="150" y1="20" x2="150" y2="130" stroke="#ccc" stroke-width="4" id="ceLine" />
+      <circle cx="150" cy="20" r="5" fill="black" />
+      <circle cx="150" cy="130" r="5" fill="black" />
+    </svg>
+    <script>
+      let isOn = false;
+      function toggleTransistor() {
+        const line = document.getElementById("ceLine");
+        const status = document.getElementById("transistorStatus");
+        isOn = !isOn;
+        if (isOn) {
+          line.setAttribute("stroke", "#4caf50");
+          status.textContent = "Transistor is ON";
+        } else {
+          line.setAttribute("stroke", "#ccc");
+          status.textContent = "Transistor is OFF";
+        }
+      }
+    </script>
+  </div>
+</div>
+
+
+<div class="section">
+  <h2>48. Diode Behavior</h2>
+  <ul>
+    <li><strong>Forward bias:</strong> Current flows exponentially with voltage</li>
+    <li><strong>Reverse bias:</strong> Very little current until breakdown</li>
+  </ul>
+  <code>I = I₀ (e^{qV/kT} − 1)</code>
+  <div class="note">This is the ideal diode equation. I₀ is reverse saturation current.</div>
+</div>
+
+<div class="section">
+  <h2>49. Transistors (BJT & FET)</h2>
+  <ul>
+    <li><strong>BJT:</strong> Uses base-emitter junction to control collector current</li>
+    <li><strong>FET:</strong> Controls channel conductivity via gate voltage</li>
+  </ul>
+  <div class="tip">BJTs amplify current; FETs act as voltage-controlled switches.</div>
+</div>
+
+<div class="section">
+  <h2>50. Semiconductor Applications</h2>
+  <ul>
+    <li>Diodes: Rectification, protection</li>
+    <li>Transistors: Amplifiers, switches</li>
+    <li>Solar cells: Light-to-electricity</li>
+    <li>LEDs: Electrons → photons</li>
+    <li>ICs: Billions of tiny transistors</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>51. Practice Questions</h2>
+  <div class="quiz">
+    <details><summary>Q1: What type of carrier is majority in p-type?</summary><p><strong>Ans:</strong> Holes</p></details>
+    <details><summary>Q2: Calculate thermal voltage at 300 K</summary><p><strong>Ans:</strong> V<sub>T</sub> = kT/q ≈ 0.0259 V</p></details>
+    <details><summary>Q3: Eg of Si is 1.1 eV. Can red light (λ=700nm) excite electron?</summary><p><strong>Ans:</strong> E = hc/λ ≈ 1.77 eV → Yes</p></details>
+  </div>
+</div>
+
+<a class="back" href="maths-physics.html">&larr; Back to Physics Topics</a>
+
+<footer id="contact">
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>

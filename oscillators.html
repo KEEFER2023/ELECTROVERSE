@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Operational Amplifiers (Op-Amps) – Analog Electronics | Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI', sans-serif; max-width: 900px; margin: auto; padding: 30px; background: #fefefe; color: #1a1a1a; line-height: 1.9; }
+    h1,h2,h3 { color: #0d47a1; margin-top: 2.5rem; }
+    .section { margin-bottom: 3rem; }
+    .diagram, .flowchart { background: #f5f5f5; padding: 1rem; margin: 1.5rem 0; border-left: 6px solid #1976d2; border-radius: 4px; }
+    .example, .note, .tip, .quiz { background: #f5f5f5; padding: 1.2rem; margin: 1.5rem 0; border-left: 6px solid; border-radius: 4px; }
+    .example { border-color: #4caf50; }
+    .note { border-color: #1976d2; }
+    .tip { border-color: #ff9800; }
+    code { background: #eeeeee; padding: 2px 4px; font-family: Consolas, monospace; display: block; margin: 0.5rem 0; }
+    ul { padding-left: 1.4rem; }
+    details { margin: 1.2rem 0; }
+    summary { cursor: pointer; font-weight: bold; }
+    a.back { color: #0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    svg { max-width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+
+    <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+
+
+
+<div class="section">
+  <h2>🔁 Oscillators & Signal Generators</h2>
+  <p>Oscillators are electronic circuits that produce a periodic waveform without requiring an input. Signal generators are circuits that output various waveforms (sinusoidal, square, triangular) for testing and modulation purposes.</p>
+
+  <h3>📘 1. Types of Oscillators</h3>
+  <ul>
+    <li><strong>RC Oscillators:</strong> Use resistors and capacitors (e.g. Phase Shift, Wien Bridge)</li>
+    <li><strong>LC Oscillators:</strong> Use inductor-capacitor tanks (e.g. Colpitts, Hartley)</li>
+    <li><strong>Crystal Oscillators:</strong> Use quartz crystals for ultra-stable frequency</li>
+    <li><strong>Relaxation Oscillators:</strong> Use devices like UJTs or Schmitt triggers for non-sinusoidal waveforms</li>
+  </ul>
+
+  <h3>📐 2. RC Oscillator: Phase Shift</h3>
+  <p>This oscillator uses three RC stages to introduce a 180° phase shift and an inverting op-amp to complete the loop.</p>
+  <div class="diagram">
+    <img src="phase.png" alt="Phase Shift Oscillator">
+    <div class="note">Each RC section contributes 60° phase shift; total 180° needed for sustained oscillation.</div>
+  </div>
+
+  <h3>🔔 3. Wien Bridge Oscillator</h3>
+  <ul>
+    <li>Produces low-distortion sine waves</li>
+    <li>Uses op-amp + RC bridge network</li>
+    <li>Popular for audio frequency generation</li>
+  </ul>
+  <div class="diagram">
+    <img src="wien.jpg" alt="Wien Bridge Diagram">
+  </div>
+
+  <h3>🔊 4. LC Oscillator: Colpitts</h3>
+  <ul>
+    <li>High-frequency oscillator using split-capacitor configuration</li>
+    <li>Common in RF transmitters and tuners</li>
+  </ul>
+  <div class="diagram">
+    <img src="colpitt.webp" alt="Colpitts Oscillator">
+  </div>
+
+  <h3>🧪 5. Crystal Oscillator</h3>
+  <ul>
+    <li>Extremely stable frequency (±50 ppm)</li>
+    <li>Used in watches, clocks, microcontrollers</li>
+  </ul>
+  <div class="diagram">
+    <img src="crystal.jpg" alt="Crystal Oscillator">
+  </div>
+
+  <h3>🌀 6. Relaxation Oscillator</h3>
+  <p>Uses the charging and discharging behavior of capacitors — often built using op-amps or UJTs.</p>
+  <div class="diagram">
+    <img src="relax.png" alt="Relaxation Oscillator">
+  </div>
+
+  <h3>🎞️ Animation: Oscillator Output Waveforms</h3>
+  <div class="diagram">
+    <canvas id="oscCanvas" width="600" height="200"></canvas>
+    <script>
+      const ctx = document.getElementById('oscCanvas').getContext('2d');
+      ctx.clearRect(0, 0, 600, 200);
+      ctx.strokeStyle = '#1976d2';
+      ctx.beginPath();
+      for (let x = 0; x <= 600; x++) {
+        const y = 100 - 40 * Math.sin(2 * Math.PI * x / 150);
+        ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+    </script>
+    <div class="note">Above: Simulated sinusoidal waveform from a Wien bridge oscillator.</div>
+  </div>
+
+  <h3>📘 Example Calculation</h3>
+  <div class="example">
+    <p><strong>Wien Bridge Oscillator Frequency:</strong></p>
+    <code>f = 1 / (2πRC)</code>
+    <code>For R = 10kΩ and C = 0.01μF → f ≈ 1.59 kHz</code>
+  </div>
+
+  <h3>🧠 Quiz</h3>
+  <div class="quiz">
+    <details><summary>What determines the frequency in a Colpitts oscillator?</summary><p><strong>Answer:</strong> The values of the inductance (L) and the capacitive divider (C1, C2).</p></details>
+    <details><summary>Which oscillator is best for audio generation?</summary><p><strong>Answer:</strong> Wien Bridge</p></details>
+    <details><summary>What is the role of the quartz crystal in a crystal oscillator?</summary><p><strong>Answer:</strong> To stabilize the frequency by acting as a mechanical resonator.</p></details>
+  </div>
+</div>
+
+<a class="back" href="analog-electronics.html">&larr; Back to Analog Electronics</a>
+
+<footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+
+</body>
+</html>

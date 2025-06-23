@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+
+<div class="section">
+  <h2>⚡ Power Track</h2>
+
+  <h3>📐 Power Systems Analysis</h3>
+  <p>This section lays the foundation for understanding how electrical power flows through systems, how it's modeled mathematically, and how engineers analyze, design, and troubleshoot power systems.</p>
+
+  <h4>🔌 1. Basic Components of Power Systems</h4>
+  <ul>
+    <li><strong>Generators:</strong> Convert mechanical energy into electrical energy</li>
+    <li><strong>Transformers:</strong> Step-up/down voltage for transmission and distribution</li>
+    <li><strong>Transmission Lines:</strong> Carry high-voltage electricity over long distances</li>
+    <li><strong>Distribution Networks:</strong> Deliver power to end-users</li>
+    <li><strong>Loads:</strong> Represent energy-consuming devices (resistive, inductive, capacitive)</li>
+  </ul>
+
+  <div class="note">
+    A power system is usually split into <strong>generation</strong>, <strong>transmission</strong>, and <strong>distribution</strong> sections.
+  </div>
+
+  <h4>🔄 2. Single Line Diagrams (SLD)</h4>
+  <p>Single-line diagrams simplify complex 3-phase power systems into a single-phase equivalent:</p>
+  <img src="line.jpg" alt="Single Line Diagram" style="width:100%;max-width:600px;">
+
+  <div class="tip">Use SLDs to perform load flow, fault analysis, and protection coordination easily.</div>
+
+  <h4>📏 3. Per-Unit System</h4>
+  <p>Normalize all quantities to a common base. It simplifies calculations and comparison across devices.</p>
+  <code>Per Unit = Actual Value / Base Value</code>
+  <ul>
+    <li><strong>Base Power (S<sub>base</sub>):</strong> Typically 100 MVA</li>
+    <li><strong>Base Voltage (V<sub>base</sub>):</strong> Chosen per system level</li>
+  </ul>
+
+  <div class="example">
+    <strong>Example:</strong> Given base S = 100 MVA, V = 132 kV. A transformer with 5.5% impedance has:
+    <code>Z<sub>pu</sub> = 0.055</code>
+  </div>
+
+  <h4>⚡ 4. Load Flow Analysis</h4>
+  <p>It determines voltages, currents, and power at various buses.</p>
+  <ul>
+    <li><strong>Methods:</strong> Gauss-Seidel, Newton-Raphson, Fast-Decoupled</li>
+    <li><strong>Inputs:</strong> Bus types (Slack, PV, PQ), impedance, generation/load data</li>
+    <li><strong>Outputs:</strong> Bus voltages, line flows, power losses</li>
+  </ul>
+
+  <canvas id="loadFlowCanvas" width="600" height="250"></canvas>
+  <script>
+    const lfCtx = document.getElementById('loadFlowCanvas').getContext('2d');
+    lfCtx.clearRect(0, 0, 600, 250);
+    lfCtx.fillStyle = '#000';
+    lfCtx.fillText("Bus 1 (Slack)", 50, 50);
+    lfCtx.fillText("Bus 2 (PV)", 250, 50);
+    lfCtx.fillText("Bus 3 (PQ)", 450, 50);
+    lfCtx.strokeStyle = '#2196f3';
+    lfCtx.beginPath(); lfCtx.moveTo(100, 60); lfCtx.lineTo(250, 60); lfCtx.lineTo(400, 60); lfCtx.stroke();
+  </script>
+  <div class="note">Bus classification is essential for solving load flow equations.</div>
+
+  <h4>⚠️ 5. Fault Analysis</h4>
+  <p>Studies abnormal conditions like short circuits.</p>
+  <ul>
+    <li><strong>Types:</strong> 3-phase, single line-to-ground (SLG), double line-to-ground (DLG), line-to-line</li>
+    <li><strong>Tools:</strong> Symmetrical components, Thevenin equivalents, sequence networks</li>
+  </ul>
+
+  <div class="example">
+    <strong>Example:</strong> SLG fault at Bus 3:
+    <code>I<sub>f</sub> = 3·V<sub>f</sub> / (Z<sub>1</sub> + Z<sub>2</sub> + Z<sub>0</sub>)</code>
+  </div>
+
+  <h4>🧮 6. Power Factor & Losses</h4>
+  <p><strong>Power factor (PF)</strong> is the cosine of angle between voltage and current.</p>
+  <code>PF = P / S = cos(φ)</code>
+  <ul>
+    <li>PF = 1 → purely resistive load</li>
+    <li>Lagging PF → inductive loads (motors)</li>
+    <li>Leading PF → capacitive loads</li>
+  </ul>
+
+  <div class="tip">Correct low PF using capacitor banks to reduce line current and losses.</div>
+
+  <h4>🧠 7. Practice Quiz</h4>
+  <div class="quiz">
+    <details><summary>Q1: What are the types of buses in load flow analysis?</summary><p><strong>Answer:</strong> Slack, PV (Generator), PQ (Load)</p></details>
+    <details><summary>Q2: Why is per-unit system used?</summary><p><strong>Answer:</strong> To simplify and normalize system calculations.</p></details>
+    <details><summary>Q3: How do you find fault current for a single line-to-ground fault?</summary><p><strong>Answer:</strong> Use <code>I<sub>f</sub> = 3V / (Z<sub>1</sub> + Z<sub>2</sub> + Z<sub>0</sub>)</code></p></details>
+  </div>
+</div>
+
+<a class="back" href="power-track.html">&larr; Back to Power track</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>

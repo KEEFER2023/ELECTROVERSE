@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Power Track | Electroverse</title>
+  <link rel="stylesheet" href="style/style.css">
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: white;
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+    }
+    header {
+      background-color: #000;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #0ff;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo img {
+      height: 60px;
+      margin-right: 10px;
+    }
+    .logo span {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      color: #0ff;
+      font-weight: bold;
+    }
+    nav select {
+      background-color: #111;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: 1px solid #0ff;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    .content {
+      padding: 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+    h1, h2 {
+      color: #0ff;
+    }
+    p {
+      line-height: 1.6;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .card {
+      background-color: #111;
+      border: 1px solid #0ff;
+      padding: 1rem;
+      border-radius: 8px;
+      text-align: center;
+      transition: 0.3s ease;
+    }
+    .card:hover {
+      background-color: #111a;
+      transform: translateY(-4px);
+    }
+    .card a {
+      color: #0ff;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    footer {
+      background-color: #000;
+      text-align: center;
+      padding: 1rem;
+      color: #777;
+      border-top: 1px solid #222;
+    }
+     a.back {
+      color: #0ff;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      <span>Electroverse</span>
+    </div>
+    <nav>
+      <select onchange="location = this.value">
+        <option value="#">Topics</option>
+        <option value="index.html">Home</option>
+        <option value="control-systems.html">Control Systems</option>
+      </select>
+    </nav>
+  </header>
+
+  <div class="content">
+    <h1>Power Track</h1>
+    <p><em>Extensive knowledge that actually helps real-world electrical engineering students.</em></p>
+
+    <div class="grid">
+      <div class="card"><a href="power-systems.html">Power Systems Analysis</a></div>
+      <div class="card"><a href="electrical-machines.html">Electrical Machines</a></div>
+      <div class="card"><a href="power-electronics.html">Power Electronics</a></div>
+      <div class="card"><a href="high-voltage.html">High Voltage Engineering</a></div>
+      <div class="card"><a href="power-protection.html">Power System Protection</a></div>
+      <div class="card"><a href="stability-control.html">System Stability & Control</a></div>
+      <div class="card"><a href="renewable-energy.html">Renewable Energy Systems</a></div>
+      <div class="card"><a href="smart-grid.html">Smart Grids & Power Quality</a></div>
+    </div>
+    <a class="back" href="index.html">← Back to Homepage</a>
+  </div>
+
+  <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+</body>
+</html>

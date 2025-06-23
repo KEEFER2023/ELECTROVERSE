@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Kirchhoff's Laws – Circuit Analysis | Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+
+<h1>🔀 Kirchhoff’s Circuit Laws</h1>
+<p>Kirchhoff’s Laws are foundational for analyzing circuits with multiple loops or branches. These laws are indispensable in both DC and AC network analysis, helping define how current and voltage behave in closed circuits.</p>
+
+<div class="section">
+  <h2>1. 🔄 Kirchhoff’s Current Law (KCL)</h2>
+  <p><strong>Definition:</strong> At any node (junction), the total current entering equals the total current leaving.</p>
+  <code>∑ I(in) = ∑ I(out)</code>
+  <div class="note">
+    KCL is based on the conservation of electric charge — no charge is lost at a junction.
+  </div>
+  <div class="example">
+    <strong>Example:</strong> At a node, if 5 A enters from one wire and 2 A leaves through another, the current in the third branch must be 3 A (leaving).
+  </div>
+</div>
+
+<div class="section">
+  <h2>2. 🔁 Kirchhoff’s Voltage Law (KVL)</h2>
+  <p><strong>Definition:</strong> In any closed loop in a circuit, the sum of all voltages (including EMF and drops) equals zero.</p>
+  <code>∑ V = 0</code>
+  <div class="note">
+    KVL stems from the conservation of energy — the energy supplied by voltage sources equals the energy consumed in resistors and other elements.
+  </div>
+  <div class="example">
+    <strong>Example:</strong> In a loop with 12V battery, and two resistors with drops of 7V and 5V respectively: <code>12 - 7 - 5 = 0 ✔</code>
+  </div>
+</div>
+
+<div class="section">
+  <h2>3. 🧠 Why Kirchhoff's Laws Matter</h2>
+  <ul>
+    <li>Essential for solving mesh and nodal analysis problems</li>
+    <li>Used in SPICE and circuit simulators</li>
+    <li>Key for understanding balanced power systems</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>4. 🛠 Practical Tips</h2>
+  <div class="tip">Define current directions arbitrarily. If the result is negative, current flows opposite.</div>
+  <div class="tip">Use clockwise or counter-clockwise consistently for KVL.</div>
+</div>
+
+<div class="section">
+  <h2>5. 📝 Practice Quiz</h2>
+  <div class="quiz">
+    <details><summary>Q: At a node, 2A enters, 0.5A leaves. What is the third branch current?</summary><p><strong>Ans:</strong> 1.5 A leaves</p></details>
+    <details><summary>Q: In a loop: Battery = 10V, drops: 3V + 2V + ? = 10V. What’s the missing drop?</summary><p><strong>Ans:</strong> 5 V</p></details>
+    <details><summary>Q: Current entering a 4-branch node: 4A, 3A in; 2A out. Remaining current?</summary><p><strong>Ans:</strong> 5 A must leave</p></details>
+  </div>
+</div>
+
+<a class="back" href="circuit-analysis.html">&larr; Back to Circuit Analysis</a>
+
+<footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+
+</body>
+</html>

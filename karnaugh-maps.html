@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+
+
+  <h3>🗺️ Karnaugh Maps (K-Maps)</h3>
+  <p>Karnaugh Maps simplify Boolean expressions using a visual grid-based method. This helps minimize logic circuits — essential for efficient digital design.</p>
+
+  <h4>🧾 What is a K-Map?</h4>
+  <p>A Karnaugh Map (K-Map) is a diagram made of cells, each representing a truth table value. Adjacent cells differ by one variable, enabling simplification using adjacency.</p>
+
+  <h4>🧮 2-Variable K-Map</h4>
+  <table border="1" cellpadding="10">
+    <tr><th>AB</th><th>0</th><th>1</th></tr>
+    <tr><th>0</th><td>0</td><td>1</td></tr>
+    <tr><th>1</th><td>1</td><td>0</td></tr>
+  </table>
+  <div class="note">K-map cells show outputs of the truth table; adjacent 1s can be grouped to simplify expressions.</div>
+
+  <h4>🧮 3-Variable K-Map</h4>
+  <img src="kmap.webp" width="400" alt="3-variable K-map layout" />
+
+  <h4>🎞️ Animated Grouping (Simplification)</h4>
+  <canvas id="kmapCanvas" width="360" height="150"></canvas>
+  <script>
+    const kmapCtx = document.getElementById('kmapCanvas').getContext('2d');
+    const grid = [0,1,1,0, 1,0,1,0];
+    function drawKMap() {
+      kmapCtx.clearRect(0, 0, 360, 150);
+      kmapCtx.font = '14px Segoe UI';
+      for (let i = 0; i < 8; i++) {
+        const x = (i % 4) * 80;
+        const y = Math.floor(i / 4) * 60;
+        kmapCtx.strokeRect(x, y, 80, 60);
+        kmapCtx.fillText(`Cell ${i}: ${grid[i]}`, x + 10, y + 30);
+      }
+      kmapCtx.strokeStyle = 'red';
+      kmapCtx.strokeRect(0, 0, 160, 60); // Group of 2 cells
+    }
+    drawKMap();
+  </script>
+  <div class="tip">Group 1s in powers of two (1, 2, 4, 8) — larger groups mean simpler expressions!</div>
+
+  <h4>📘 Simplification Rules</h4>
+  <ul>
+    <li>Only group 1s (logic high outputs)</li>
+    <li>Groups must be 1, 2, 4, 8 cells</li>
+    <li>Groups must be rectangular (no diagonal)</li>
+    <li>Wrap around edges is allowed</li>
+  </ul>
+
+  <h4>📚 Example</h4>
+  <div class="example">
+    <strong>Given:</strong> F(A,B,C) = Σ(1,3,5,7)<br>
+    → Place 1s in cells 1,3,5,7 on a 3-variable K-map<br>
+    → Group 1s<br>
+    → Simplified F = B·C
+  </div>
+
+  <h4>🧠 Quick Quiz</h4>
+  <div class="quiz">
+    <details><summary>Q1: What group size can you use in K-map simplification?</summary><p><strong>Answer:</strong> Powers of 2 (1, 2, 4, 8)</p></details>
+    <details><summary>Q2: Can cells be grouped diagonally?</summary><p><strong>Answer:</strong> No, only rectangles</p></details>
+    <details><summary>Q3: What does a group of four 1s simplify?</summary><p><strong>Answer:</strong> Eliminates two variables</p></details>
+  </div>
+</div>
+
+
+<a class="back" href="digital-electronics.html">&larr; Back to Digital electronics topics</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>

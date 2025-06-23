@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+  <h3>⚡ High Voltage Engineering</h3>
+  <p>This section explores the principles of high voltage systems used in power transmission, insulation design, testing, and protection.</p>
+
+  <h4>1️⃣ Breakdown Mechanisms</h4>
+  <ul>
+    <li><strong>Gaseous Breakdown:</strong> Townsend avalanche and streamer theory</li>
+    <li><strong>Liquid Breakdown:</strong> Bubble and cavitation-based models</li>
+    <li><strong>Solid Breakdown:</strong> Thermal and electrochemical aging effects</li>
+  </ul>
+
+  <h4>⚙️ 2. Generation of High Voltages</h4>
+  <ul>
+    <li><strong>AC Generation:</strong> Cascaded transformers</li>
+    <li><strong>DC Generation:</strong> Cockcroft-Walton multiplier</li>
+    <li><strong>Impulse Generation:</strong> Marx Generator</li>
+  </ul>
+  <img src="marx.ppm" alt="Marx Generator Diagram" style="max-width: 600px;">
+
+  <h4>🔍 3. Measurement of High Voltage</h4>
+  <ul>
+    <li><strong>Electrostatic Voltmeter:</strong> For steady-state DC</li>
+    <li><strong>Sphere Gap:</strong> For peak value of impulse voltage</li>
+    <li><strong>Voltage Divider:</strong> Resistor or capacitive divider for measurement</li>
+  </ul>
+
+  <h4>🌩 4. Impulse Testing</h4>
+  <p>Simulates lightning or switching surges. Standard wave: 1.2/50 µs impulse.</p>
+  <canvas id="impulseCanvas" width="600" height="200"></canvas>
+  <script>
+    const iCtx = document.getElementById('impulseCanvas').getContext('2d');
+    iCtx.clearRect(0, 0, 600, 200);
+    iCtx.strokeStyle = '#d32f2f';
+    iCtx.beginPath();
+    for (let x = 0; x <= 600; x++) {
+      const t = x / 600 * 50e-6; // simulate 50 µs
+      const v = 1.2 * t * Math.exp(1 - t * 2e5);
+      iCtx.lineTo(x, 200 - v * 180);
+    }
+    iCtx.stroke();
+  </script>
+  <div class="note">Above is a simulated 1.2/50 µs lightning impulse voltage waveform.</div>
+
+  <h4>🧪 5. Insulation Systems</h4>
+  <ul>
+    <li>Air, SF₆, and oil insulation for switchgear and transformers</li>
+    <li>Composite polymer insulators for overhead lines</li>
+  </ul>
+
+  <h4>💡 6. Partial Discharge and Corona</h4>
+  <p>Occurs in weak insulation zones. PD detection helps assess aging and insulation strength. Corona losses affect power quality and are visible in high humidity conditions.</p>
+  <img src="corona.jpg" alt="Corona Discharge" style="max-width: 400px;">
+
+  <h4>⚠️ 7. Safety & Shielding</h4>
+  <ul>
+    <li>Faraday cage protection</li>
+    <li>Grounding and insulation coordination</li>
+    <li>Safe design margins for labs and substations</li>
+  </ul>
+
+  <h4>📘 Practice Questions</h4>
+  <div class="quiz">
+    <details><summary>Q1: Why use Marx Generator in impulse testing?</summary><p><strong>Answer:</strong> It allows generation of high-voltage short-duration pulses simulating lightning conditions.</p></details>
+    <details><summary>Q2: What causes corona discharge?</summary><p><strong>Answer:</strong> Ionization of air around high voltage conductors due to strong electric fields.</p></details>
+    <details><summary>Q3: Name a standard impulse waveform used for testing?</summary><p><strong>Answer:</strong> 1.2/50 µs</p></details>
+  </div>
+</div>
+
+<a class="back" href="power-track.html">&larr; Back to Power track</a>
+  <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+</body>
+</html>
+

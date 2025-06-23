@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control & Systems | Electroverse</title>
+  <link rel="stylesheet" href="style/style.css">
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: white;
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+    }
+    header {
+      background-color: #000;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #0ff;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+    .logo img {
+      height: 60px;
+      margin-right: 10px;
+    }
+    .logo span {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      color: #0ff;
+      font-weight: bold;
+    }
+    nav select {
+      background-color: #111;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: 1px solid #0ff;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+    .content {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
+    h1, h2, h3 {
+      color: #0ff;
+    }
+    p, li {
+      line-height: 1.6;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
+    .card {
+      background-color: #111;
+      border: 1px solid #0ff;
+      padding: 1rem;
+      border-radius: 8px;
+      text-decoration: none;
+      color: white;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    .card:hover {
+      background-color: #111a;
+      transform: translateY(-4px);
+    }
+    .card h3 {
+      margin-top: 0;
+      color: #0ff;
+    }
+    footer {
+      background-color: #000;
+      text-align: center;
+      padding: 1rem;
+      color: #777;
+      border-top: 1px solid #222;
+    }
+    a.back {
+      color: #0ff;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      <span>Electroverse</span>
+    </div>
+    <nav>
+      <select onchange="location = this.value">
+        <option value="#">Topics</option>
+        <option value="control-track.html">Control Track</option>
+        <option value="index.html">Home</option>
+      </select>
+    </nav>
+  </header>
+
+  <div class="content">
+    <h1>Control & Systems</h1>
+    <p><em>Extensive knowledge that actually helps real-world electrical engineering students.</em></p>
+
+    <h2>Explore Topics</h2>
+    <div class="grid">
+      <a class="card" href="system-modeling.html"><h3>System Modeling</h3><p>Transfer functions, state-space, block diagrams</p></a>
+      <a class="card" href="feedback-control.html"><h3>Feedback Control</h3><p>Open-loop vs. closed-loop, feedback properties</p></a>
+      <a class="card" href="time-analysis.html"><h3>Time-Domain Analysis</h3><p>Rise time, settling time, transient & steady-state response</p></a>
+      <a class="card" href="frequency-analysis.html"><h3>Frequency-Domain Analysis</h3><p>Bode plots, Nyquist, gain/phase margins</p></a>
+      <a class="card" href="stability-analysis.html"><h3>Stability Analysis</h3><p>Routh-Hurwitz, Root locus</p></a>
+      <a class="card" href="controllers.html"><h3>Controllers</h3><p>PID, lead-lag, tuning methods</p></a>
+      <a class="card" href="state-space.html"><h3>State-Space Methods</h3><p>Controllability, observability, pole placement</p></a>
+      <a class="card" href="digital-control.html"><h3>Digital Control</h3><p>Sampling, Z-transform, digital PID</p></a>
+      <a class="card" href="embedded-control.html"><h3>Embedded Systems</h3><p>Real-time control using microcontrollers</p></a>
+      <a class="card" href="control-applications.html"><h3>Applications</h3><p>Robotics, automation, mechatronics, process control</p></a>
+    </div>
+
+    <a class="back" href="index.html">← Back to Home</a>
+  </div>
+
+  <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+</body>
+</html>

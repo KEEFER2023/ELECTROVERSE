@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Differentiation & Integration – Electroverse</title>
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<link rel="stylesheet" href="style.css">
+<style>
+  body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fdfdfd; color:#1a1a1a; line-height:1.9; }
+  h1, h2, h3 { color:#0d47a1; margin-top:2.5rem; }
+  .section { margin-bottom:3rem; }
+  .example, .note, .tip { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+  .example { border-color:#c0ca33; }
+  .note { border-color:#1976d2; }
+  .tip { border-color:#00acc1; }
+  code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+  ul { padding-left:1.4rem; }
+  details { margin:1.2rem 0; }
+  summary { cursor:pointer; font-weight:bold; }
+   a.back {
+      color:#0d47a1;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 2rem;
+    }
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      
+    </div>
+    
+  </header>
+
+<h1>Differentiation & Integration</h1>
+<p>This page offers a complete, in-depth guide on differentiation and integration for electrical engineering students — packed with theory, detailed examples, EE relevance.</p>
+<hr />
+
+<div class="section">
+  <h2>🔹 Section 1: Differentiation</h2>
+
+  <p><strong>Definition:</strong> Differentiation measures the <em>instantaneous rate of change</em> of one quantity with respect to another (e.g., voltage change over time).</p>
+  <div class="note"><strong>EE Insight:</strong> Di/dt determines the voltage across an inductor: <code>v<sub>L</sub>(t) = L·[di/dt]</code>.</div>
+
+  <h3> Fundamental Rules</h3>
+  <ul>
+    <li><strong>Power rule:</strong> <code>d/dt[tⁿ] = n·tⁿ⁻¹</code></li>
+    <li><strong>Constant multiple:</strong> <code>d/dt[k·f(t)] = k·f′(t)</code></li>
+    <li><strong>Sum rule:</strong> <code>d/dt[f+g] = f′ + g′</code></li>
+    <li><strong>Product rule:</strong> <code>d/dt[f·g] = f′g + fg′</code></li>
+    <li><strong>Chain rule:</strong> <code>d/dt[f(g(t))] = f′(g(t))·g′(t)</code></li>
+  </ul>
+
+  <h3> Detailed Worked Examples</h3>
+
+  <div class="example">
+    <strong>Example 1 (Power Rule):</strong><br>
+    <code>f(t) = 7t⁵</code><br>
+    <strong>Step-by-step:</strong><br>
+    - Apply power rule: d/dt[t⁵] = 5t⁴<br>
+    - Multiply constant: 7 × 5t⁴ = <strong>35t⁴</strong>
+  </div>
+
+  <div class="example">
+    <strong>Example 2 (Trigonometric):</strong><br>
+    <code>f(t) = 4 sin(3t)</code><br>
+    - Derivative of sin(3t) is cos(3t)×3<br>
+    - f′(t) = 4 × 3 cos(3t) = <strong>12 cos(3t)</strong>
+  </div>
+
+  <div class="example">
+    <strong>Example 3 (Product Rule):</strong><br>
+    <code>f(t) = t²·e<sup>3t</sup></code><br>
+    Apply product rule:<br>
+    - f′ = 2t·e<sup>3t</sup> + t²·3e<sup>3t</sup><br>
+    - Combine: <strong>e<sup>3t</sup>(2t + 3t²)</strong>
+  </div>
+
+  <div class="example">
+    <strong>Example 4 (Chain Rule):</strong><br>
+    <code>f(t) = cos(5t²)</code><br>
+    - Inner: 5t² → derivative =10t<br>
+    - f′ = –sin(5t²) × 10t = <strong>–10t sin(5t²)</strong>
+  </div>
+
+  <h3>Study Tip:</h3>
+  <div class="tip">When mixing rules (product + chain), annotate each part (e.g., outer & inner functions), then apply the rule step-by-step.</div>
+
+</div>
+
+<hr />
+
+<div class="section">
+  <h2>🔸 Section 2: Integration</h2>
+
+  <p><strong>Definition:</strong> Integration finds the <em>accumulated value</em> — like the total charge from a current over time or area under a signal curve.</p>
+  <div class="note"><strong>EE Insight:</strong> Voltage across a capacitor: <code>v<sub>C</sub>(t) = (1/C) ∫ i(t) dt</code>.</div>
+
+  <h3> Key Integration Techniques </h3>
+  <ul>
+    <li><strong>Power rule:</strong> <code>∫ tⁿ dt = tⁿ⁺¹/(n+1) + C</code></li>
+    <li><strong>Constant multiple:</strong> <code>∫ k·f(t) dt = k ∫ f(t) dt</code></li>
+    <li><strong>Sum rule:</strong> Integral of f+g = ∫f + ∫g</li>
+    <li><strong>Substitution:</strong> Use when integrand looks like f(g(t))·g′(t)</li>
+    <li><strong>Integration by parts:</strong><br>
+      <code>∫ u dv = u v – ∫ v du</code>
+    </li>
+  </ul>
+
+  <h3> Detailed Worked Examples </h3>
+
+  <div class="example">
+    <strong>Example 5 (Power Rule):</strong><br>
+    <code>∫ 10t³ dt</code><br>
+    - Integral: (10/4) t⁴ = <strong>2.5t⁴ + C</strong>
+  </div>
+
+  <div class="example">
+    <strong>Example 6 (Trigonometric):</strong><br>
+    <code>∫ sin(2t) dt</code><br>
+    - Anti-derivative of sin(ax) = –cos(ax)/a → <strong>–(1/2)cos(2t) + C</strong>
+  </div>
+
+  <div class="example">
+    <strong>Example 7 (Substitution):</strong><br>
+    <code>∫ t·e<sup>t²</sup> dt</code><br>
+    - u = t² → du = 2t dt<br>
+    - Integral = (1/2) ∫ e<sup>u</sup> du = <strong>(1/2)e<sup>t²</sup> + C</strong>
+  </div>
+
+  <div class="example">
+    <strong>Example 8 (Integration by Parts):</strong><br>
+    <code>∫ t ln(t) dt</code><br>
+    - Let u = ln(t), dv = t dt → du = dt/t, v = t²/2<br>
+    - Result: (t²/2)*ln(t) – (1/2)*(t²/2) + C = <strong>(t²/2)[ln(t) – 1/2] + C</strong>
+  </div>
+
+  <h3>Study Tip:</h3>
+  <div class="tip">Label u, dv clearly when using parts. For substitutions, always replace both dt and remaining t variables.</div>
+
+</div>
+
+<hr />
+
+<div class="section">
+  <h2>🧩 Section 3: Interactive Quiz & Worked Solutions</h2>
+  <div class="quiz">
+    <details>
+      <summary>Quiz 1: d/dt [3t⁴ – 5t + 7] = ?</summary>
+      <p><strong>Solution:</strong><br>
+      - Derivative of 3t⁴ = 12t³<br>
+      - Derivative of –5t = –5<br>
+      - Constant → 0<br>
+      <strong>Answer:</strong> 12t³ – 5</p>
+    </details>
+    <details>
+      <summary>Quiz 2: d/dt [e<sup>–t</sup>·t²] = ?</summary>
+      <p><strong>Solution:</strong><br>
+      Use product rule:<br>
+      f = t², g = e<sup>–t</sup><br>
+      f′ = 2t, g′ = –e<sup>–t</sup><br>
+      Result: 2t·e<sup>–t</sup> + t²·(–e<sup>–t</sup>) = <strong>e<sup>–t</sup>(2t – t²)</strong></p>
+    </details>
+    <details>
+      <summary>Quiz 3: ∫ (6t + 4) dt = ?</summary>
+      <p><strong>Solution:</strong><br>
+      - ∫6t dt = 3t²<br>
+      - ∫4 dt = 4t<br>
+      <strong>Answer:</strong> 3t² + 4t + C</p>
+    </details>
+    <details>
+      <summary>Quiz 4: ∫ t·e<sup>3t</sup> dt = ?</summary>
+      <p><strong>Solution:</strong><br>
+      Use integration by parts:<br>
+      u = t → du = dt<br>
+      dv = e<sup>3t</sup> dt → v = e<sup>3t</sup>/3<br>
+      Result: (t·e<sup>3t</sup>/3) – ∫ (e<sup>3t</sup>/3) dt = t·e<sup>3t</sup>/3 – e<sup>3t</sup>/9 + C = <strong>e<sup>3t</sup>(t/3 – 1/9) + C</strong></p>
+    </details>
+  </div>
+</div>
+
+<hr />
+
+<div class="tip"><strong>Overall Tip:</strong> Show all interim steps in exams — annotate which rule you're using (e.g., power, product, chain, substitution, parts). That clarity earns marks and understanding.</div>
+
+
+<a class="back" href="maths-physics.html">← Back to Math & Physics</a>
+
+<footer id="contact">
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+  
+</body>
+</html>

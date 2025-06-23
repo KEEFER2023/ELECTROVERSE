@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+<div class="section">
+  <h2>📶 Signals and Systems</h2>
+
+  <h3>📡 Signal Types</h3>
+  <p>Signals are functions that convey information about the behavior or attributes of some phenomenon. In electrical engineering, signals are often functions of time and are used to represent electrical quantities like voltage and current.</p>
+
+  <h4>📑 Classification of Signals</h4>
+  <ul>
+    <li><strong>Continuous-Time vs Discrete-Time</strong>
+      <ul>
+        <li><strong>Continuous-Time Signal:</strong> Defined at every instant in time (e.g., sin(t), cos(t)).</li>
+        <li><strong>Discrete-Time Signal:</strong> Defined only at discrete time intervals (e.g., x[n]).</li>
+      </ul>
+    </li>
+    <li><strong>Analog vs Digital</strong>
+      <ul>
+        <li><strong>Analog Signal:</strong> Takes any value in a continuous range.</li>
+        <li><strong>Digital Signal:</strong> Takes discrete values (e.g., binary 0 and 1).</li>
+      </ul>
+    </li>
+    <li><strong>Deterministic vs Random</strong>
+      <ul>
+        <li><strong>Deterministic:</strong> Can be described with a precise formula (e.g., sin(2πt)).</li>
+        <li><strong>Random:</strong> Cannot be described by a fixed formula (e.g., noise).</li>
+      </ul>
+    </li>
+    <li><strong>Periodic vs Aperiodic</strong>
+      <ul>
+        <li><strong>Periodic:</strong> Repeats after a fixed interval T (e.g., sin(t)).</li>
+        <li><strong>Aperiodic:</strong> Does not repeat (e.g., exponential decay).</li>
+      </ul>
+    </li>
+    <li><strong>Even vs Odd</strong>
+      <ul>
+        <li><strong>Even:</strong> x(t) = x(−t)</li>
+        <li><strong>Odd:</strong> x(t) = −x(−t)</li>
+      </ul>
+    </li>
+    <li><strong>Energy vs Power</strong>
+      <ul>
+        <li><strong>Energy Signal:</strong> Has finite total energy.</li>
+        <li><strong>Power Signal:</strong> Has finite power over any interval.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h4>📉 Signal Animation: Continuous vs Discrete</h4>
+  <canvas id="signalCanvas" width="500" height="200"></canvas>
+  <script>
+    const canvas = document.getElementById('signalCanvas');
+    const ctx = canvas.getContext('2d');
+    let t = 0;
+
+    function drawSignals() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      ctx.beginPath();
+      ctx.strokeStyle = '#1976d2';
+      for (let x = 0; x <= canvas.width; x++) {
+        let y = 100 + 40 * Math.sin((x + t) * 0.05);
+        if (x === 0) ctx.moveTo(x, y);
+        else ctx.lineTo(x, y);
+      }
+      ctx.stroke();
+      ctx.fillStyle = '#f44336';
+      for (let n = 0; n < 10; n++) {
+        let x = 40 + n * 40;
+        let y = 180 - 40 * Math.sin((x + t) * 0.05);
+        ctx.beginPath();
+        ctx.arc(x, y, 4, 0, 2 * Math.PI);
+        ctx.fill();
+      }
+      t += 1;
+    }
+    setInterval(drawSignals, 100);
+  </script>
+  <div class="note">Blue curve: continuous signal, red dots: discrete version of the same.</div>
+
+  <h4>📘 Examples</h4>
+  <div class="example">
+    <strong>Example 1:</strong> Identify the type of signal: x(t) = e^(−t) u(t)<br>
+    <em>Answer:</em> Continuous-time, deterministic, aperiodic, energy signal.
+  </div>
+  <div class="example">
+    <strong>Example 2:</strong> x[n] = sin(0.1πn)<br>
+    <em>Answer:</em> Discrete-time, periodic (with period N = 20), power signal.
+  </div>
+
+  <h4>📝 Quiz</h4>
+  <div class="quiz">
+    <details><summary>Q1: Is x(t) = sin(t) + cos(3t) periodic?</summary><p><strong>Answer:</strong> Yes, with period 2π.</p></details>
+    <details><summary>Q2: What kind of signal is white noise?</summary><p><strong>Answer:</strong> Random signal.</p></details>
+    <details><summary>Q3: What does it mean if x(t) = x(−t)?</summary><p><strong>Answer:</strong> The signal is even.</p></details>
+  </div>
+</div>
+
+
+<a class="back" href="signals-systems.html">&larr; Back to Signals and systems</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>

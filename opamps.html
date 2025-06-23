@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Operational Amplifiers (Op-Amps) – Analog Electronics | Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI', sans-serif; max-width: 900px; margin: auto; padding: 30px; background: #fefefe; color: #1a1a1a; line-height: 1.9; }
+    h1,h2,h3 { color: #0d47a1; margin-top: 2.5rem; }
+    .section { margin-bottom: 3rem; }
+    .diagram, .flowchart { background: #f5f5f5; padding: 1rem; margin: 1.5rem 0; border-left: 6px solid #1976d2; border-radius: 4px; }
+    .example, .note, .tip, .quiz { background: #f5f5f5; padding: 1.2rem; margin: 1.5rem 0; border-left: 6px solid; border-radius: 4px; }
+    .example { border-color: #4caf50; }
+    .note { border-color: #1976d2; }
+    .tip { border-color: #ff9800; }
+    code { background: #eeeeee; padding: 2px 4px; font-family: Consolas, monospace; display: block; margin: 0.5rem 0; }
+    ul { padding-left: 1.4rem; }
+    details { margin: 1.2rem 0; }
+    summary { cursor: pointer; font-weight: bold; }
+    a.back { color: #0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    svg { max-width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+
+    <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+
+<h1>🔧 Operational Amplifiers (Op-Amps)</h1>
+<p>Operational Amplifiers are versatile and fundamental components used in analog electronics for amplification, signal conditioning, filtering, and mathematical operations.</p>
+
+<div class="section">
+  <h2>🧩 Op-Amp Basics</h2>
+  <ul>
+    <li>High gain differential amplifier</li>
+    <li>High input impedance, low output impedance</li>
+    <li>Two inputs: Inverting (−) and Non-inverting (+)</li>
+    <li>Output = A × (V<sub>+</sub> − V<sub>−</sub>) where A is open-loop gain</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>🌀 Op-Amp Golden Rules (Ideal)</h2>
+  <ul>
+    <li>Input current is zero: I<sub>+</sub> = I<sub>−</sub> = 0</li>
+    <li>Input voltages are equal: V<sub>+</sub> = V<sub>−</sub></li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>⚙️ Common Configurations</h2>
+  <ul>
+    <li><strong>Inverting Amplifier:</strong> Gain = −R<sub>f</sub>/R<sub>in</sub></li>
+    <li><strong>Non-inverting Amplifier:</strong> Gain = 1 + R<sub>f</sub>/R<sub>1</sub></li>
+    <li><strong>Unity Gain Buffer:</strong> Output = Input (used for impedance matching)</li>
+    <li><strong>Summing Amplifier:</strong> Output = −(V<sub>1</sub>/R<sub>1</sub> + V<sub>2</sub>/R<sub>2</sub>) × R<sub>f</sub></li>
+    <li><strong>Differential Amplifier:</strong> Amplifies voltage difference between inputs</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>📐 Circuit Diagrams</h2>
+  <div class="diagram">
+    <img src="opamp.png" alt="Op-Amp Configurations Diagram">
+  </div>
+</div>
+
+<div class="section">
+  <h2>💡 Applications</h2>
+  <ul>
+    <li>Signal conditioning</li>
+    <li>Analog filters (low-pass, high-pass)</li>
+    <li>Voltage followers</li>
+    <li>Integrators and differentiators</li>
+    <li>Analog math operations: add, subtract, multiply</li>
+    <li>Oscillators and waveform generators</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>📘 Example: Inverting Amplifier</h2>
+  <div class="example">
+    <p>Given: R<sub>f</sub> = 100kΩ, R<sub>in</sub> = 10kΩ, V<sub>in</sub> = 2V</p>
+    <code>V<sub>out</sub> = −(R<sub>f</sub>/R<sub>in</sub>) × V<sub>in</sub> = −10 × 2 = −20V</code>
+  </div>
+</div>
+
+<div class="section">
+  <h2>🎬 Animation: Voltage Follower</h2>
+  <div class="diagram">
+    <svg viewBox="0 0 300 150">
+      <rect x="40" y="60" width="220" height="30" fill="#e3f2fd" stroke="#0d47a1" stroke-width="2" />
+      <text x="60" y="80" fill="#0d47a1">Op-Amp</text>
+      <line x1="20" y1="75" x2="40" y2="75" stroke="#f44336" stroke-width="3" marker-end="url(#arrowhead)" />
+      <line x1="260" y1="75" x2="280" y2="75" stroke="#4caf50" stroke-width="3" marker-end="url(#arrowhead)" />
+      <text x="0" y="70" fill="#f44336">V<sub>in</sub></text>
+      <text x="285" y="70" fill="#4caf50">V<sub>out</sub></text>
+      <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill="currentColor" />
+        </marker>
+      </defs>
+    </svg>
+    <div class="note">The voltage follower provides isolation without amplification. V<sub>out</sub> follows V<sub>in</sub>.</div>
+  </div>
+</div>
+
+<div class="section">
+  <h2>📝 Practice Quiz</h2>
+  <div class="quiz">
+    <details><summary>What is the output voltage of an ideal op-amp in a unity gain buffer?</summary><p><strong>Answer:</strong> V<sub>out</sub> = V<sub>in</sub></p></details>
+    <details><summary>What is the gain of an inverting amplifier with R<sub>f</sub> = 100kΩ and R<sub>in</sub> = 20kΩ?</summary><p><strong>Answer:</strong> −5</p></details>
+    <details><summary>What is the purpose of a differential amplifier?</summary><p><strong>Answer:</strong> To amplify the difference between two input signals</p></details>
+  </div>
+</div>
+
+<a class="back" href="analog-electronics.html">&larr; Back to Analog Electronics</a>
+
+<footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+
+</body>
+</html>

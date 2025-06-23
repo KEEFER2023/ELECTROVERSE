@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+  <h3>🔋 Power Electronics</h3>
+  <p>This section focuses on the conversion and control of electric power using semiconductor devices. Power electronics is essential for renewable energy, electric vehicles, motor drives, and industrial automation.</p>
+
+  <h4>1️⃣ Power Semiconductor Devices</h4>
+  <ul>
+    <li><strong>Diode:</strong> Unidirectional switch; conducts only in forward-biased mode</li>
+    <li><strong>Thyristor (SCR):</strong> Controlled switch; once triggered, stays ON until current goes to zero</li>
+    <li><strong>MOSFET:</strong> Fast switching, used in low to medium power applications</li>
+    <li><strong>IGBT:</strong> Combines MOSFET’s gate control with BJT’s low conduction loss — ideal for high power</li>
+  </ul>
+
+  <div class="note">Choose devices based on voltage, current, speed, and control method required.</div>
+
+  <h4>⚡ 2. Power Converter Types</h4>
+  <ul>
+    <li><strong>AC to DC:</strong> Rectifiers (half-wave, full-wave, bridge)</li>
+    <li><strong>DC to AC:</strong> Inverters (square wave, modified sine, PWM)</li>
+    <li><strong>DC to DC:</strong> Choppers (step-up/step-down)</li>
+    <li><strong>AC to AC:</strong> Cycloconverters or AC voltage controllers</li>
+  </ul>
+  <img src="converter.png" alt="Converter Types Diagram" style="max-width: 600px;">
+
+  <h4>🔁 3. Controlled Rectifiers</h4>
+  <p>Use thyristors to control output voltage:</p>
+  <ul>
+    <li><strong>Single-phase Half-controlled Bridge:</strong> Mix of diodes and SCRs</li>
+    <li><strong>Fully-controlled Bridge:</strong> Four SCRs with firing angle α</li>
+  </ul>
+
+  <div class="example">
+    <strong>Output Voltage (V<sub>avg</sub>) for Full-controlled Bridge:</strong>
+    <code>V<sub>avg</sub> = (2V<sub>m</sub> / π) · cos(α)</code>
+  </div>
+
+  <canvas id="rectifierCanvas" width="600" height="200"></canvas>
+  <script>
+    const rCtx = document.getElementById('rectifierCanvas').getContext('2d');
+    rCtx.clearRect(0, 0, 600, 200);
+    rCtx.strokeStyle = '#000';
+    rCtx.beginPath();
+    for (let x = 0; x <= 600; x++) {
+      const t = x / 600 * 2 * Math.PI;
+      const v = Math.abs(Math.sin(t));
+      rCtx.lineTo(x, 100 - v * 80);
+    }
+    rCtx.stroke();
+  </script>
+  <div class="note">Above is a full-wave rectified waveform typically produced by bridge circuits.</div>
+
+  <h4>🔄 4. Inverters</h4>
+  <p>Convert DC to AC. Key techniques:</p>
+  <ul>
+    <li><strong>Square wave:</strong> Simplest, high harmonic content</li>
+    <li><strong>Sine PWM:</strong> Controls pulse width to approximate sine output</li>
+  </ul>
+
+  <div class="example">
+    <strong>Switching Frequency:</strong> Impacts output quality and filter size. Typically >10 kHz for PWM inverters.
+  </div>
+
+  <h4>🔋 5. DC-DC Converters</h4>
+  <ul>
+    <li><strong>Buck Converter:</strong> Steps voltage down</li>
+    <li><strong>Boost Converter:</strong> Steps voltage up</li>
+    <li><strong>Buck-Boost:</strong> Can invert and regulate voltage</li>
+  </ul>
+  <img src="boost.png" alt="Buck and Boost Circuit" style="max-width: 500px;">
+
+  <h4>🌀 6. Applications</h4>
+  <ul>
+    <li>Electric Vehicle Drives</li>
+    <li>Solar Inverters</li>
+    <li>Switch Mode Power Supplies (SMPS)</li>
+    <li>UPS Systems</li>
+    <li>HVDC Transmission</li>
+  </ul>
+
+  <h4>📊 7. Practice Quiz</h4>
+  <div class="quiz">
+    <details><summary>Q1: What is the role of firing angle α in a controlled rectifier?</summary><p><strong>Answer:</strong> It determines when the SCR turns ON, controlling average output voltage.</p></details>
+    <details><summary>Q2: What device is preferred in high-speed switching applications?</summary><p><strong>Answer:</strong> MOSFET</p></details>
+    <details><summary>Q3: How does a buck converter regulate voltage?</summary><p><strong>Answer:</strong> By switching a transistor and controlling duty cycle.</p></details>
+  </div>
+</div>
+
+<a class="back" href="power-track.html">&larr; Back to Power track</a>
+  <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+</body>
+</html>

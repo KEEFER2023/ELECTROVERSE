@@ -1,0 +1,166 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>System Modeling – Electroverse</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      max-width: 900px;
+      margin: auto;
+      padding: 30px;
+      background: #fefefe;
+      color: #1a1a1a;
+      line-height: 1.9;
+    }
+    h1, h2, h3 { color: #0d47a1; margin-top: 2.5rem; }
+    .section { margin-bottom: 3rem; }
+    .example, .note, .tip, .quiz {
+      background: #f5f5f5;
+      padding: 1.2rem;
+      margin: 1.5rem 0;
+      border-left: 6px solid;
+      border-radius: 4px;
+    }
+    .example { border-color: #4caf50; }
+    .note { border-color: #1976d2; }
+    .tip { border-color: #ff9800; }
+    .quiz { border-color: #9c27b0; }
+    code { background: #eeeeee; padding: 2px 4px; font-family: Consolas, monospace; display: block; margin: 0.5rem 0; }
+    canvas { border: 1px solid #ccc; margin: 1rem 0; }
+    details { margin: 1.2rem 0; }
+    summary { cursor: pointer; font-weight: bold; }
+    a.back {
+      color: #0d47a1;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+     <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+
+
+<div class="section">
+  <h2>📘 State-Space Methods</h2>
+  <p>
+    State-space methods are a powerful framework for modeling and analyzing systems with multiple inputs and outputs. Unlike classical transfer function approaches, state-space provides time-domain solutions for systems of any order and structure.
+  </p>
+
+  <h3>🔢 State-Space Representation</h3>
+  <p>The standard form for a linear time-invariant (LTI) system:</p>
+  <code>
+    ẋ(t) = A x(t) + B u(t)<br>
+    y(t) = C x(t) + D u(t)
+  </code>
+  <ul>
+    <li><strong>x(t):</strong> State vector</li>
+    <li><strong>u(t):</strong> Input vector</li>
+    <li><strong>y(t):</strong> Output vector</li>
+    <li><strong>A:</strong> System matrix</li>
+    <li><strong>B:</strong> Input matrix</li>
+    <li><strong>C:</strong> Output matrix</li>
+    <li><strong>D:</strong> Feedforward matrix</li>
+  </ul>
+
+  <h3>🧠 Why State-Space?</h3>
+  <ul>
+    <li>Can model MIMO (multi-input multi-output) systems.</li>
+    <li>Captures internal dynamics using states.</li>
+    <li>Compatible with digital control and computer simulation.</li>
+    <li>Basis for modern control theory (controllability, observability).</li>
+  </ul>
+
+  <div class="diagram">
+    <img src="space.png" alt="State-Space Model Diagram">
+    <p><strong>Figure:</strong> State-space block diagram representation</p>
+  </div>
+
+  <h3>🧮 Converting to Transfer Function</h3>
+  <p>The transfer function from state-space is:</p>
+  <code>
+    G(s) = C(sI - A)<sup>-1</sup>B + D
+  </code>
+
+  <h3>🧪 Example</h3>
+  <div class="example">
+    <strong>Given:</strong>
+    <pre>
+      A = [[0, 1], [-2, -3]]
+      B = [[0], [1]]
+      C = [1, 0]
+      D = [0]
+    </pre>
+    <strong>Transfer Function:</strong><br>
+    G(s) = C(sI - A)<sup>-1</sup>B = 1 / (s² + 3s + 2)
+  </div>
+
+  <h3>📏 Controllability</h3>
+  <p>A system is controllable if it's possible to drive the state vector from any initial state to any final state using inputs.</p>
+  <code>
+    Controllability matrix: W<sub>c</sub> = [B AB A<sup>2</sup>B ... A<sup>n-1</sup>B]
+  </code>
+  <p>If W<sub>c</sub> is full rank (n), the system is controllable.</p>
+
+  <h3>👁️ Observability</h3>
+  <p>A system is observable if we can determine the entire state vector from the output over time.</p>
+  <code>
+    Observability matrix: W<sub>o</sub> = [C<sup>T</sup> A<sup>T</sup>C<sup>T</sup> ... (A<sup>T</sup>)<sup>n-1</sup>C<sup>T</sup>]<sup>T</sup>
+  </code>
+  <p>If W<sub>o</sub> is full rank, the system is observable.</p>
+
+  <h3>🧭 State Feedback (Pole Placement)</h3>
+  <p>We can design a state feedback controller:</p>
+  <code>u = -Kx + r</code>
+  <p>
+    to place the closed-loop poles at desired locations using Ackermann’s formula (for SISO systems) or via numerical software.
+  </p>
+
+  <h3>🌀 Animation: State Response Visualization</h3>
+  <canvas id="stateCanvas" width="600" height="300"></canvas>
+  <script>
+    const stateCanvas = document.getElementById("stateCanvas");
+    const ctxS = stateCanvas.getContext("2d");
+    function drawStateResponse() {
+      ctxS.clearRect(0, 0, 600, 300);
+      ctxS.beginPath();
+      for (let x = 0; x < 600; x++) {
+        const t = x / 60;
+        const response = 1 - Math.exp(-2 * t) + 0.5 * Math.exp(-4 * t);
+        ctxS.lineTo(x, 250 - response * 100);
+      }
+      ctxS.strokeStyle = "#4caf50";
+      ctxS.stroke();
+    }
+    drawStateResponse();
+  </script>
+  <div class="note">Response of a second-order system using state feedback.</div>
+
+  <h3>🧠 Quiz Yourself</h3>
+  <div class="quiz">
+    <details><summary>Q1: What makes a system controllable?</summary><p><strong>Answer:</strong> Full rank controllability matrix W<sub>c</sub>.</p></details>
+    <details><summary>Q2: What is the benefit of using state feedback?</summary><p><strong>Answer:</strong> Enables pole placement and improved control over system dynamics.</p></details>
+    <details><summary>Q3: When is a system observable?</summary><p><strong>Answer:</strong> When its observability matrix is full rank.</p></details>
+  </div>
+</div>
+
+
+<a class="back" href="control-track.html">← Back to Control Systems</a>
+
+<footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+
+</body>
+</html>

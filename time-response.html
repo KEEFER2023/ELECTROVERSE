@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+
+  <h3>⏱️ Time-Domain Analysis</h3>
+  <p>Time-domain analysis involves evaluating how control systems behave over time using differential equations, input signals, and standard test functions.</p>
+
+  <h4>🔹 Standard Test Signals</h4>
+  <ul>
+    <li><strong>Unit Step Function (u(t))</strong> – tests steady-state behavior.</li>
+    <li><strong>Impulse Function (δ(t))</strong> – tests initial response.</li>
+    <li><strong>Ramp Function (r(t) = t)</strong> – tests tracking performance.</li>
+  </ul>
+
+  <div class="diagram">
+    <img src="standard.png" alt="Standard Time-Domain Test Signals" style="max-width:100%">
+    <p><strong>Fig:</strong> Common input signals for evaluating time-domain performance.</p>
+  </div>
+
+  <h4>📈 Time Response of Systems</h4>
+  <ul>
+    <li><strong>Transient Response:</strong> Response before reaching steady state.</li>
+    <li><strong>Steady-State Response:</strong> Final value as t → ∞.</li>
+  </ul>
+
+  <h4>📊 Key Time-Domain Metrics</h4>
+  <ul>
+    <li><strong>Rise Time (t<sub>r</sub>):</strong> Time to rise from 10% to 90% of final value.</li>
+    <li><strong>Peak Time (t<sub>p</sub>):</strong> Time to reach first peak.</li>
+    <li><strong>Maximum Overshoot (M<sub>p</sub>):</strong> Amount exceeded beyond steady value.</li>
+    <li><strong>Settling Time (t<sub>s</sub>):</strong> Time to remain within 2% of final value.</li>
+    <li><strong>Steady-State Error (e<sub>ss</sub>):</strong> Final error between input and output.</li>
+  </ul>
+
+  <h4>🧠 First-Order System Example</h4>
+  <div class="example">
+    <strong>System:</strong> <code>G(s) = 1 / (τs + 1)</code><br>
+    <strong>Step Input Response:</strong> <code>c(t) = 1 - e<sup>-t/τ</sup></code>
+    <ul>
+      <li>τ (tau) is the time constant → system reaches 63.2% in time τ</li>
+    </ul>
+  </div>
+
+  <h4>📺 Animation: First Order Step Response</h4>
+  <canvas id="stepCanvas" width="600" height="300"></canvas>
+  <script>
+    const canvas2 = document.getElementById('stepCanvas');
+    const ctx2 = canvas2.getContext('2d');
+    ctx2.clearRect(0, 0, 600, 300);
+
+    ctx2.beginPath();
+    ctx2.moveTo(50, 250);
+    ctx2.strokeStyle = '#2196f3';
+    for (let t = 0; t <= 10; t += 0.1) {
+      let y = 1 - Math.exp(-t);
+      ctx2.lineTo(50 + t * 50, 250 - y * 200);
+    }
+    ctx2.stroke();
+
+    ctx2.fillStyle = '#000';
+    ctx2.fillText('Time →', 530, 270);
+    ctx2.fillText('Output →', 10, 30);
+  </script>
+  <p><strong>Fig:</strong> Animated rise of output from 0 to 1 for a first-order system after a step input.</p>
+
+  <h4>📝 Practice Quiz</h4>
+  <div class="quiz">
+    <details><summary>Q1: What is the settling time for a system with τ = 0.5 s?</summary><p><strong>Answer:</strong> ≈ 2 s (4τ rule)</p></details>
+    <details><summary>Q2: What’s the steady-state value of G(s) = 5 / (s + 5) to unit step input?</summary><p><strong>Answer:</strong> 1 (use Final Value Theorem)</p></details>
+  </div>
+</div>
+
+<a class="back" href="control-systems.html">&larr; Back to control systems</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+
+  <h3>📦 Block Diagrams</h3>
+  <p>Block diagrams are schematic representations of a system showing the flow of signals between components using functional blocks. They help simplify the analysis and design of complex systems by visualizing transfer functions and interconnections.</p>
+
+  <h4>🧱 Basic Components</h4>
+  <ul>
+    <li><strong>Summing Junction:</strong> Combines multiple input signals algebraically.</li>
+    <li><strong>Branch Point:</strong> Duplicates signal to multiple destinations.</li>
+    <li><strong>Functional Block:</strong> Represents system component with a transfer function <code>G(s)</code>.</li>
+  </ul>
+
+  <div class="diagram">
+    <img src="block.png" alt="Basic Block Diagram" style="max-width:100%" />
+    <p><strong>Fig:</strong> A simple feedback block diagram with input, plant <code>G(s)</code>, feedback <code>H(s)</code>, and summing point.</p>
+  </div>
+
+  <h4>🔗 Types of Connections</h4>
+  <ul>
+    <li><strong>Series:</strong> Blocks in a chain — multiply their transfer functions.</li>
+    <li><strong>Parallel:</strong> Blocks operate in parallel — add their transfer functions.</li>
+    <li><strong>Feedback:</strong> Closed-loop configuration — output is fed back and compared to reference.</li>
+  </ul>
+
+  <h4>🧠 Reduction Rules</h4>
+  <ul>
+    <li>Series: <code>G<sub>eq</sub>(s) = G<sub>1</sub>(s) × G<sub>2</sub>(s)</code></li>
+    <li>Parallel: <code>G<sub>eq</sub>(s) = G<sub>1</sub>(s) + G<sub>2</sub>(s)</code></li>
+    <li>Feedback: <code>G<sub>closed</sub>(s) = G(s) / [1 + G(s)H(s)]</code></li>
+  </ul>
+
+  <h4>⚙️ Worked Example</h4>
+  <div class="example">
+    <strong>Example:</strong> Given a system with blocks G<sub>1</sub>(s) = 2/(s+1) and G<sub>2</sub>(s) = 5
+    <ul>
+      <li>Series Equivalent: G<sub>eq</sub>(s) = [2/(s+1)] × 5 = 10/(s+1)</li>
+    </ul>
+  </div>
+
+  <h4>📺 Animated Illustration</h4>
+  <div class="diagram">
+    <canvas id="blockCanvas" width="600" height="300"></canvas>
+    <script>
+      const ctx = document.getElementById('blockCanvas').getContext('2d');
+      ctx.clearRect(0, 0, 600, 300);
+
+      // Input arrow
+      ctx.beginPath();
+      ctx.moveTo(20, 150);
+      ctx.lineTo(100, 150);
+      ctx.stroke();
+
+      // Block G(s)
+      ctx.fillStyle = '#fff';
+      ctx.strokeRect(100, 120, 80, 60);
+      ctx.fillText('G(s)', 125, 155);
+
+      // Arrow to summing point
+      ctx.beginPath();
+      ctx.moveTo(180, 150);
+      ctx.lineTo(250, 150);
+      ctx.stroke();
+
+      // Output arrow
+      ctx.beginPath();
+      ctx.moveTo(250, 150);
+      ctx.lineTo(300, 150);
+      ctx.stroke();
+      ctx.fillText('Output', 310, 155);
+
+      // Feedback path
+      ctx.beginPath();
+      ctx.moveTo(250, 150);
+      ctx.lineTo(250, 230);
+      ctx.lineTo(60, 230);
+      ctx.lineTo(60, 150);
+      ctx.lineTo(100, 150);
+      ctx.stroke();
+      ctx.fillText('H(s)', 65, 220);
+    </script>
+    <p><strong>Fig:</strong> Animated closed-loop block diagram showing feedback path.</p>
+  </div>
+
+  <h4>📝 Practice Quiz</h4>
+  <div class="quiz">
+    <details><summary>Q1: If G(s) = 3/(s+2), H(s) = 1, what's the closed-loop transfer function?</summary><p><strong>Answer:</strong> G<sub>cl</sub>(s) = 3 / (s + 5)</p></details>
+    <details><summary>Q2: What’s the rule for parallel connection of two transfer functions?</summary><p><strong>Answer:</strong> Add the transfer functions.</p></details>
+  </div>
+</div>
+
+
+<a class="back" href="control-systems.html">&larr; Back to Control systems</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>

@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Bipolar Junction Transistors – Analog Electronics | Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI', sans-serif; max-width: 900px; margin: auto; padding: 30px; background: #fefefe; color: #1a1a1a; line-height: 1.9; }
+    h1,h2,h3 { color: #0d47a1; margin-top: 2.5rem; }
+    .section { margin-bottom: 3rem; }
+    .diagram, .flowchart { background: #f5f5f5; padding: 1rem; margin: 1.5rem 0; border-left: 6px solid #1976d2; border-radius: 4px; }
+    .example, .note, .tip, .quiz { background: #f5f5f5; padding: 1.2rem; margin: 1.5rem 0; border-left: 6px solid; border-radius: 4px; }
+    .example { border-color: #4caf50; }
+    .note { border-color: #1976d2; }
+    .tip { border-color: #ff9800; }
+    code { background: #eeeeee; padding: 2px 4px; font-family: Consolas, monospace; display: block; margin: 0.5rem 0; }
+    ul { padding-left: 1.4rem; }
+    details { margin: 1.2rem 0; }
+    summary { cursor: pointer; font-weight: bold; }
+    a.back { color: #0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    svg { max-width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+
+<h1>🧲 Bipolar Junction Transistors (BJTs)</h1>
+<p>Bipolar Junction Transistors are crucial analog and digital components used for amplification, switching, and current control. Understanding how BJTs work and how to use them in circuits is a foundational skill in electronics engineering.</p>
+
+<div class="section">
+  <h2>🧪 Structure and Types</h2>
+  <ul>
+    <li><strong>Three terminals:</strong> Emitter (E), Base (B), Collector (C)</li>
+    <li><strong>Types:</strong> NPN and PNP</li>
+    <li>In NPN: current flows from Collector → Emitter; Base controls it</li>
+  </ul>
+  <div class="diagram">
+    <img src="npn.webp" alt="NPN BJT Structure">
+  </div>
+</div>
+
+<div class="section">
+  <h2>📈 Operating Regions</h2>
+  <ul>
+    <li><strong>Cutoff:</strong> Base-Emitter junction not forward biased → transistor OFF</li>
+    <li><strong>Active:</strong> Base-Emitter forward, Base-Collector reverse → amplification mode</li>
+    <li><strong>Saturation:</strong> Both junctions forward biased → transistor fully ON</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>⚡ Current Relations</h2>
+  <p>Current gain is a key concept:</p>
+  <code>I_C = β I_B</code>
+  <code>I_E = I_B + I_C</code>
+  <ul>
+    <li>Where β (beta) is the DC current gain (typically 50–300)</li>
+    <li><strong>Small changes in I_B cause large changes in I_C</strong></li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>📊 Input-Output Characteristics</h2>
+  <div class="diagram">
+    <img src="output.gif" alt="BJT Output Characteristics">
+  </div>
+</div>
+
+<div class="section">
+  <h2>🔄 Common Configurations</h2>
+  <ul>
+    <li><strong>Common Emitter (CE):</strong> Most widely used for gain</li>
+    <li><strong>Common Collector (Emitter Follower):</strong> Voltage buffer</li>
+    <li><strong>Common Base:</strong> Used in RF and high-speed circuits</li>
+  </ul>
+  <div class="tip">CE offers high gain, CC offers unity gain with high input impedance, CB offers low input impedance and wide bandwidth.</div>
+</div>
+
+<div class="section">
+  <h2>⚙️ Example: CE Amplifier</h2>
+  <div class="example">
+    <p>Given: β = 100, R<sub>C</sub> = 2kΩ, V<sub>CC</sub> = 10V, V<sub>BE</sub> = 0.7V</p>
+    <code>I_B = (V<sub>in</sub> - 0.7) / R<sub>B</sub></code>
+    <code>I_C = β I_B</code>
+    <code>V<sub>CE</sub> = V<sub>CC</sub> - I_C × R<sub>C</sub></code>
+  </div>
+</div>
+
+<div class="section">
+  <h2>🔁 Animation: Transistor Switching</h2>
+  <div class="diagram">
+    <svg viewBox="0 0 400 150">
+      <circle cx="60" cy="75" r="10" fill="#4caf50" />
+      <text x="45" y="65">B</text>
+      <line x1="70" y1="75" x2="130" y2="75" stroke="#000" stroke-width="2" />
+      <circle cx="140" cy="75" r="10" fill="#2196f3" />
+      <text x="125" y="65">E</text>
+      <line x1="60" y1="75" x2="60" y2="30" stroke="#000" stroke-width="2" />
+      <circle cx="60" cy="20" r="10" fill="#f44336" />
+      <text x="45" y="15">C</text>
+      <line x1="60" y1="20" x2="60" y2="10" stroke="#000" stroke-width="2" marker-end="url(#arrowhead)" />
+      <defs>
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0" refY="3.5" orient="auto">
+          <polygon points="0 0, 10 3.5, 0 7" fill="#f44336" />
+        </marker>
+      </defs>
+    </svg>
+  </div>
+</div>
+
+<div class="section">
+  <h2>🔌 Applications</h2>
+  <ul>
+    <li>Signal amplification</li>
+    <li>Switching circuits</li>
+    <li>Pulse-width modulation</li>
+    <li>Analog logic gates</li>
+    <li>Motor and relay drivers</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>📝 Practice Quiz</h2>
+  <div class="quiz">
+    <details><summary>What is the function of the base terminal in a BJT?</summary><p><strong>Answer:</strong> It controls the collector-emitter current.</p></details>
+    <details><summary>Which BJT region allows amplification?</summary><p><strong>Answer:</strong> Active region.</p></details>
+    <details><summary>In CE configuration, increasing base current does what?</summary><p><strong>Answer:</strong> Increases collector current (I<sub>C</sub> = β I<sub>B</sub>)</p></details>
+  </div>
+</div>
+
+<a class="back" href="analog-electronics.html">&larr; Back to Analog Electronics</a>
+<footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>

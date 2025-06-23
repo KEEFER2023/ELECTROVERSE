@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+  <h3>🧰 Combinational Circuits</h3>
+  <p>Combinational logic circuits produce outputs based solely on current inputs. There’s no memory element — past inputs don’t affect output.</p>
+
+  <h4>🧱 Key Building Blocks</h4>
+  <ul>
+    <li>🔀 <strong>Multiplexers (MUX):</strong> Select one input from many</li>
+    <li>🔁 <strong>Demultiplexers (DEMUX):</strong> Route one input to multiple outputs</li>
+    <li>📤 <strong>Encoders:</strong> Convert 2ⁿ inputs to n-bit output</li>
+    <li>📥 <strong>Decoders:</strong> Convert n-bit input to 2ⁿ outputs</li>
+    <li>➕ <strong>Adders:</strong> Perform binary addition</li>
+  </ul>
+
+  <h4>📊 Truth Table Example – Half Adder</h4>
+  <table border="1" cellpadding="10">
+    <tr><th>A</th><th>B</th><th>Sum (S)</th><th>Carry (C)</th></tr>
+    <tr><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+    <tr><td>0</td><td>1</td><td>1</td><td>0</td></tr>
+    <tr><td>1</td><td>0</td><td>1</td><td>0</td></tr>
+    <tr><td>1</td><td>1</td><td>0</td><td>1</td></tr>
+  </table>
+  <div class="note">Half Adder: <code>Sum = A ⊕ B</code>, <code>Carry = A · B</code></div>
+
+  <h4>📚 Example Circuit – Full Adder</h4>
+  <img src="full.jpg" width="400" alt="Full Adder Logic Diagram">
+
+  <div class="example">
+    <strong>Full Adder Equations:</strong><br>
+    <code>Sum = A ⊕ B ⊕ Cin</code><br>
+    <code>Cout = AB + BCin + ACin</code>
+  </div>
+
+  <h4>🎞️ Animation – MUX Switching Logic</h4>
+  <canvas id="muxCanvas" width="420" height="120"></canvas>
+  <script>
+    const muxCanvas = document.getElementById('muxCanvas');
+    const muxCtx = muxCanvas.getContext('2d');
+    let muxTick = 0;
+    function drawMUX() {
+      muxCtx.clearRect(0, 0, 420, 120);
+      muxCtx.fillStyle = '#1976d2';
+      for (let i = 0; i < 4; i++) {
+        muxCtx.fillRect(20, 20 + i * 25, 30, 20);
+        muxCtx.fillStyle = '#fff';
+        muxCtx.fillText(`I${i}`, 25, 35 + i * 25);
+        muxCtx.fillStyle = '#1976d2';
+      }
+      const y = 20 + (muxTick % 4) * 25;
+      muxCtx.fillStyle = '#4caf50';
+      muxCtx.beginPath();
+      muxCtx.moveTo(50, y + 10);
+      muxCtx.lineTo(100, 50);
+      muxCtx.lineTo(150, 50);
+      muxCtx.stroke();
+      muxCtx.fillText("Selected Output", 160, 55);
+      muxTick++;
+    }
+    setInterval(drawMUX, 1000);
+  </script>
+  <div class="note">A 4:1 MUX selects one of 4 inputs based on 2 control lines. Animation shows switching behavior.</div>
+
+  <h4>🧠 Quick Quiz</h4>
+  <div class="quiz">
+    <details><summary>Q1: What’s the sum output of a half adder when A=1, B=1?</summary><p><strong>Answer:</strong> Sum = 0, Carry = 1</p></details>
+    <details><summary>Q2: What’s the equation for a full adder’s sum?</summary><p><strong>Answer:</strong> Sum = A ⊕ B ⊕ Cin</p></details>
+    <details><summary>Q3: How many outputs does a 3-to-8 decoder have?</summary><p><strong>Answer:</strong> 8 outputs</p></details>
+  </div>
+</div>
+
+
+<a class="back" href="digital-electronics.html">&larr; Back to Digital electronics topics</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+
+
+<div class="section">
+  <h3>🧵 Transmission Media</h3>
+
+  <h4>📡 1. Overview</h4>
+  <p>Transmission media are the physical pathways that connect computers, devices, and people on a network. They can be categorized into <strong>wired (guided)</strong> and <strong>wireless (unguided)</strong> types.</p>
+
+  <h4>🔌 2. Wired Media</h4>
+  <ul>
+    <li><strong>Twisted Pair Cable:</strong> Commonly used in LANs. Categories: Cat5e, Cat6.</li>
+    <li><strong>Coaxial Cable:</strong> Used in cable TV and early Ethernet. Has a central conductor with shielding.</li>
+    <li><strong>Optical Fiber:</strong> Uses light to transmit data, offers high bandwidth, low attenuation, and immunity to EMI.</li>
+  </ul>
+  <img src="cable.jpg" alt="Types of Wired Media" style="max-width: 600px;">
+  <div class="note">Fiber optic cables are ideal for long distances due to minimal signal loss and high data rate support.</div>
+
+  <h4>📶 3. Wireless Media</h4>
+  <ul>
+    <li><strong>Radio Waves:</strong> Used in radio, TV, and Wi-Fi. Frequencies < 1 GHz are ideal for long-distance transmission.</li>
+    <li><strong>Microwaves:</strong> Used in satellite and point-to-point links. Typically needs line-of-sight.</li>
+    <li><strong>Infrared:</strong> Short-range, used in remote controls and some short-range communication.</li>
+  </ul>
+  <img src="wireless.gif" alt="Wireless Transmission Media" style="max-width: 600px;">
+
+  <h4>📈 4. Comparison of Media</h4>
+  <table border="1" cellpadding="6" style="border-collapse: collapse; max-width: 800px;">
+    <tr style="background:#f0f0f0;"><th>Medium</th><th>Bandwidth</th><th>Distance</th><th>EMI Resistance</th><th>Cost</th></tr>
+    <tr><td>Twisted Pair</td><td>Low–Medium</td><td>100m</td><td>Low</td><td>Low</td></tr>
+    <tr><td>Coaxial</td><td>Medium</td><td>500m</td><td>Medium</td><td>Medium</td></tr>
+    <tr><td>Optical Fiber</td><td>High</td><td>Kilometers</td><td>High</td><td>High</td></tr>
+    <tr><td>Radio Waves</td><td>Low–Medium</td><td>10s of km</td><td>Low</td><td>Low</td></tr>
+    <tr><td>Microwaves</td><td>High</td><td>Long (LOS)</td><td>Medium</td><td>High</td></tr>
+  </table>
+
+  <h4>🌀 5. Animation: Fiber vs Coaxial Signal Propagation</h4>
+  <canvas id="mediaCanvas" width="600" height="200"></canvas>
+  <script>
+    const ctx2 = document.getElementById('mediaCanvas').getContext('2d');
+    ctx2.clearRect(0, 0, 600, 200);
+
+    // Coaxial Signal
+    ctx2.beginPath();
+    for (let x = 0; x < 300; x++) {
+      const y = 100 + 20 * Math.sin(0.04 * x);
+      ctx2.lineTo(x, y);
+    }
+    ctx2.strokeStyle = '#f44336';
+    ctx2.stroke();
+    ctx2.fillText("Coaxial", 120, 40);
+
+    // Fiber Signal (sharper, less loss)
+    ctx2.beginPath();
+    for (let x = 300; x < 600; x++) {
+      const y = 100 + 10 * Math.sin(0.04 * x);
+      ctx2.lineTo(x, y);
+    }
+    ctx2.strokeStyle = '#4caf50';
+    ctx2.stroke();
+    ctx2.fillText("Fiber Optic", 420, 40);
+  </script>
+  <div class="note">This compares signal attenuation — coaxial (red) vs fiber optic (green).</div>
+
+  <h4>🧪 6. Quiz Yourself</h4>
+  <div class="quiz">
+    <details><summary>Q1: Which medium is immune to electromagnetic interference (EMI)?</summary><p><strong>Answer:</strong> Optical Fiber</p></details>
+    <details><summary>Q2: Which wireless medium is used in satellite communications?</summary><p><strong>Answer:</strong> Microwaves</p></details>
+    <details><summary>Q3: What is the main advantage of twisted pair cable?</summary><p><strong>Answer:</strong> Low cost and ease of installation</p></details>
+  </div>
+</div>
+
+ <a class="back" href="telecom-track.html">&larr; Back to Telecommunication Track</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>

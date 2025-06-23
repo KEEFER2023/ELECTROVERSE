@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Circuit Analysis | Electroverse</title>
+  <link rel="stylesheet" href="style/style.css">
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: white;
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+    }
+
+    header {
+      background-color: #000;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #0ff;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+    }
+
+    .logo img {
+      height: 60px;
+      margin-right: 10px;
+    }
+
+    .logo span {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      color: #0ff;
+      font-weight: bold;
+    }
+
+    nav select {
+      background-color: #111;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: 1px solid #0ff;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
+
+    .content {
+      padding: 2rem;
+    }
+
+    h1, h2 {
+      color: #0ff;
+    }
+
+    .topic {
+      background-color: #111;
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 2rem;
+      border-left: 4px solid #0ff;
+    }
+
+    .topic a {
+      color: #0ff;
+      text-decoration: underline;
+    }
+
+    footer {
+      background-color: #000;
+      text-align: center;
+      padding: 1rem;
+      color: #777;
+      border-top: 1px solid #222;
+    }
+
+    a.back {
+      color: #0ff;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      <span>Electroverse</span>
+    </div>
+    <nav>
+      <select onchange="location = this.value">
+        <option value="#">Topics</option>
+        <option value="index.html">Home</option>
+        <option value="circuit-analysis.html" selected>Circuit Analysis</option>
+        <option value="analog-electronics.html">Analog Electronics</option>
+        <option value="digital-electronics.html">Digital Electronics</option>
+        <option value="signals-systems.html">Signals & Systems</option>
+        <option value="control-systems.html">Control Systems</option>
+        <option value="power-track.html">Power Track</option>
+        <option value="telecom-track.html">Telecom Track</option>
+        <option value="control-track.html">Control & Systems</option>
+      </select>
+    </nav>
+  </header>
+
+  <div class="content">
+    <h1>Circuit Analysis</h1>
+
+    <div class="topic">
+      <h2><a href="ohms-law.html">Ohm's Law</a></h2>
+      <p><strong>Formula:</strong> V = I × R</p>
+      <p>This fundamental law relates voltage (V), current (I), and resistance (R). It forms the foundation of all circuit analysis.</p>
+    </div>
+
+    <div class="topic">
+      <h2><a href="kirchhoffs-laws.html">Kirchhoff’s Laws</a></h2>
+      <p><strong>KCL (Current Law):</strong> The sum of currents entering a node equals the sum of currents leaving the node.</p>
+      <p><strong>KVL (Voltage Law):</strong> The sum of voltage drops around any closed loop is zero.</p>
+    </div>
+
+    <div class="topic">
+      <h2><a href="series-parallel.html">Series & Parallel Circuits</a></h2>
+      <p><strong>Series:</strong> Current is the same through all components, total resistance adds up.</p>
+      <p><strong>Parallel:</strong> Voltage is the same across branches, total resistance is given by 1/R<sub>eq</sub> = 1/R<sub>1</sub> + 1/R<sub>2</sub> + ...</p>
+    </div>
+
+    <div class="topic">
+      <h2><a href="thevenin-norton.html">Thevenin & Norton Theorems</a></h2>
+      <p><strong>Thevenin:</strong> Any linear electrical network can be replaced by an equivalent circuit with a single voltage source and series resistance.</p>
+      <p><strong>Norton:</strong> Any linear electrical network can also be replaced by an equivalent circuit with a current source and parallel resistance.</p>
+    </div>
+
+    <a class="back" href="index.html">← Back to Homepage</a>
+  </div>
+
+  <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Magnetism – Electroverse</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9;}
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    svg { max-width:100%; height:auto; margin:1rem 0; }
+    canvas { border:1px solid #ccc; margin:1rem 0; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      
+    </div>
+    
+  </header>
+
+<h1>🧲 Magnetism</h1>
+<p>Everything you need to master magnetism: quantum and classical explanations, current-generated fields, engineering relevance, and problem-solving techniques. This is your high-voltage deep-dive — Electroverse style.</p>
+<hr />
+
+<div class="section">
+  <h2>1.1. Introduction to Magnetism</h2>
+  <p>Magnetism arises from moving charges and intrinsic magnetic moments of elementary particles. In electrical engineering, it underpins transformers, motors, inductors, and communication systems.</p>
+  <div class="note">
+    Magnetic effects are fundamentally described using the magnetic field vector <code>B</code>, measured in <strong>tesla (T)</strong>.
+  </div>
+</div>
+
+<div class="section">
+  <h2>1.2. Magnetic Field Due to Current (Biot–Savart & Ampère’s Law)</h2>
+  <p>Two main tools for calculating magnetic fields due to currents:</p>
+  <ul>
+    <li><strong>Biot–Savart Law:</strong> For arbitrary wire shapes</li>
+    <code>dB = (μ₀ / 4π) × (I dl × r̂) / r²</code>
+    <li><strong>Ampère’s Law:</strong> For symmetrical setups</li>
+    <code>∮ B · dl = μ₀ I_enc</code>
+  </ul>
+  <div class="example">
+    <strong>Example:</strong> Long straight wire carrying current I.
+    <code>B = (μ₀ I) / (2πr)</code>
+    <p>Field circles around wire, direction by right-hand rule.</p>
+  </div>
+</div>
+
+<div class="section">
+  <h2>1.3. Magnetic Field of Loops and Solenoids</h2>
+  <ul>
+    <li><strong>Single loop:</strong>
+      <code>B (center) = (μ₀ I) / (2R)</code>
+    </li>
+    <li><strong>Solenoid (long coil):</strong>
+      <code>B = μ₀ n I</code> (n = turns per meter)
+    </li>
+  </ul>
+  <div class="note">Inside a long solenoid, the magnetic field is uniform and parallel.</div>
+  <div class="example">
+    <strong>Example:</strong> Solenoid with 1000 turns/m, carrying 2 A.
+    <code>B = (4π × 10⁻⁷)(1000)(2) = 2.51 × 10⁻³ T</code>
+  </div>
+</div>
+
+<div class="section">
+  <h2>1.4. Magnetic Force on Charges and Currents</h2>
+  <p>Magnetic field exerts a force on:</p>
+  <ul>
+    <li><strong>Moving charges:</strong>
+      <code>F = q(v × B)</code>
+    </li>
+    <li><strong>Current-carrying wires:</strong>
+      <code>F = I(L × B)</code>
+    </li>
+  </ul>
+  <div class="tip">Force is perpendicular to both velocity and magnetic field (right-hand rule).</div>
+</div>
+
+<div class="section">
+  <h2>1.5. Magnetic Torque and Dipoles</h2>
+  <p>A current loop in a magnetic field experiences a torque:</p>
+  <code>τ = μ × B</code>
+  <p>Where μ = I × A (magnetic dipole moment)</p>
+  <div class="note">This principle is used in electric motors, galvanometers, and magnetic sensors.</div>
+</div>
+
+<div class="section">
+  <h2>1.6. Engineering Applications of Magnetism</h2>
+  <ul>
+    <li><strong>Transformers:</strong> Rely on magnetic flux linkage and mutual induction</li>
+    <li><strong>Electric Motors:</strong> Use Lorentz force to convert electrical to mechanical energy</li>
+    <li><strong>Inductors:</strong> Store energy in magnetic fields; E = (1/2) L I²</li>
+    <li><strong>Magnetic Storage:</strong> Use aligned magnetic domains (e.g., hard drives)</li>
+  </ul>
+</div>
+
+<div class="section">
+  <h2>1.7. Practice Questions</h2>
+  <div class="quiz">
+    <details><summary>Q1: What is the B-field 5 cm from a 3 A long wire?</summary><p><strong>Answer:</strong> B = (μ₀ I)/(2πr) = (4π×10⁻⁷ × 3)/(2π × 0.05) = 1.2 × 10⁻⁵ T</p></details>
+    <details><summary>Q2: What force on 2 C charge moving at 5 m/s in 0.1 T field?</summary><p><strong>Answer:</strong> F = qvB = 2 × 5 × 0.1 = 1 N</p></details>
+    <details><summary>Q3: What’s the torque on 0.1 A loop (0.05 m²) in 0.3 T?</summary><p><strong>Answer:</strong> τ = I A B = 0.1 × 0.05 × 0.3 = 0.0015 Nm</p></details>
+  </div>
+</div>
+
+<a class="back" href="maths-physics.html">&larr; Back to Physics Topics</a>
+
+<footer id="contact">
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Operational Amplifiers (Op-Amps) – Analog Electronics | Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI', sans-serif; max-width: 900px; margin: auto; padding: 30px; background: #fefefe; color: #1a1a1a; line-height: 1.9; }
+    h1,h2,h3 { color: #0d47a1; margin-top: 2.5rem; }
+    .section { margin-bottom: 3rem; }
+    .diagram, .flowchart { background: #f5f5f5; padding: 1rem; margin: 1.5rem 0; border-left: 6px solid #1976d2; border-radius: 4px; }
+    .example, .note, .tip, .quiz { background: #f5f5f5; padding: 1.2rem; margin: 1.5rem 0; border-left: 6px solid; border-radius: 4px; }
+    .example { border-color: #4caf50; }
+    .note { border-color: #1976d2; }
+    .tip { border-color: #ff9800; }
+    code { background: #eeeeee; padding: 2px 4px; font-family: Consolas, monospace; display: block; margin: 0.5rem 0; }
+    ul { padding-left: 1.4rem; }
+    details { margin: 1.2rem 0; }
+    summary { cursor: pointer; font-weight: bold; }
+    a.back { color: #0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    svg { max-width: 100%; height: auto; }
+  </style>
+</head>
+<body>
+
+    <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+
+<h1>Analogue Circuit Applications</h1>
+
+<div class="section">
+  <h2>🔁 Oscillators & Signal Generators</h2>
+ 
+</div>
+
+<div class="section">
+  <h2>🛠️ Analog Circuit Applications</h2>
+  <p>This section explores real-world analog circuits that utilize the components covered previously — showing how theory meets application in signal processing, control, measurement, and communication.</p>
+
+  <h3>🎚️ 1. Signal Conditioning Circuits</h3>
+  <ul>
+    <li><strong>Voltage dividers:</strong> scale down signals</li>
+    <li><strong>Buffering:</strong> using op-amps to isolate source/load</li>
+    <li><strong>Filtering:</strong> RC/LC/op-amp filters for bandlimiting</li>
+    <li><strong>Amplification:</strong> to bring signals to measurable ranges</li>
+  </ul>
+  <div class="diagram">
+    <img src="signal.png" width="500px" alt="Signal Conditioning Example">
+    <div class="note">Used in sensor interfaces and ADC front-ends.</div>
+  </div>
+
+  <h3>🎛️ 2. Analog Filters</h3>
+  <p>Filters are essential for frequency selection in audio, radio, and instrumentation systems.</p>
+  <ul>
+    <li><strong>Low-pass filter:</strong> Allows signals below a cutoff frequency</li>
+    <li><strong>High-pass filter:</strong> Opposite of LPF</li>
+    <li><strong>Band-pass:</strong> Filters within a narrow frequency range</li>
+  </ul>
+  <div class="diagram">
+    <img src="circuit.png" alt="Filter Circuits">
+    <div class="note">Op-amp based active filters offer better performance over passive types.</div>
+  </div>
+
+  <h3>🔄 3. Analog-to-Digital Interfaces</h3>
+  <ul>
+    <li>Use op-amps for buffering & gain</li>
+    <li>Use sample-and-hold circuits to capture signal snapshots</li>
+    <li>Level shifters and protection diodes condition voltage ranges</li>
+  </ul>
+  <div class="diagram">
+    <img src="inteface.png" alt="Analog to Digital Interface">
+    <div class="note">Analog front-ends prepare real-world signals for digital conversion.</div>
+  </div>
+
+  <h3>📶 4. RF Modulation Circuits</h3>
+  <ul>
+    <li><strong>Mixers:</strong> Combine two frequencies (e.g. local oscillator + carrier)</li>
+    <li><strong>Modulators:</strong> AM/FM/PM using diodes or transistors</li>
+    <li><strong>Demodulators:</strong> Extract baseband info from carrier</li>
+  </ul>
+  <div class="diagram">
+    <img src="modulation.jpg" alt="Modulation Circuit">
+    <div class="note">Analog modulation is still widely used in radio, TV, and communication systems.</div>
+  </div>
+
+  <h3>💡 5. Sensor Applications</h3>
+  <ul>
+    <li>Use bridge circuits (e.g. Wheatstone bridge) for resistive sensors</li>
+    <li>Use op-amps for amplification & linearization</li>
+    <li>Condition signals from thermocouples, photodiodes, strain gauges</li>
+  </ul>
+  <div class="diagram">
+    <img src="sensor.png" alt="Sensor Signal Circuit">
+    <div class="note">Used in industrial and biomedical monitoring systems.</div>
+  </div>
+
+  <h3>📘 Example: Precision Temperature Sensing</h3>
+  <div class="example">
+    <p><strong>Thermistor Interface:</strong> Voltage divider + Op-amp buffer</p>
+    <code>V_out = V_supply × (R_therm / (R_therm + R_fixed))</code>
+    <code>Buffer → ADC → Microcontroller</code>
+  </div>
+
+  <h3>🧠 Quiz</h3>
+  <div class="quiz">
+    <details><summary>Which analog block is used to isolate stages in a circuit?</summary><p><strong>Answer:</strong> Voltage follower (buffer)</p></details>
+    <details><summary>What type of filter passes only a narrow range of frequencies?</summary><p><strong>Answer:</strong> Band-pass filter</p></details>
+    <details><summary>What’s the function of a sample-and-hold circuit?</summary><p><strong>Answer:</strong> Capture and freeze signal at a moment for digitization</p></details>
+  </div>
+</div>
+
+
+<a class="back" href="analog-electronics.html">&larr; Back to Analog Electronics</a>
+
+<footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+
+</body>
+</html>

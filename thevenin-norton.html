@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Thevenin & Norton Theorems – Circuit Analysis | Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    svg { max-width:100%; height:auto; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+
+<h1>🔄 Thevenin & Norton Theorems</h1>
+<p>Thevenin’s and Norton’s theorems simplify complex linear circuits to basic equivalent models, making analysis far easier — especially when focusing on a particular component or load.</p>
+
+<div class="section">
+  <h2>1. 📘 Thevenin’s Theorem</h2>
+  <p>Any linear two-terminal circuit can be reduced to a single voltage source <strong>V<sub>th</sub></strong> in series with a resistance <strong>R<sub>th</sub></strong>.</p>
+
+  <h3>🔧 Steps to Apply Thevenin’s Theorem:</h3>
+  <ol>
+    <li>Remove the load resistor.</li>
+    <li>Find <strong>V<sub>th</sub></strong>: the open-circuit voltage across terminals.</li>
+    <li>Find <strong>R<sub>th</sub></strong>: deactivate sources (V→0, I→open) and calculate equivalent resistance.</li>
+    <li>Reconnect the load to this simplified circuit.</li>
+  </ol>
+
+  <div class="example">
+    <strong>Example:</strong> Find Thevenin equivalent across a 10Ω load.<br>
+    Given: 12V source in series with 4Ω, then parallel with 6Ω. Load is across the 6Ω.<br>
+    <code>V<sub>th</sub> = 12 × (6 / (4+6)) = 7.2V</code><br>
+    <code>R<sub>th</sub> = (4‖6) = (4×6)/(4+6) = 2.4Ω</code>
+  </div>
+
+  <div class="diagram">
+    <strong>Animated Concept:</strong> Replace a complex network with V<sub>th</sub> and R<sub>th</sub>
+    <svg width="600" height="150">
+      <circle cx="80" cy="75" r="25" stroke="#0d47a1" stroke-width="2" fill="none" />
+      <text x="60" y="80" font-size="14">Network</text>
+      <line x1="105" y1="75" x2="180" y2="75" stroke="#000" stroke-width="2" />
+      <line x1="180" y1="60" x2="180" y2="90" stroke="#000" stroke-width="2" />
+      <text x="185" y="80">→</text>
+      <line x1="210" y1="75" x2="250" y2="75" stroke="#000" stroke-width="2" />
+      <circle cx="230" cy="75" r="10" fill="#0d47a1" />
+      <text x="220" y="70" font-size="12" fill="#fff">V</text>
+      <rect x="250" y="65" width="40" height="20" fill="#999" />
+      <text x="255" y="80" font-size="12">R<sub>th</sub></text>
+    </svg>
+  </div>
+</div>
+
+<div class="section">
+  <h2>2. 🔁 Norton’s Theorem</h2>
+  <p>Norton’s Theorem is the dual of Thevenin’s. Any linear two-terminal network can be simplified to a current source <strong>I<sub>N</sub></strong> in parallel with resistance <strong>R<sub>N</sub></strong>.</p>
+
+  <h3>🔧 Steps to Apply Norton’s Theorem:</h3>
+  <ol>
+    <li>Remove the load.</li>
+    <li>Find <strong>I<sub>N</sub></strong>: short the output and calculate short-circuit current.</li>
+    <li>Find <strong>R<sub>N</sub></strong>: same method as R<sub>th</sub>.</li>
+    <li>Reconnect the load across the simplified Norton equivalent.</li>
+  </ol>
+
+  <div class="example">
+    <strong>Example:</strong> Use Norton to simplify the same 12V–4Ω–6Ω setup.<br>
+    <code>I<sub>N</sub> = V / R<sub>eq</sub> = 12 / 10 = 1.2 A</code><br>
+    <code>R<sub>N</sub> = R<sub>th</sub> = 2.4 Ω</code>
+  </div>
+
+  <div class="diagram">
+    <strong>Animated Concept:</strong> Network becomes I<sub>N</sub> in parallel with R<sub>N</sub>
+    <svg width="600" height="150">
+      <circle cx="80" cy="75" r="25" stroke="#0d47a1" stroke-width="2" fill="none" />
+      <text x="60" y="80" font-size="14">Network</text>
+      <line x1="105" y1="75" x2="180" y2="75" stroke="#000" stroke-width="2" />
+      <line x1="180" y1="60" x2="180" y2="90" stroke="#000" stroke-width="2" />
+      <text x="185" y="80">→</text>
+      <line x1="210" y1="75" x2="250" y2="75" stroke="#000" stroke-width="2" />
+      <line x1="230" y1="65" x2="230" y2="85" stroke="#0d47a1" stroke-width="2" />
+      <text x="235" y="80" font-size="12">I</text>
+      <rect x="250" y="65" width="40" height="20" fill="#999" />
+      <text x="255" y="80" font-size="12">R<sub>N</sub></text>
+    </svg>
+  </div>
+</div>
+
+<div class="section">
+  <h2>3. 🔄 Thevenin ↔ Norton Equivalence</h2>
+  <p>You can convert between Thevenin and Norton forms:</p>
+  <ul>
+    <li><strong>V<sub>th</sub> = I<sub>N</sub> × R<sub>N</sub></strong></li>
+    <li><strong>I<sub>N</sub> = V<sub>th</sub> / R<sub>th</sub></strong></li>
+  </ul>
+
+  <div class="note">
+    Thevenin and Norton equivalents are interchangeable. Use the one that simplifies your calculations best.
+  </div>
+</div>
+
+<div class="section">
+  <h2>4. 📝 Practice Quiz</h2>
+  <div class="quiz">
+    <details><summary>Q: What's the Thevenin equivalent of a 10V source in series with 5Ω?</summary><p><strong>Ans:</strong> V<sub>th</sub> = 10V, R<sub>th</sub> = 5Ω</p></details>
+    <details><summary>Q: Convert Thevenin (10V, 5Ω) to Norton.</summary><p><strong>Ans:</strong> I<sub>N</sub> = 10 / 5 = 2 A, R<sub>N</sub> = 5Ω</p></details>
+    <details><summary>Q: Why deactivate sources to find R<sub>th</sub>?</summary><p><strong>Ans:</strong> It isolates resistance effects of the network.</p></details>
+  </div>
+</div>
+
+<a class="back" href="circuit-analysis.html">&larr; Back to Circuit Analysis</a>
+
+<footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>

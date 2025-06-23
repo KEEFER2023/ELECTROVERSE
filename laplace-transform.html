@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Laplace Transforms – Electroverse</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fdfdfd; color:#1a1a1a; line-height:1.8; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2rem; }
+    .diagram, .example, .quiz, .note, .tip { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .diagram { border-color:#8e24aa; }
+    .example { border-color:#c0ca33; }
+    .quiz { border-color:#ff5722; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#00acc1; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; }
+    table { width:100%; border-collapse:collapse; margin:2rem 0; }
+    th,td { border:1px solid #ccc; padding:10px; text-align:left; }
+    th { background:#e3f2fd; }
+    hr { border:none; border-top:1px solid #ccc; margin:2rem 0; }
+    details { margin:1rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+     a.back {
+      color:#0d47a1;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      
+    </div>
+    
+  </header>
+
+  <h1>Laplace Transforms</h1>
+  <p>The Laplace Transform is a cornerstone in EE — converting time-domain differential equations into easier algebraic forms in the <strong>s‑domain</strong>. On this page: theory, diagrams, worked examples, quizzes, and all you need to be exam-ready.</p>
+
+  <div class="note"><strong>EE Insight:</strong> Use Laplace to solve ODEs in control systems, filters, RLC circuits, power electronics, and signal processing — faster than time‑domain methods.</div>
+  <hr>
+
+  <h2>1. What Is the Laplace Transform?</h2>
+  <p>Defined as:</p>
+  <p><code>F(s) = L{f(t)} = ∫₀<sup>∞</sup> e<sup>-st</sup> f(t) dt</code></p>
+  <p>with <strong>t ≥ 0</strong>, <strong>s = σ + jω</strong>. It transforms time-domain functions into the s-domain.</p>
+  <div class="tip"><strong>Concept Note:</strong> e<sup>-st</sup> acts like a “shifting-weight” — higher frequencies (large s) decay signals faster.</div>
+  <hr>
+
+  <h2>2. Standard Transform Table</h2>
+  <table>
+    <thead><tr><th>f(t)</th><th>F(s)</th><th>Conditions</th></tr></thead>
+    <tbody>
+      <tr><td>1</td><td>1/s</td><td>s &gt; 0</td></tr>
+      <tr><td>t</td><td>1/s²</td><td>s &gt; 0</td></tr>
+      <tr><td>tⁿ</td><td>n! / sⁿ⁺¹</td><td>s &gt; 0</td></tr>
+      <tr><td>e<sup>at</sup></td><td>1/(s - a)</td><td>s &gt; a</td></tr>
+      <tr><td>sin(ωt)</td><td>ω / (s² + ω²)</td><td>s &gt; 0</td></tr>
+      <tr><td>cos(ωt)</td><td>s / (s² + ω²)</td><td>s &gt; 0</td></tr>
+      <tr><td>e<sup>-at</sup> sin(ωt)</td><td>ω / [(s + a)² + ω²]</td><td>s &gt; -a</td></tr>
+      <tr><td>u(t)</td><td>1/s</td><td>Unit step</td></tr>
+      <tr><td>δ(t)</td><td>1</td><td>Impulse</td></tr>
+    </tbody>
+  </table>
+  <div class="tip"><strong>Memorize by practice:</strong> you’ll build instinct for matching transforms in seconds.</div>
+  <hr>
+
+  <h2>3. Key Properties and Theorems</h2>
+  <ul>
+    <li><strong>Linearity:</strong> L{a f + b g} = aF + bG</li>
+    <li><strong>Time shift:</strong> f(t–a)u(t–a) ↔ e<sup>-as</sup>F(s)</li>
+    <li><strong>Frequency shift:</strong> e<sup>at</sup>f(t) ↔ F(s–a)</li>
+    <li><strong>1st Derivative:</strong> f′(t) ↔ sF(s) – f(0)</li>
+    <li><strong>2nd Derivative:</strong> f″(t) ↔ s²F(s) – s f(0) – f′(0)</li>
+    <li><strong>Integration:</strong> ∫f dt ↔ F(s)/s</li>
+  </ul>
+  <hr>
+
+  <h2>4. s‑Plane Diagram</h2>
+  <div class="diagram">
+    <svg width="100%" height="200">
+      <line x1="50" y1="100" x2="450" y2="100" stroke="#666" stroke-width="2"/>
+      <line x1="250" y1="20" x2="250" y2="180" stroke="#666" stroke-width="2"/>
+      <text x="460" y="105" fill="#000">Re(s)</text>
+      <text x="255" y="15" fill="#000">Im(s)</text>
+      <circle cx="350" cy="60" r="6" fill="#e53935"/><text x="360" y="55" fill="#000">Pole</text>
+      <circle cx="300" cy="100" r="6" fill="#1e88e5"/><text x="310" y="95" fill="#000">Zero</text>
+    </svg>
+    <p><strong>Diagram:</strong> Poles (×) and zeros (o) on the s-plane. Stability means all poles must lie left of Re(s)=0.</p>
+  </div>
+  <hr>
+
+  <h2>5. Solving ODE Using Laplace (Worked Example)</h2>
+  <div class="example">
+    <strong>Problem:</strong> y″ + 3y′ + 2y = 0, y(0)=2, y′(0)=0<br>
+    <strong>Step 1:</strong> L{y″}+3L{y′}+2L{y}=0 → substitute: (s²Y–2s)+(3sY–6)+2Y=0<br>
+    <strong>Step 2:</strong> Y(s)[s²+3s+2] = 2s + 6<br>
+    <strong>Step 3:</strong> Y(s) = (2s+6)/[(s+1)(s+2)] → use partial fractions:<br>
+    (2s+6)=A(s+2)+B(s+1) → solve A=4, B=−2 → Y(s)=4/(s+1) – 2/(s+2)<br>
+    <strong>Step 4:</strong> Inverse Laplace:<br>
+    y(t)=4e<sup>-t</sup> – 2e<sup>-2t</sup>
+  </div>
+  <hr>
+
+  <h2>6. RC Low‑Pass Filter</h2>
+  <div class="diagram">
+    <svg width="100%" height="120">
+      <line x1="20" y1="60" x2="120" y2="60" stroke="#000" stroke-width="2"/>
+      <rect x="120" y="50" width="40" height="20" stroke="#000" fill="none"/>
+      <text x="130" y="65" fill="#000">R</text>
+      <line x1="160" y1="60" x2="260" y2="60" stroke="#000" stroke-width="2"/>
+      <circle cx="260" cy="60" r="20" stroke="#000" fill="none"/>
+      <text x="252" y="65" fill="#000">C</text>
+      <text x="20" y="50">Vin</text><text x="280" y="50">Vout</text>
+    </svg>
+    <p><strong>Transfer function:</strong> H(s)=Vout/Vin=1/(RCs+1). This reveals pole location (s=–1/RC) and cutoff frequency ωc=1/RC.</p>
+  </div>
+  <hr>
+
+  <h2>7. Interactive Quiz</h2>
+
+  <div class="quiz">
+  <details>
+    <summary>Quiz Q1: What is the Laplace Transform of f(t) = t²?</summary>
+    <p><strong>Step 1:</strong> Use the general formula for L{tⁿ}:</p>
+    <p><code>L{tⁿ} = n! / sⁿ⁺¹</code></p>
+    <p><strong>Step 2:</strong> For t², n = 2 → 2! / s³ = <strong>2 / s³</strong></p>
+    <p><strong>Final Answer:</strong> <code>2 / s³</code></p>
+  </details>
+
+  <details>
+    <summary>Quiz Q2: What is L{e<sup>3t</sup>·cos(2t)}?</summary>
+    <p><strong>Step 1:</strong> Use the frequency shift rule:</p>
+    <p><code>L{e<sup>at</sup>·f(t)} = F(s - a)</code></p>
+    <p><strong>Step 2:</strong> Laplace of cos(2t) = s / (s² + 4)</p>
+    <p><strong>Step 3:</strong> Shift s → (s - 3):</p>
+    <p><code>L{e<sup>3t</sup>cos(2t)} = (s - 3) / ((s - 3)² + 4)</code></p>
+    <p><strong>Final Answer:</strong> <code>(s - 3) / [(s - 3)² + 4]</code></p>
+  </details>
+
+  <details>
+    <summary>Quiz Q3: In the RC low-pass filter, what is the cutoff frequency?</summary>
+    <p><strong>Step 1:</strong> Recall: H(s) = 1 / (RCs + 1)</p>
+    <p><strong>Step 2:</strong> Cutoff frequency (ω<sub>c</sub>) is where |H(jω)| = 1/√2</p>
+    <p><strong>Step 3:</strong> Mathematically, ω<sub>c</sub> = 1 / (RC)</p>
+    <p><strong>Final Answer:</strong> <code>1 / RC</code></p>
+  </details>
+
+  <details>
+    <summary>Quiz Q4: What is the inverse Laplace of 3 / (s + 2)?</summary>
+    <p><strong>Step 1:</strong> Use basic table:</p>
+    <p><code>L<sup>-1</sup>{1 / (s + a)} = e<sup>-at</sup></code></p>
+    <p><strong>Step 2:</strong> Multiply by constant 3:</p>
+    <p><code>L<sup>-1</sup>{3 / (s + 2)} = 3·e<sup>-2t</sup></code></p>
+    <p><strong>Final Answer:</strong> <code>3e<sup>-2t</sup></code></p>
+  </details>
+</div>
+
+  <hr>
+
+  <h2>8. Practice Problems (Solve for Self)</h2>
+  <div class="example">
+    <strong>Practice 1:</strong> Find L{t·e<sup>-2t</sup>}<br>
+    <strong>Practice 2:</strong> Solve y′ + 5y = u(t), y(0)=1.<br>
+    <strong>Practice 3:</strong> Find impulse response of filter H(s)=10/(s+10).
+  </div>
+  <hr>
+
+  <h2>9. Summary and Exam Tips</h2>
+  <ul>
+    <li>Learn the table, but more importantly—recognize forms by practice.</li>
+    <li>Always apply initial conditions when using derivative transforms.</li>
+    <li>Use partial fractions for inverse transforms.</li>
+    <li>Draw s-plane to check stability/poles.</li>
+    <li>Interpret system behavior (e.g., decaying exponentials from poles).</li>
+  </ul>
+
+  <div class="tip"><strong>Exam Tip:</strong> Under time pressure, scan your function: does it match tⁿ, e<sup>at</sup>, sin? Then use transform, solve algebra, and invert quickly with partial fractions or direct lookup.</div>
+
+  <hr>
+ <a class="back" href="maths-physics.html">← Back to Math & Physics</a>
+
+ <footer id="contact">
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+</body>
+</html>

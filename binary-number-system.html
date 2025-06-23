@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+
+<div class="section">
+  <h2>💾 Digital Electronics</h2>
+  <p>Digital electronics deals with circuits that operate using discrete signals — typically binary — to represent logical and numerical values. It’s the foundation of computers, microcontrollers, digital communication, and control systems.</p>
+
+  <h3>🧮 Binary Number System</h3>
+  <p>The binary number system (base-2) uses only two digits: 0 and 1. Each digit is referred to as a bit. All digital circuits ultimately store and process data using binary.</p>
+  
+  <div class="note">
+    Binary is the language of computers and digital logic systems. All arithmetic and logic operations boil down to manipulating bits.
+  </div>
+
+  <h4>📗 Decimal ↔ Binary Conversion</h4>
+  <ul>
+    <li>To convert decimal to binary: divide by 2 repeatedly and track remainders.</li>
+    <li>To convert binary to decimal: multiply each bit by 2<sup>position</sup> and sum.</li>
+  </ul>
+
+  <div class="example">
+    <strong>Example:</strong> Convert 13<sub>10</sub> to binary:
+    <br>13 ÷ 2 = 6 remainder <strong>1</strong>
+    <br>6 ÷ 2 = 3 remainder <strong>0</strong>
+    <br>3 ÷ 2 = 1 remainder <strong>1</strong>
+    <br>1 ÷ 2 = 0 remainder <strong>1</strong>
+    <br><strong>Answer: 1101<sub>2</sub></strong>
+  </div>
+
+  <div class="example">
+    <strong>Example:</strong> Convert 10110<sub>2</sub> to decimal:
+    <br>(1×2⁴)+(0×2³)+(1×2²)+(1×2¹)+(0×2⁰) = 16 + 0 + 4 + 2 + 0 = <strong>22</strong>
+  </div>
+
+  <h4>🧮 Binary Arithmetic</h4>
+  <ul>
+    <li><strong>Addition:</strong> 0+0=0, 0+1=1, 1+1=10 (carry 1), 1+1+1=11</li>
+    <li><strong>Subtraction:</strong> Use borrow method (or complement method)</li>
+    <li><strong>Multiplication:</strong> Like decimal long multiplication but only 0s and 1s</li>
+    <li><strong>Division:</strong> Long division method in binary</li>
+  </ul>
+
+  <div class="example">
+    <strong>Example:</strong> 101<sub>2</sub> + 011<sub>2</sub> = ?
+    <br> 101
+    <br>+011
+    <br> ———
+    <br><strong>1000<sub>2</sub></strong>
+  </div>
+
+  <h4>🔄 Signed Binary Numbers (Two’s Complement)</h4>
+  <p>Two’s complement is the most common method to represent negative numbers in binary.</p>
+  <ol>
+    <li>Invert all bits (one’s complement)</li>
+    <li>Add 1</li>
+  </ol>
+
+  <div class="example">
+    <strong>Example:</strong> Represent −5 in 8-bit binary:
+    <br>+5 = 00000101
+    <br>Invert: 11111010
+    <br>Add 1 → <strong>11111011</strong>
+  </div>
+
+  <h4>🎞️ Binary Counter Animation</h4>
+  <div class="diagram">
+    <canvas id="binaryCounterCanvas" width="600" height="120"></canvas>
+    <script>
+      const binaryCtx = document.getElementById('binaryCounterCanvas').getContext('2d');
+      let count = 0;
+      function drawCounter() {
+        binaryCtx.clearRect(0, 0, 600, 120);
+        binaryCtx.font = '36px Segoe UI';
+        binaryCtx.fillStyle = '#0d47a1';
+        binaryCtx.fillText(count.toString(2).padStart(8, '0'), 200, 70);
+        count = (count + 1) % 256;
+      }
+      drawCounter();
+      setInterval(drawCounter, 1000);
+    </script>
+    <div class="note">Animated 8-bit binary counter. Notice how bits toggle like digital flip-flops.</div>
+  </div>
+
+  <h4>🧠 Quiz</h4>
+  <div class="quiz">
+    <details><summary>Convert 25<sub>10</sub> to binary</summary><p><strong>Answer:</strong> 11001</p></details>
+    <details><summary>What’s the result of 1110<sub>2</sub> + 0101<sub>2</sub>?</summary><p><strong>Answer:</strong> 10011</p></details>
+    <details><summary>What is the 2’s complement of 00000100?</summary><p><strong>Answer:</strong> 11111100</p></details>
+  </div>
+</div>
+
+<a class="back" href="digital-electronics.html">&larr; Back to Digital electronics topics</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>

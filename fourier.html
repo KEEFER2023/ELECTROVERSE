@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+
+  <h3>⚛️ Fourier Series & Fourier Transform</h3>
+  <p>Fourier techniques allow us to express signals in the frequency domain. They provide critical insight into how different frequency components make up a signal, and how systems respond to them.</p>
+
+  <h4>🔁 Fourier Series (for Periodic Signals)</h4>
+  <p>A periodic signal <code>x(t)</code> with period <code>T</code> can be expressed as:</p>
+  <code>x(t) = a₀ + ∑ (aₙ cos(nω₀t) + bₙ sin(nω₀t))</code>
+  <p>where <code>ω₀ = 2π/T</code> is the fundamental angular frequency.</p>
+
+  <div class="example">
+    <strong>Example:</strong> Square wave signal:
+    <code>x(t) = 4/π (sin(ω₀t) + 1/3 sin(3ω₀t) + 1/5 sin(5ω₀t) + ...)</code>
+    This representation is called a <em>harmonic series</em>.
+  </div>
+
+  <h4>📉 Fourier Transform (for Aperiodic Signals)</h4>
+  <p>For non-periodic signals, the Fourier Transform provides a continuous spectrum:</p>
+  <code>X(f) = ∫ x(t) e<sup>−j2πft</sup> dt</code>
+  <p>This transform converts the signal from time domain <code>x(t)</code> to frequency domain <code>X(f)</code>.</p>
+
+  <h4>📊 Visualizing Frequency Content</h4>
+  <canvas id="fftCanvas" width="500" height="200"></canvas>
+  <script>
+    const fftCanvas = document.getElementById('fftCanvas');
+    const fftCtx = fftCanvas.getContext('2d');
+    function drawFFT() {
+      fftCtx.clearRect(0, 0, fftCanvas.width, fftCanvas.height);
+      fftCtx.beginPath();
+      fftCtx.moveTo(0, 200);
+      for (let i = 0; i <= 500; i++) {
+        let y = 100 - 60 * Math.exp(-Math.pow((i - 250) / 70, 2));
+        fftCtx.lineTo(i, y);
+      }
+      fftCtx.strokeStyle = '#1976d2';
+      fftCtx.stroke();
+      fftCtx.fillStyle = '#000';
+      fftCtx.fillText("Frequency domain: |X(f)|", 10, 20);
+    }
+    drawFFT();
+  </script>
+  <div class="note">The plot shows the spectral content of a Gaussian signal (band-limited).</div>
+
+  <h4>📘 Properties</h4>
+  <ul>
+    <li><strong>Linearity:</strong> FT{a·x₁(t) + b·x₂(t)} = a·X₁(f) + b·X₂(f)</li>
+    <li><strong>Time Shift:</strong> x(t − t₀) → X(f)e<sup>−j2πft₀</sup></li>
+    <li><strong>Convolution:</strong> x(t) * h(t) → X(f)·H(f)</li>
+    <li><strong>Parseval’s Theorem:</strong> Energy in time = Energy in frequency domain</li>
+  </ul>
+
+  <h4>🧠 Tips</h4>
+  <div class="tip">
+    <ul>
+      <li>Use Fourier Series for periodic inputs (e.g., square, triangle waves)</li>
+      <li>Use Fourier Transform for decaying or finite-length signals</li>
+      <li>Symmetry simplifies computation of coefficients (even/odd)</li>
+    </ul>
+  </div>
+
+  <h4>📝 Quiz</h4>
+  <div class="quiz">
+    <details><summary>Q1: What’s the Fourier Transform of δ(t)?</summary><p><strong>Answer:</strong> 1 (flat spectrum)</p></details>
+    <details><summary>Q2: What’s the Fourier Series representation of a sawtooth wave?</summary><p><strong>Answer:</strong> x(t) = −2/π ∑ (1/n) sin(nω₀t)</p></details>
+  </div>
+</div>
+
+
+<a class="back" href="signals-systems.html">&larr; Back to Signals and systems</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>

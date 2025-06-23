@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Circuit Analysis – Electroverse</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    a.back { color:#0d47a1; text-decoration: none; display: inline-block; margin-top: 2rem; }
+    @keyframes pulse-current {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -100; }
+    }
+    svg .current-arrow {
+      stroke-dasharray: 5;
+      stroke-dashoffset: 0;
+      animation: pulse-current 1s linear infinite;
+    }
+  </style>
+</head>
+<body>
+
+   <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      </div>
+</header>
+
+<div class="section">
+  <h3>📱 Mobile Communication</h3>
+
+  <h4>🕰️ 1. Evolution from 1G to 5G</h4>
+  <ul>
+    <li><strong>1G:</strong> Analog voice (AMPS, NMT)</li>
+    <li><strong>2G:</strong> Digital voice (GSM, CDMA) with SMS</li>
+    <li><strong>3G:</strong> Mobile internet (UMTS, HSPA)</li>
+    <li><strong>4G:</strong> High-speed data, IP-based (LTE)</li>
+    <li><strong>5G:</strong> Ultra-low latency, high bandwidth, IoT support</li>
+  </ul>
+  <img src="evolve.png" alt="Evolution of Mobile Networks">
+
+  <h4>🏙️ 2. Cellular Architecture</h4>
+  <ul>
+    <li><strong>Cells:</strong> Each area served by a Base Transceiver Station (BTS)</li>
+    <li><strong>Frequency Reuse:</strong> Same frequency bands used in non-adjacent cells</li>
+    <li><strong>Handoff:</strong> Seamless transfer of ongoing calls/data sessions between cells</li>
+    <li><strong>Interference:</strong> Controlled by cell planning, reuse distance, and power control</li>
+  </ul>
+  <div class="diagram">
+    <img src="cellular.png" alt="Cellular Network Layout">
+    <p><strong>Figure:</strong> Cellular system using hexagonal cells for frequency reuse</p>
+  </div>
+
+  <h4>🔁 3. Handoff Animation (Call Transfer)</h4>
+  <canvas id="handoffCanvas" width="600" height="200"></canvas>
+  <script>
+    const canvas = document.getElementById("handoffCanvas");
+    const ctx = canvas.getContext("2d");
+    let x = 50;
+    function drawHandoff() {
+      ctx.clearRect(0, 0, 600, 200);
+      // draw cells
+      ctx.strokeStyle = '#bbb';
+      for (let i = 0; i < 3; i++) {
+        ctx.beginPath();
+        ctx.arc(150 + i * 150, 100, 70, 0, 2 * Math.PI);
+        ctx.stroke();
+        ctx.fillText("Cell " + (i + 1), 130 + i * 150, 190);
+      }
+      // draw mobile user
+      ctx.beginPath();
+      ctx.arc(x, 100, 10, 0, 2 * Math.PI);
+      ctx.fillStyle = "#ff5722";
+      ctx.fill();
+      x += 1.2;
+      if (x > 600) x = 50;
+      requestAnimationFrame(drawHandoff);
+    }
+    drawHandoff();
+  </script>
+  <div class="note">This animation shows a mobile user moving across cells and being handed off automatically between BTSs.</div>
+
+  <h4>🛰️ 4. Key Technologies</h4>
+  <ul>
+    <li><strong>TDMA:</strong> Time Division Multiple Access (used in 2G)</li>
+    <li><strong>CDMA:</strong> Code Division Multiple Access (2G/3G)</li>
+    <li><strong>OFDMA:</strong> Orthogonal Frequency Division Multiple Access (4G/5G)</li>
+    <li><strong>MIMO:</strong> Multiple antennas for higher capacity and robustness</li>
+  </ul>
+  <img src="mimo.png" alt="MIMO Technology Illustration" style="max-width: 600px;">
+
+  <h4>📲 5. Call Setup Process (Simplified)</h4>
+  <ol>
+    <li>Mobile sends <strong>access request</strong> to nearby BTS</li>
+    <li>BTS connects to BSC (Base Station Controller)</li>
+    <li>BSC forwards to MSC (Mobile Switching Center)</li>
+    <li>MSC routes call to destination</li>
+    <li>On answer, voice channel is established</li>
+  </ol>
+  <div class="tip">Each component in the mobile network (BTS, BSC, MSC) plays a role in handling connections, routing, and handoffs.</div>
+
+  <h4>🧪 6. Quiz Yourself</h4>
+  <div class="quiz">
+    <details><summary>Q1: What does a BTS do?</summary><p><strong>Answer:</strong> Serves mobile users in a cell by transmitting and receiving RF signals</p></details>
+    <details><summary>Q2: Which technology is used in 4G for multiplexing?</summary><p><strong>Answer:</strong> OFDMA</p></details>
+    <details><summary>Q3: What is the purpose of handoff?</summary><p><strong>Answer:</strong> To maintain connectivity as a user moves between cells</p></details>
+  </div>
+</div>
+
+<a class="back" href="telecom-track.html">&larr; Back to Telecommunication Track</a>
+
+ <footer>
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Fourier Transforms – Electroverse</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fdfdfd; color:#1a1a1a; line-height:1.8; }
+    h1,h2,h3 { color:#0d47a1; margin-top:2rem; }
+    .diagram, .example, .quiz, .note, .tip { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .diagram { border-color:#8e24aa; }
+    .example { border-color:#c0ca33; }
+    .quiz { border-color:#ff5722; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#00acc1; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; }
+    details { margin:1rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    table { width:100%; border-collapse:collapse; margin:2rem 0; }
+    th,td { border:1px solid #ccc; padding:10px; text-align:left; }
+    th { background:#e3f2fd; }
+    svg { max-width:100%; height:auto; }
+      a.back {
+      color:#0d47a1;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+
+<header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      
+    </div>
+    
+  </header>
+
+  <h1>Fourier Transforms</h1>
+  <p>Fourier Transforms break down signals into their frequency components — a cornerstone concept in signal processing and communications.</p>
+  <div class="note">EE Insight: Analyze filters, communication signals, and frequency-domain behavior with the FT.</div>
+  <hr>
+
+  <h2>1. Definitions</h2>
+  <p><strong>Continuous Fourier Transform (FT):</strong></p>
+  <p><code>X(f) = ∫₋∞⁺∞ x(t) e<sup>−j2πft</sup> dt</code></p>
+  <p><strong>Inverse FT:</strong> <code>x(t) = ∫₋∞⁺∞ X(f) e<sup>j2πft</sup> df</code></p>
+  <div class="tip">Tip: f is frequency in Hz. Use angular form (ω = 2πf) when preferred.</div>
+
+  <h2>2. Common Fourier Transform Pairs</h2>
+  <table>
+    <thead><tr><th>x(t)</th><th>X(f)</th><th>Notes</th></tr></thead>
+    <tbody>
+      <tr><td>δ(t)</td><td>1</td><td>All frequencies present</td></tr>
+      <tr><td>1</td><td>δ(f)</td><td>DC only</td></tr>
+      <tr><td>e<sup>−a t</sup>u(t)</td><td>1/(a + j2πf)</td><td>a > 0</td></tr>
+      <tr><td>sin(2πf₀t)</td><td>(1/2j)[δ(f−f₀) − δ(f+f₀)]</td><td>Pure tone</td></tr>
+      <tr><td>cos(2πf₀t)</td><td>(1/2)[δ(f−f₀) + δ(f+f₀)]</td><td>Even-toned</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">Practice these by sketching frequency spikes for sinusoids and exponentials.</div>
+  <hr>
+
+  <h2>3. Properties</h2>
+  <ul>
+    <li><strong>Linearity:</strong> FT{ax + by} = aX + bY</li>
+    <li><strong>Time shift:</strong> FT{x(t−t₀)} = X(f)e<sup>−j2πft₀</sup></li>
+    <li><strong>Frequency shift:</strong> FT{x(t)e<sup>j2πf₀t</sup>} = X(f−f₀)</li>
+    <li><strong>Convolution:</strong> FT{x * h} = X(f)·H(f)</li>
+    <li><strong>Parseval’s theorem:</strong> Energy in time equals energy in freq: ∫|x|² = ∫|X|²</li>
+  </ul>
+  <hr>
+
+  <h2>4. Diagrams</h2>
+  <div class="diagram">
+    <svg width="100%" height="200">
+      <rect x="20" y="100" width="260" height="2" fill="#333"/>
+      <line x1="150" y1="100" x2="150" y2="50" stroke="#333" stroke-width="2"/>
+      <line x1="150" y1="100" x2="250" y2="100" stroke="#333" stroke-width="2"/>
+      <circle cx="250" cy="100" r="5" fill="#e53935"/><text x="255" y="95">f₀</text>
+      <circle cx="50" cy="100" r="5" fill="#e53935"/><text x="55" y="95">−f₀</text>
+    </svg>
+    <p><strong>Diagram:</strong> Frequency spectrum of cos(2πf₀t) shows two impulses.</p>
+  </div>
+
+  <div class="diagram">
+    <svg width="300" height="120">
+      <rect x="20" y="60" width="260" height="2" fill="#333"/>
+      <rect x="140" y="30" width="20" height="60" fill="#888" opacity="0.5"/>
+      <text x="180" y="40">Low-pass filter H(f)</text>
+    </svg>
+    <p><strong>Diagram:</strong> Filtering out high-frequency noise with low-pass behavior.</p>
+  </div>
+  <hr>
+
+  <h2>5. Exam‑Style Example</h2>
+  <div class="example">
+    <strong>x(t) = e<sup>−a t</sup>u(t)</strong><br>
+    X(f) = ∫₀⁺∞ e<sup>−at</sup>e<sup>−j2πft</sup> dt = 1 / (a + j2πf)<br>
+    <strong>Conclusion:</strong> Spectrum is real axis-shifted pole → low-pass behavior.
+  </div>
+  <hr>
+
+  <h2>6. Interactive Quiz</h2>
+  <div class="quiz">
+    <details>
+      <summary>Q1: FT of δ(t−2) = ?</summary>
+      <p><strong>Solution:</strong> e<sup>−j2πf·2</sup></p>
+    </details>
+    <details>
+      <summary>Q2: FT of cos(2π·50t) = ?</summary>
+      <p><strong>Solution:</strong> (1/2)[δ(f−50) + δ(f+50)]</p>
+    </details>
+    <details>
+      <summary>Q3: Given x(t)=e<sup>−2t</sup>u(t), find X(f)</summary>
+      <p><strong>Solution:</strong> ∫₀∞ e<sup>−2t</sup>e<sup>−j2πft</sup> dt = 1 / (2 + j2πf)</p>
+    </details>
+  </div>
+  <hr>
+
+  <h2>7. Applications in EE</h2>
+  <ul>
+    <li>Spectrum analysis in communications</li>
+    <li>Designing filters in frequency domain</li>
+    <li>Sampling & aliasing (FT bridges to DFT)</li>
+    <li>Modulation and demodulation of signals</li>
+  </ul>
+  <div class="tip">EE Tip: Sketch |X(f)| first – see where signal energy lies to understand filter requirements.</div>
+  <hr>
+
+  <h2>8. Summary and Exam Tips</h2>
+  <ul>
+    <li>Transform common signals and plot their spectra</li>
+    <li>Know pairs and properties inside-out</li>
+    <li>Use convolution and filtering theorems for signal analysis</li>
+    <li>Learn sampling basics – moving to DFT/FFT next!</li>
+  </ul>
+
+ <a class="back" href="maths-physics.html">← Back to Math & Physics</a>
+
+ <footer id="contact">
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+  
+</body>
+</html>

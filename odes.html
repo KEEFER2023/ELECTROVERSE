@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ordinary Differential Equations – Electroverse</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    body { font-family:'Segoe UI',sans-serif; max-width:900px; margin:auto; padding:30px; background:#fefefe; color:#1a1a1a; line-height:1.9;}
+    h1,h2,h3 { color:#0d47a1; margin-top:2.5rem; }
+    .section { margin-bottom:3rem; }
+    .diagram, .flowchart { background:#f5f5f5; padding:1rem; margin:1.5rem 0; border-left:6px solid #1976d2; border-radius:4px; }
+    .example, .note, .tip, .quiz { background:#f5f5f5; padding:1.2rem; margin:1.5rem 0; border-left:6px solid; border-radius:4px; }
+    .example { border-color:#4caf50; }
+    .note { border-color:#1976d2; }
+    .tip { border-color:#ff9800; }
+    code { background:#eeeeee; padding:2px 4px; font-family:Consolas,monospace; display:block; margin:0.5rem 0; }
+    ul { padding-left:1.4rem; }
+    details { margin:1.2rem 0; }
+    summary { cursor:pointer; font-weight:bold; }
+    svg { max-width:100%; height:auto; margin:1rem 0; }
+    canvas { border:1px solid #ccc; margin:1rem 0; }
+      a.back {
+      color:#0d47a1;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">
+      <img src="logo.png" alt="Electroverse Logo">
+      
+    </div>
+    
+  </header>
+
+<h1>Ordinary Differential Equations (ODEs) – Enhanced</h1>
+
+<p>This expanded guide gives you everything you need on ODEs — definitions, visual plots, solver strategy, interactive simulation, and fully worked examples to make you exam-ready without picking up a textbook.</p>
+
+<hr />
+
+<!-- Visual Plots -->
+<div class="section">
+  <h2>📊 1. Solution Behavior Plots</h2>
+  <p>Below are example solution families and direction fields:</p>
+  <div class="diagram"><img src="ode-direction.png" width="300px" alt="ODE solution families" /></div>
+  <div class="note">These help you visualize how solutions evolve depending on initial condition.</div>
+</div>
+
+<hr />
+
+<!-- Solver flowchart -->
+<div class="section">
+ <h2>🔄 2. ODE Solver Flowchart</h2>
+<div style="background: #f5f5f5; padding: 1rem; border-left: 6px solid #1976d2; border-radius: 4px;">
+  <div style="display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+    <div style="border: 2px solid #2196f3; padding: 10px 20px; border-radius: 5px;">Is ODE Linear?</div>
+    <span style="font-size: 2rem;">⬇️</span>
+    <div style="border: 2px solid #4caf50; padding: 10px 20px; border-radius: 5px;">Classify Order: 1st, 2nd, etc</div>
+    <span style="font-size: 2rem;">⬇️</span>
+    <div style="border: 2px solid #ff9800; padding: 10px 20px; border-radius: 5px;">Select Method (IF, Separable, Char Eqn, Laplace)</div>
+    <span style="font-size: 2rem;">⬇️</span>
+    <div style="border: 2px solid #9c27b0; padding: 10px 20px; border-radius: 5px;">Solve General & Particular Solution</div>
+    <span style="font-size: 2rem;">⬇️</span>
+    <div style="border: 2px solid #f44336; padding: 10px 20px; border-radius: 5px;">Apply Initial Conditions</div>
+  </div>
+  <p style="margin-top: 1.5rem;">This is a common workflow engineers use when approaching any ODE problem.</p>
+</div>
+
+</div>
+
+<hr />
+
+<!-- Interactive simulation -->
+<div class="section">
+  <h2>💻 3. Interactive ODE Simulation</h2>
+<canvas id="odeCanvas" width="600" height="300"></canvas>
+<script>
+  const canvas = document.getElementById('odeCanvas');
+  const ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  // Axes
+  ctx.strokeStyle = '#ccc';
+  ctx.beginPath();
+  ctx.moveTo(40, 0); ctx.lineTo(40, 300); // y-axis
+  ctx.moveTo(0, 260); ctx.lineTo(600, 260); // x-axis
+  ctx.stroke();
+
+  // Label axes
+  ctx.fillStyle = '#000';
+  ctx.font = '14px sans-serif';
+  ctx.fillText("t →", 560, 280);
+  ctx.fillText("y", 10, 20);
+
+  // Plot: dy/dt + 2y = 3 with y(0) = 1
+  let y = 1;
+  ctx.strokeStyle = '#000';
+  ctx.beginPath();
+  ctx.moveTo(40, 260 - y * 40);
+  for (let t = 0; t <= 10; t += 0.1) {
+    y = 1.5 - 0.5 * Math.exp(-2 * t); // analytical solution
+    ctx.lineTo(40 + t * 50, 260 - y * 40);
+  }
+  ctx.stroke();
+</script>
+<div class="note">This plot shows the exact solution to <code>dy/dt + 2y = 3</code> with <code>y(0) = 1</code>.</div>
+
+</div>
+
+<hr />
+
+<!-- Definitions -->
+<div class="section">
+  <h2>⚙️ 4. ODE Types & Definitions</h2>
+  <ul>
+    <li><strong>Linear:</strong> y and derivatives appear linearly (no products/powers)</li>
+    <li><strong>First-Order:</strong> dy/dt + P(t)y = Q(t)</li>
+    <li><strong>2nd-Order:</strong> y″ + a₁ y′ + a₀ y = f(t)</li>
+    <li><strong>Homogeneous:</strong> RHS = 0</li>
+    <li><strong>Non-Homogeneous:</strong> RHS ≠ 0 (external forcing)</li>
+  </ul>
+</div>
+
+<hr />
+
+<!-- First-order examples -->
+<div class="section">
+  <h2>📘 5. First‑Order Linear ODEs (3 Examples)</h2>
+
+  <div class="example">
+    <strong>Example 1:</strong> dy/dt + 4y = 0, y(0)=2 → y = 2 e^(−4t)
+  </div>
+
+  <div class="example">
+    <strong>Example 2:</strong> dy/dt + 3y = 6 e^(2t), y(0)=1<br>
+    μ=e^(3t), integrate, solve → y = (6/5) e^(2t) + (−1/5) e^(−3t)
+  </div>
+
+  <div class="example">
+    <strong>Example 3:</strong> dy/dt = sin(t), y(0)=0 → integrate → y = 1−cos(t)
+  </div>
+  <div class="tip">Use integrating factor for linear; direct integration for separable.</div>
+</div>
+
+<hr />
+
+<!-- Second-order examples -->
+<div class="section">
+  <h2>📘 6. Second‑Order ODEs (3 Examples)</h2>
+
+  <div class="example">
+    <strong>Example 4 (Homogeneous):</strong> y″ + 6y′ + 9y = 0, y(0)=3,y′(0)=−6 → r²+6r+9=0 → r=−3 double → y = (3−0 t)e^(−3t)
+  </div>
+
+  <div class="example">
+    <strong>Example 5 (Non‑Homogeneous):</strong> y″ + y = cos(t)<br>
+    yₕ=C cos(t)+D sin(t); assume yₚ = At sin(t)+Bt cos(t); solve → final y applied ICs.
+  </div>
+
+  <div class="example">
+    <strong>Example 6 (RLC circuit):</strong> L di/dt + R i + (1/C) ∫ i dt = V_in → differentiate → L di′ + R i′ + (1/C) i = V′ → solve analogous.
+  </div>
+</div>
+
+<hr />
+
+<!-- Quiz -->
+<div class="section">
+  <h2>📝 7. Practice Quizzes</h2>
+  <div class="quiz">
+    <details><summary>Q1: Solve dy/dt +2y=8, y(0)=0</summary><p><strong>Answer:</strong> y = 4−4 e^(−2t)</p></details>
+    <details><summary>Q2: Solve y″ +4y=0, y(0)=0,y′(0)=2</summary><p><strong>Answer:</strong> y= (1/2)sin(2t)</p></details>
+    <details><summary>Q3: Solve dy/dt = 3t², y(0)=1</summary><p><strong>Answer:</strong> y = t³ +1</p></details>
+  </div>
+</div>
+
+<hr />
+<div class="tip">Annotate classification (order/linear/homog) before solving — that earns marks and clarity!</div>
+
+<a class="back" href="maths-physics.html">← Back to Math & Physics</a>
+
+<footer id="contact">
+    © 2025 Electroverse. Engineered for learners.
+  </footer>
+
+</body>
+</html>
