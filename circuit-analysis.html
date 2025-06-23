@@ -6,154 +6,97 @@
   <title>Circuit Analysis | Electroverse</title>
   <link rel="stylesheet" href="style/style.css">
   <style>
-    
-  /* Responsive Defaults */
-* {
-  box-sizing: border-box;
-}
+    body {
+      background-color: #0a0a0a;
+      color: white;
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+    }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
-  background-color: #0a0a0a;
-  color: white;
-  overflow-x: hidden;
-}
+    header {
+      background-color: #000;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #0ff;
+    }
 
-h1, h2 {
-  color: #0ff;
-  text-align: center;
-  margin-bottom: 1rem;
-}
+    .logo {
+      display: flex;
+      align-items: center;
+    }
 
-p, li {
-  line-height: 1.6;
-  font-size: 1rem;
-  color: #ccc;
-}
+    .logo img {
+      height: 60px;
+      margin-right: 10px;
+    }
 
-ul {
-  padding-left: 20px;
-}
+    .logo span {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      color: #0ff;
+      font-weight: bold;
+    }
 
-/* Header */
-header {
-  background-color: #000;
-  padding: 1rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  border-bottom: 2px solid #0ff;
-}
+    nav select {
+      background-color: #111;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: 1px solid #0ff;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
 
-.logo {
-  display: flex;
-  align-items: center;
-  flex: 1;
-}
+    .content {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
 
-.logo img {
-  height: 50px;
-  margin-right: 10px;
-}
+    h1, h2 {
+      color: #0ff;
+    }
 
-.logo span {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.6rem;
-  color: #0ff;
-  font-weight: bold;
-}
+    .topics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
 
-nav {
-  margin-top: 1rem;
-}
+    .topics a {
+      display: block;
+      background-color: #111;
+      border: 1px solid #0ff;
+      border-radius: 6px;
+      padding: 1rem;
+      text-align: center;
+      color: #0ff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
 
-nav select {
-  background-color: #111;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border: 1px solid #0ff;
-  border-radius: 4px;
-  font-size: 1rem;
-  width: 100%;
-}
+    .topics a:hover {
+      background-color: #112233;
+    }
 
-/* Content */
-.content {
-  padding: 2rem 1rem;
-  max-width: 960px;
-  margin: auto;
-}
+    a.back {
+      color: #0ff;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 2rem;
+    }
 
-.topics {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
-}
-
-.topics a {
-  display: block;
-  background-color: #111;
-  border: 1px solid #0ff;
-  border-radius: 6px;
-  padding: 1rem;
-  text-align: center;
-  color: #0ff;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s;
-  font-size: 1rem;
-}
-
-.topics a:hover {
-  background-color: #112233;
-}
-
-a.back {
-  color: #0ff;
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 2rem;
-  font-size: 0.95rem;
-}
-
-/* Footer */
-footer {
-  background-color: #000;
-  text-align: center;
-  padding: 1rem;
-  color: #777;
-  font-size: 0.85rem;
-  border-top: 1px solid #222;
-}
-
-/* Mobile Adjustments */
-@media screen and (max-width: 600px) {
-  .logo span {
-    font-size: 1.2rem;
-  }
-
-  nav select {
-    font-size: 0.9rem;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  h2 {
-    font-size: 1.2rem;
-  }
-
-  .topics a {
-    font-size: 0.9rem;
-    padding: 0.75rem;
-  }
-}
-</style>
+    footer {
+      background-color: #000;
+      text-align: center;
+      padding: 1rem;
+      color: #777;
+      border-top: 1px solid #222;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -165,7 +108,8 @@ footer {
       <select onchange="location = this.value">
         <option value="#">Topics</option>
         <option value="index.html">Home</option>
-        <option value="circuit-analysis.html" selected>Circuit Analysis</option>
+        <option value="maths-physics.html">Maths and Physics</option>
+        <option value="circuit-analysis.html">Circuit Analysis</option>
         <option value="analog-electronics.html">Analog Electronics</option>
         <option value="digital-electronics.html">Digital Electronics</option>
         <option value="signals-systems.html">Signals & Systems</option>
@@ -179,32 +123,16 @@ footer {
 
   <div class="content">
     <h1>Circuit Analysis</h1>
+    <p><em>Master the essentials and advanced tools to analyze electrical circuits effectively.</em></p>
 
-    <div class="topic">
-      <h2><a href="ohms-law.html">Ohm's Law</a></h2>
-      <p><strong>Formula:</strong> V = I × R</p>
-      <p>This fundamental law relates voltage (V), current (I), and resistance (R). It forms the foundation of all circuit analysis.</p>
+    <div class="topics">
+      <a href="ohms-law.html">Ohm's Law</a>
+      <a href="kirchhoffs-laws.html">Kirchhoff’s Laws</a>
+      <a href="series-parallel.html">Series & Parallel Circuits</a>
+      <a href="thevenin-norton.html">Thevenin & Norton Theorems</a>
     </div>
 
-    <div class="topic">
-      <h2><a href="kirchhoffs-laws.html">Kirchhoff’s Laws</a></h2>
-      <p><strong>KCL (Current Law):</strong> The sum of currents entering a node equals the sum of currents leaving the node.</p>
-      <p><strong>KVL (Voltage Law):</strong> The sum of voltage drops around any closed loop is zero.</p>
-    </div>
-
-    <div class="topic">
-      <h2><a href="series-parallel.html">Series & Parallel Circuits</a></h2>
-      <p><strong>Series:</strong> Current is the same through all components, total resistance adds up.</p>
-      <p><strong>Parallel:</strong> Voltage is the same across branches, total resistance is given by 1/R<sub>eq</sub> = 1/R<sub>1</sub> + 1/R<sub>2</sub> + ...</p>
-    </div>
-
-    <div class="topic">
-      <h2><a href="thevenin-norton.html">Thevenin & Norton Theorems</a></h2>
-      <p><strong>Thevenin:</strong> Any linear electrical network can be replaced by an equivalent circuit with a single voltage source and series resistance.</p>
-      <p><strong>Norton:</strong> Any linear electrical network can also be replaced by an equivalent circuit with a current source and parallel resistance.</p>
-    </div>
-
-    <a class="back" href="index.html">← Back to Homepage</a>
+    <a class="back" href="index.html">← Back to Home</a>
   </div>
 
   <footer>

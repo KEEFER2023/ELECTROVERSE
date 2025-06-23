@@ -3,157 +3,108 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Telecommunication Track | Electroverse</title>
+  <title>Telecom Track | Electroverse</title>
   <link rel="stylesheet" href="style/style.css">
-    <style>
-/* Responsive Defaults */
-* {
-  box-sizing: border-box;
-}
+  <style>
+    body {
+      background-color: #0a0a0a;
+      color: white;
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+    }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
-  background-color: #0a0a0a;
-  color: white;
-  overflow-x: hidden;
-}
+    header {
+      background-color: #000;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #0ff;
+    }
 
-h1, h2 {
-  color: #0ff;
-  text-align: center;
-  margin-bottom: 1rem;
-}
+    .logo {
+      display: flex;
+      align-items: center;
+    }
 
-p, li {
-  line-height: 1.6;
-  font-size: 1rem;
-  color: #ccc;
-}
+    .logo img {
+      height: 60px;
+      margin-right: 10px;
+    }
 
-ul {
-  padding-left: 20px;
-}
+    .logo span {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      color: #0ff;
+      font-weight: bold;
+    }
 
-/* Header */
-header {
-  background-color: #000;
-  padding: 1rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  border-bottom: 2px solid #0ff;
-}
+    nav select {
+      background-color: #111;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: 1px solid #0ff;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
 
-.logo {
-  display: flex;
-  align-items: center;
-  flex: 1;
-}
+    .content {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
 
-.logo img {
-  height: 50px;
-  margin-right: 10px;
-}
+    h1, h2 {
+      color: #0ff;
+    }
 
-.logo span {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.6rem;
-  color: #0ff;
-  font-weight: bold;
-}
+    p, li {
+      line-height: 1.6;
+    }
 
-nav {
-  margin-top: 1rem;
-}
+    ul {
+      padding-left: 20px;
+    }
 
-nav select {
-  background-color: #111;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border: 1px solid #0ff;
-  border-radius: 4px;
-  font-size: 1rem;
-  width: 100%;
-}
+    .topics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
 
-/* Content */
-.content {
-  padding: 2rem 1rem;
-  max-width: 960px;
-  margin: auto;
-}
+    .topics a {
+      display: block;
+      background-color: #111;
+      border: 1px solid #0ff;
+      border-radius: 6px;
+      padding: 1rem;
+      text-align: center;
+      color: #0ff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
 
-.topics {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
-}
+    .topics a:hover {
+      background-color: #112233;
+    }
 
-.topics a {
-  display: block;
-  background-color: #111;
-  border: 1px solid #0ff;
-  border-radius: 6px;
-  padding: 1rem;
-  text-align: center;
-  color: #0ff;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s;
-  font-size: 1rem;
-}
+    footer {
+      background-color: #000;
+      text-align: center;
+      padding: 1rem;
+      color: #777;
+      border-top: 1px solid #222;
+    }
 
-.topics a:hover {
-  background-color: #112233;
-}
-
-a.back {
-  color: #0ff;
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 2rem;
-  font-size: 0.95rem;
-}
-
-/* Footer */
-footer {
-  background-color: #000;
-  text-align: center;
-  padding: 1rem;
-  color: #777;
-  font-size: 0.85rem;
-  border-top: 1px solid #222;
-}
-
-/* Mobile Adjustments */
-@media screen and (max-width: 600px) {
-  .logo span {
-    font-size: 1.2rem;
-  }
-
-  nav select {
-    font-size: 0.9rem;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  h2 {
-    font-size: 1.2rem;
-  }
-
-  .topics a {
-    font-size: 0.9rem;
-    padding: 0.75rem;
-  }
-}
-</style>
-
+    a.back {
+      color: #0ff;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -165,24 +116,34 @@ footer {
       <select onchange="location = this.value">
         <option value="#">Topics</option>
         <option value="index.html">Home</option>
+        <option value="maths-physics.html">Maths and Physics</option>
+        <option value="circuit-analysis.html">Circuit Analysis</option>
+        <option value="analog-electronics.html">Analog Electronics</option>
+        <option value="digital-electronics.html">Digital Electronics</option>
+        <option value="signals-systems.html">Signals & Systems</option>
+        <option value="control-systems.html">Control Systems</option>
+        <option value="power-track.html">Power Track</option>
+        <option value="telecom-track.html">Telecom Track</option>
+        <option value="control-track.html">Control & Systems</option>
       </select>
     </nav>
   </header>
 
   <div class="content">
     <h1>Telecommunication Track</h1>
-    <p><em>Extensive knowledge that actually helps real-world electrical engineering students.</em></p>
+    <p><em>Explore the science and engineering behind communication systems — from signals to satellite links.</em></p>
 
     <h2>Topics Covered</h2>
-    <ul>
-      <li><a class="card" href="modulation.html"><h3>Modulation Techniques</h3><p>AM, FM, PM, digital modulation (ASK, FSK, PSK, QAM)</p></a></li>
-      <li><a class="card" href="transmission-media.html"><h3>Transmission Media</h3><p>Wired (coaxial, optical fiber), Wireless (microwave, RF)</p></a></li>
-      <li><a class="card" href="signal-propagation.html"><h3>Signal Propagation</h3><p>Free-space loss, multipath, fading, noise</p></a></li>
-      <li><a class="card" href="antennas.html"><h3>Antennas & Radiation</h3><p>Types of antennas, radiation pattern, gain, directivity</p></a></li>
-      <li><a class="card" href="rf-microwave.html"><h3>RF & Microwave Systems</h3><p>RF components, S-parameters, waveguides, filters</p></a></li>
-      <li><a class="card" href="mobile-communication.html"><h3>Mobile Communication</h3><p>2G to 5G, cellular architecture, handoff, CDMA, OFDM</p></a></li>
-    </ul>
-     <a class="back" href="index.html">← Back to Homepage</a>
+  <div class="topics">
+  <a href="modulation.html">Modulation Techniques</a>
+  <a href="transmission-media.html">Transmission Media</a>
+  <a href="signal-propagation.html">Signal Propagation</a>
+  <a href="antennas.html">Antennas & Radiation</a>
+  <a href="rf-microwave.html">RF & Microwave Systems</a>
+</div>
+
+
+    <a class="back" href="index.html">← Back to Home</a>
   </div>
 
   <footer>

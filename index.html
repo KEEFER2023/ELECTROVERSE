@@ -7,154 +7,112 @@
   <link rel="stylesheet" href="style/style.css">
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600&family=Roboto&display=swap" rel="stylesheet">
   <style>
-/* Responsive Defaults */
-* {
-  box-sizing: border-box;
-}
+    body {
+      margin: 0;
+      font-family: 'Roboto', sans-serif;
+      background-color: #0a0a0a;
+      color: white;
+    }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
-  background-color: #0a0a0a;
-  color: white;
-  overflow-x: hidden;
-}
+    header {
+      background-color: #000;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #0ff;
+    }
 
-h1, h2 {
-  color: #0ff;
-  text-align: center;
-  margin-bottom: 1rem;
-}
+    .logo {
+      display: flex;
+      align-items: center;
+    }
 
-p, li {
-  line-height: 1.6;
-  font-size: 1rem;
-  color: #ccc;
-}
+    .logo img {
+      height: 60px;
+      margin-right: 10px;
+    }
 
-ul {
-  padding-left: 20px;
-}
+    .logo span {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      color: #0ff;
+      font-weight: bold;
+    }
 
-/* Header */
-header {
-  background-color: #000;
-  padding: 1rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  border-bottom: 2px solid #0ff;
-}
+    nav select {
+      background-color: #111;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: 1px solid #0ff;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
 
-.logo {
-  display: flex;
-  align-items: center;
-  flex: 1;
-}
+    .hero {
+      text-align: center;
+      padding: 3rem 2rem;
+    }
 
-.logo img {
-  height: 50px;
-  margin-right: 10px;
-}
+    .hero h1 {
+      font-size: 3rem;
+      margin-bottom: 0.5rem;
+      color: #0ff;
+    }
 
-.logo span {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.6rem;
-  color: #0ff;
-  font-weight: bold;
-}
+    .hero p {
+      font-size: 1.2rem;
+      color: #ccc;
+      max-width: 700px;
+      margin: auto;
+    }
 
-nav {
-  margin-top: 1rem;
-}
+    .section {
+      padding: 2rem;
+    }
 
-nav select {
-  background-color: #111;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border: 1px solid #0ff;
-  border-radius: 4px;
-  font-size: 1rem;
-  width: 100%;
-}
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-top: 1rem;
+    }
 
-/* Content */
-.content {
-  padding: 2rem 1rem;
-  max-width: 960px;
-  margin: auto;
-}
+    .card {
+      background-color: #111;
+      border: 1px solid #0ff;
+      padding: 1rem;
+      border-radius: 8px;
+      transition: 0.3s ease;
+    }
 
-.topics {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
-}
+    .card:hover {
+      background-color: #111a;
+      transform: translateY(-4px);
+    }
 
-.topics a {
-  display: block;
-  background-color: #111;
-  border: 1px solid #0ff;
-  border-radius: 6px;
-  padding: 1rem;
-  text-align: center;
-  color: #0ff;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s;
-  font-size: 1rem;
-}
+    .card h3 {
+      color: #0ff;
+    }
 
-.topics a:hover {
-  background-color: #112233;
-}
+    .card a {
+      color: #0ff;
+      text-decoration: none;
+    }
 
-a.back {
-  color: #0ff;
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 2rem;
-  font-size: 0.95rem;
-}
-
-/* Footer */
-footer {
-  background-color: #000;
-  text-align: center;
-  padding: 1rem;
-  color: #777;
-  font-size: 0.85rem;
-  border-top: 1px solid #222;
-}
-
-/* Mobile Adjustments */
-@media screen and (max-width: 600px) {
-  .logo span {
-    font-size: 1.2rem;
-  }
-
-  nav select {
-    font-size: 0.9rem;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  h2 {
-    font-size: 1.2rem;
-  }
-
-  .topics a {
-    font-size: 0.9rem;
-    padding: 0.75rem;
-  }
-}
-</style>
-
+    footer {
+      background-color: #000;
+      text-align: center;
+      padding: 1rem;
+      font-size: 0.9rem;
+      color: #777;
+      border-top: 1px solid #222;
+    }
+    span{
+      text-align: center;
+      font-size: 40px;
+    }
+  </style>
 </head>
 <body>
   <header>

@@ -6,153 +6,105 @@
   <title>Digital Electronics | Electroverse</title>
   <link rel="stylesheet" href="style/style.css">
   <style>
- /* Responsive Defaults */
-* {
-  box-sizing: border-box;
-}
+    body {
+      background-color: #0a0a0a;
+      color: white;
+      font-family: 'Roboto', sans-serif;
+      margin: 0;
+    }
 
-body {
-  margin: 0;
-  padding: 0;
-  font-family: 'Roboto', sans-serif;
-  background-color: #0a0a0a;
-  color: white;
-  overflow-x: hidden;
-}
+    header {
+      background-color: #000;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 2px solid #0ff;
+    }
 
-h1, h2 {
-  color: #0ff;
-  text-align: center;
-  margin-bottom: 1rem;
-}
+    .logo {
+      display: flex;
+      align-items: center;
+    }
 
-p, li {
-  line-height: 1.6;
-  font-size: 1rem;
-  color: #ccc;
-}
+    .logo img {
+      height: 60px;
+      margin-right: 10px;
+    }
 
-ul {
-  padding-left: 20px;
-}
+    .logo span {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.8rem;
+      color: #0ff;
+      font-weight: bold;
+    }
 
-/* Header */
-header {
-  background-color: #000;
-  padding: 1rem 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  border-bottom: 2px solid #0ff;
-}
+    nav select {
+      background-color: #111;
+      color: #fff;
+      padding: 0.5rem 1rem;
+      border: 1px solid #0ff;
+      border-radius: 4px;
+      font-size: 1rem;
+    }
 
-.logo {
-  display: flex;
-  align-items: center;
-  flex: 1;
-}
+    .content {
+      padding: 2rem;
+      max-width: 900px;
+      margin: auto;
+    }
 
-.logo img {
-  height: 50px;
-  margin-right: 10px;
-}
+    h1, h2 {
+      color: #0ff;
+    }
 
-.logo span {
-  font-family: 'Orbitron', sans-serif;
-  font-size: 1.6rem;
-  color: #0ff;
-  font-weight: bold;
-}
+    p, li {
+      line-height: 1.6;
+    }
 
-nav {
-  margin-top: 1rem;
-}
+    ul {
+      padding-left: 20px;
+    }
 
-nav select {
-  background-color: #111;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border: 1px solid #0ff;
-  border-radius: 4px;
-  font-size: 1rem;
-  width: 100%;
-}
+    .topics {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
 
-/* Content */
-.content {
-  padding: 2rem 1rem;
-  max-width: 960px;
-  margin: auto;
-}
+    .topics a {
+      display: block;
+      background-color: #111;
+      border: 1px solid #0ff;
+      border-radius: 6px;
+      padding: 1rem;
+      text-align: center;
+      color: #0ff;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
 
-.topics {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 1rem;
-  margin-top: 1rem;
-}
+    .topics a:hover {
+      background-color: #112233;
+    }
 
-.topics a {
-  display: block;
-  background-color: #111;
-  border: 1px solid #0ff;
-  border-radius: 6px;
-  padding: 1rem;
-  text-align: center;
-  color: #0ff;
-  text-decoration: none;
-  font-weight: bold;
-  transition: background-color 0.3s;
-  font-size: 1rem;
-}
+    footer {
+      background-color: #000;
+      text-align: center;
+      padding: 1rem;
+      color: #777;
+      border-top: 1px solid #222;
+    }
 
-.topics a:hover {
-  background-color: #112233;
-}
-
-a.back {
-  color: #0ff;
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 2rem;
-  font-size: 0.95rem;
-}
-
-/* Footer */
-footer {
-  background-color: #000;
-  text-align: center;
-  padding: 1rem;
-  color: #777;
-  font-size: 0.85rem;
-  border-top: 1px solid #222;
-}
-
-/* Mobile Adjustments */
-@media screen and (max-width: 600px) {
-  .logo span {
-    font-size: 1.2rem;
-  }
-
-  nav select {
-    font-size: 0.9rem;
-  }
-
-  h1 {
-    font-size: 1.5rem;
-  }
-
-  h2 {
-    font-size: 1.2rem;
-  }
-
-  .topics a {
-    font-size: 0.9rem;
-    padding: 0.75rem;
-  }
-}
-</style>
+    a.back {
+      color: #0ff;
+      text-decoration: none;
+      display: inline-block;
+      margin-top: 2rem;
+    }
+  </style>
 </head>
 <body>
   <header>
@@ -164,26 +116,32 @@ footer {
       <select onchange="location = this.value">
         <option value="#">Topics</option>
         <option value="index.html">Home</option>
+        <option value="maths-physics.html">Maths and Physics</option>
+        <option value="circuit-analysis.html">Circuit Analysis</option>
         <option value="analog-electronics.html">Analog Electronics</option>
-        <option value="digital-electronics.html" selected>Digital Electronics</option>
+        <option value="digital-electronics.html">Digital Electronics</option>
+        <option value="signals-systems.html">Signals & Systems</option>
+        <option value="control-systems.html">Control Systems</option>
+        <option value="power-track.html">Power Track</option>
+        <option value="telecom-track.html">Telecom Track</option>
+        <option value="control-track.html">Control & Systems</option>
       </select>
     </nav>
   </header>
 
   <div class="content">
     <h1>Digital Electronics</h1>
-    <p><em>Extensive knowledge that actually helps real-world electrical engineering students.</em></p>
+    <p><em>Digital logic that forms the brain of modern electronic systems.</em></p>
 
-    <p>Digital electronics is the study of systems that use discrete values (0s and 1s) for input, processing, and output of information. Below are the core topics in this area:</p>
-
-    <div class="grid">
-      <div class="card"><a href="binary-number-system.html">Binary Number System</a></div>
-      <div class="card"><a href="boolean-algebra.html">Boolean Algebra</a></div>
-      <div class="card"><a href="logic-gates.html">Logic Gates</a></div>
-      <div class="card"><a href="karnaugh-maps.html">Karnaugh Maps (K-Maps)</a></div>
-      <div class="card"><a href="combinational-circuits.html">Combinational Circuits</a></div>
-      <div class="card"><a href="sequential-circuits.html">Sequential Circuits</a></div>
-      <div class="card"><a href="memory-timing.html">Memory & Timing</a></div>
+    <h2>Topics Covered</h2>
+    <div class="topics">
+      <a href="binary-number-system.html">Binary Number System</a>
+      <a href="boolean-algebra.html">Boolean Algebra</a>
+      <a href="logic-gates.html">Logic Gates</a>
+      <a href="karnaugh-maps.html">Karnaugh Maps (K-Maps)</a>
+      <a href="combinational-circuits.html">Combinational Circuits</a>
+      <a href="sequential-circuits.html">Sequential Circuits</a>
+      <a href="memory-timing.html">Memory & Timing</a>
     </div>
 
     <a class="back" href="index.html">← Back to Home</a>
